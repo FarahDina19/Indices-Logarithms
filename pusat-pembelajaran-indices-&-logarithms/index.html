@@ -1,0 +1,1032 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pusat Pembelajaran Indices & Logarithms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .tab-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .tab-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      /* Styles for proper math rendering */
+      sup, sub {
+        position: relative;
+        font-size: 75%;
+        line-height: 0;
+        vertical-align: baseline;
+      }
+      sup {
+        top: -0.5em;
+      }
+      sub {
+        bottom: -0.25em;
+      }
+      /* Tweak log spacing for better visual */
+      span[class*="text-purple"] + sub {
+        margin-left: 2px;
+      }
+      /* Custom range input styles */
+      input[type=range] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 8px;
+        background: #e2e8f0; /* slate-200 */
+        border-radius: 9999px;
+        outline: none;
+        opacity: 0.7;
+        transition: opacity .2s;
+      }
+      .dark input[type=range] {
+          background: #334155; /* slate-700 */
+      }
+      input[type=range]:hover {
+        opacity: 1;
+      }
+      input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #3b82f6; /* blue-500 */
+        cursor: pointer;
+        border-radius: 50%;
+        border: 2px solid white;
+      }
+      .dark input[type=range]::-webkit-slider-thumb {
+        border-color: #1e293b; /* slate-800 */
+      }
+      input[type=range]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: #3b82f6; /* blue-500 */
+        cursor: pointer;
+        border-radius: 50%;
+        border: 2px solid white;
+      }
+      /* Tooltip styles */
+      .formula-container {
+        position: relative;
+        display: inline-block;
+        cursor: help;
+        width: 100%;
+        text-align: center;
+      }
+      .tooltip-text {
+        visibility: hidden;
+        width: 240px;
+        background-color: #334155; /* slate-700 */
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px;
+        position: absolute;
+        z-index: 10;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -120px;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-family: 'Inter', sans-serif;
+        pointer-events: none;
+      }
+      .dark .tooltip-text {
+        background-color: #f1f5f9; /* slate-100 */
+        color: #1e293b; /* slate-800 */
+      }
+      .tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #334155 transparent transparent transparent;
+      }
+      .dark .tooltip-text::after {
+        border-color: #f1f5f9 transparent transparent transparent;
+      }
+      .formula-container:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-200">
+    <div id="root">
+        <div class="min-h-screen font-sans p-4 sm:p-6 lg:p-8">
+            <header class="text-center mb-8">
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
+                    Pusat Pembelajaran Indices & Logarithms
+                </h1>
+                <p class="mt-2 text-lg text-slate-600 dark:text-slate-400">
+                    Kuasai konsep penting melalui penerokaan dan latihan interaktif!
+                </p>
+            </header>
+            <main>
+                <div class="mb-6 sticky top-0 bg-slate-100/80 dark:bg-slate-900/80 backdrop-blur-sm z-10 py-4">
+                    <nav class="flex justify-center">
+                        <div class="border border-slate-300 dark:border-slate-700 rounded-lg p-1 bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                            <div class="flex space-x-1 tab-scrollbar overflow-x-auto">
+                                <button data-tab="indices-intro" class="tab-button flex items-center justify-center px-4 py-2 text-sm sm:text-base font-semibold rounded-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-100 dark:focus:ring-offset-slate-900 active">
+                                    <span class="mr-2 text-xl">📈</span> Pengenalan Indices
+                                </button>
+                                <button data-tab="logarithms-intro" class="tab-button flex items-center justify-center px-4 py-2 text-sm sm:text-base font-semibold rounded-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-100 dark:focus:ring-offset-slate-900">
+                                    <span class="mr-2 text-xl">📉</span> Pengenalan Logarithms
+                                </button>
+                                <button data-tab="conversion" class="tab-button flex items-center justify-center px-4 py-2 text-sm sm:text-base font-semibold rounded-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-100 dark:focus:ring-offset-slate-900">
+                                    <span class="mr-2 text-xl">🔄</span> Penukaran
+                                </button>
+                                <button data-tab="indices-solution" class="tab-button flex items-center justify-center px-4 py-2 text-sm sm:text-base font-semibold rounded-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-100 dark:focus:ring-offset-slate-900">
+                                    <span class="mr-2 text-xl">💡</span> Penyelesaian Indices
+                                </button>
+                                <button data-tab="logarithms-solution" class="tab-button flex items-center justify-center px-4 py-2 text-sm sm:text-base font-semibold rounded-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-100 dark:focus:ring-offset-slate-900">
+                                    <span class="mr-2 text-xl">🧠</span> Penyelesaian Logarithms
+                                </button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="transition-opacity duration-500 ease-in-out">
+                    
+                    <!-- Indices Intro Tab -->
+                    <div id="tab-content-indices-intro" class="tab-content active">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <div class="lg:col-span-2 space-y-6">
+                                <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700">
+                                    <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                        <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">📖</span> Definisi & Sifat Asas Indices</h3>
+                                    </div>
+                                    <div class="p-6">
+                                        <p>Indices (atau exponent) menunjukkan berapa kali satu nombor (base) didarab dengan dirinya sendiri.</p>
+                                        <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg text-center">
+                                            <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">n</span></sup></span>
+                                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Di sini, <span class="text-blue-500 dark:text-blue-400">'a'</span> ialah base, dan <span class="text-red-500 dark:text-red-400">'n'</span> ialah index/exponent.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700">
+                                    <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                        <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">🔬</span> Eksplorasi Interaktif</h3>
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                                            <div>
+                                                <div class="space-y-4">
+                                                    <div>
+                                                        <label for="base-slider" class="font-medium">Base: <span id="indices-base-label" class="text-blue-500 dark:text-blue-400 font-bold">2</span></label>
+                                                        <input id="base-slider" type="range" min="1" max="10" step="1" value="2" class="w-full">
+                                                    </div>
+                                                    <div>
+                                                        <label for="exponent-slider" class="font-medium">Exponent: <span id="indices-exponent-label" class="text-red-500 dark:text-red-400 font-bold">3</span></label>
+                                                        <input id="exponent-slider" type="range" min="-3" max="5" step="1" value="3" class="w-full">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="p-4 bg-slate-100 dark:bg-slate-900/50 rounded-lg text-center">
+                                                <p class="text-xl font-bold">Pengiraan:</p>
+                                                <div id="indices-interactive-result" class="my-2 text-2xl">
+                                                    <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">2</span><sup><span class="text-red-500 dark:text-red-400">3</span></sup> = <span class="text-green-600 dark:text-green-400">8</span></span>
+                                                </div>
+                                                <p class="text-sm text-slate-500">Hasil dikira secara automatik.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700">
+                                    <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                        <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">🏋️‍♀️</span> Contoh & Latihan</h3>
+                                    </div>
+                                    <div class="p-6">
+                                        <!-- Practice Exercise Placeholder -->
+                                        <div id="indices-intro-practice" class="practice-exercise-container"></div>
+                                        <!-- Challenge Problem Placeholder -->
+                                        <div id="indices-intro-challenge" class="challenge-problem-container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-1">
+                                <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700 sticky top-24">
+                                    <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                        <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">📜</span> Undang-undang Indices</h3>
+                                    </div>
+                                    <div class="p-6">
+                                        <ul class="space-y-4">
+                                            <li class="p-3 bg-slate-100 dark:bg-slate-900/50 rounded-md text-sm sm:text-base">
+                                                <div class="formula-container">
+                                                    <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">m</span></sup> × <span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">n</span></sup> = <span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">m+n</span></sup></span>
+                                                    <span class="tooltip-text">Apabila mendarab nombor dengan asas yang sama, tambahkan kuasanya.<br><strong>Contoh:</strong> 2³ × 2² = 2⁵ = 32</span>
+                                                </div>
+                                            </li>
+                                            <li class="p-3 bg-slate-100 dark:bg-slate-900/50 rounded-md text-sm sm:text-base">
+                                                <div class="formula-container">
+                                                    <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">m</span></sup> ÷ <span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">n</span></sup> = <span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">m-n</span></sup></span>
+                                                    <span class="tooltip-text">Apabila membahagi nombor dengan asas yang sama, tolakkan kuasanya.<br><strong>Contoh:</strong> 3⁵ ÷ 3³ = 3² = 9</span>
+                                                </div>
+                                            </li>
+                                            <li class="p-3 bg-slate-100 dark:bg-slate-900/50 rounded-md text-sm sm:text-base">
+                                                <div class="formula-container">
+                                                    <span class="font-mono text-lg">(<span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">m</span></sup>)<sup><span class="text-red-500 dark:text-red-400">n</span></sup> = <span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">mn</span></sup></span>
+                                                    <span class="tooltip-text">Apabila satu kuasa dinaikkan kepada kuasa lain, darabkan kuasanya.<br><strong>Contoh:</strong> (5²)³ = 5⁶</span>
+                                                </div>
+                                            </li>
+                                            <li class="p-3 bg-slate-100 dark:bg-slate-900/50 rounded-md text-sm sm:text-base">
+                                                <div class="formula-container">
+                                                    <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">0</span></sup> = <span class="text-green-600 dark:text-green-400">1</span></span>
+                                                    <span class="tooltip-text">Sebarang nombor (kecuali 0) yang dikuasakan dengan sifar adalah sama dengan 1.<br><strong>Contoh:</strong> 7⁰ = 1</span>
+                                                </div>
+                                            </li>
+                                            <li class="p-3 bg-slate-100 dark:bg-slate-900/50 rounded-md text-sm sm:text-base">
+                                                <div class="formula-container">
+                                                    <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">-n</span></sup> = 1 / <span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">n</span></sup></span>
+                                                    <span class="tooltip-text">Kuasa negatif bermaksud salingan (reciprocal) bagi nombor dengan kuasa positif.<br><strong>Contoh:</strong> 4⁻² = 1/4² = 1/16</span>
+                                                </div>
+                                            </li>
+                                            <li class="p-3 bg-slate-100 dark:bg-slate-900/50 rounded-md text-sm sm:text-base">
+                                                <div class="formula-container">
+                                                    <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">m/n</span></sup> = <sup>n</sup>√(<span class="text-blue-500 dark:text-blue-400">a</span><sup><span class="text-red-500 dark:text-red-400">m</span></sup>)</span>
+                                                    <span class="tooltip-text">Kuasa pecahan mewakili punca kuasa. Pengangka (m) ialah kuasa, dan penyebut (n) ialah punca.<br><strong>Contoh:</strong> 8²/³ = ³√(8²) = 4</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Logarithms Intro Tab -->
+                    <div id="tab-content-logarithms-intro" class="tab-content">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <div class="lg:col-span-2 space-y-6">
+                                <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700">
+                                    <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                        <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">📖</span> Definisi & Sifat Asas Logarithms</h3>
+                                    </div>
+                                    <div class="p-6">
+                                        <p>Logarithm ialah kuasa (exponent) yang perlu dikenakan pada satu nombor (base) untuk menghasilkan nombor lain.</p>
+                                        <div class="mt-4 p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg text-center">
+                                            <p><span class="font-mono text-lg"><span class="text-purple-500 dark:text-purple-400">log</span><sub><span class="text-blue-500 dark:text-blue-400">b</span></sub>(<span class="text-orange-500 dark:text-orange-400">x</span>) = <span class="text-red-500 dark:text-red-400">y</span></span> bermaksud <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">b</span><sup><span class="text-red-500 dark:text-red-400">y</span></sup> = <span class="text-green-600 dark:text-green-400">x</span></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700">
+                                    <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                        <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">🔬</span> Eksplorasi Interaktif</h3>
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                                            <div>
+                                                <div class="space-y-4">
+                                                    <div>
+                                                        <label for="log-base-slider" class="font-medium">Base: <span id="log-base-label" class="text-blue-500 dark:text-blue-400 font-bold">2</span></label>
+                                                        <input id="log-base-slider" type="range" min="2" max="10" step="1" value="2" class="w-full">
+                                                    </div>
+                                                    <div>
+                                                        <label for="log-value-input" class="font-medium">Value: <span id="log-value-label" class="text-orange-500 dark:text-orange-400 font-bold">8</span></label>
+                                                        <input id="log-value-input" type="number" min="1" max="10000" step="1" value="8" class="w-full p-2 mt-1 border-2 border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-600">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="p-4 bg-slate-100 dark:bg-slate-900/50 rounded-lg text-center">
+                                                <p class="text-xl font-bold">Pengiraan:</p>
+                                                <div id="log-interactive-result" class="my-2 text-2xl">
+                                                    <span class="font-mono text-lg"><span class="text-purple-500 dark:text-purple-400">log</span><sub><span class="text-blue-500 dark:text-blue-400">2</span></sub>(<span class="text-orange-500 dark:text-orange-400">8</span>) = <span class="text-red-500 dark:text-red-400">3</span></span>
+                                                </div>
+                                                <p class="text-sm text-slate-500">Hasil dikira secara automatik.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700">
+                                    <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                        <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">🏋️‍♀️</span> Contoh & Latihan</h3>
+                                    </div>
+                                    <div class="p-6">
+                                        <div id="log-intro-practice" class="practice-exercise-container"></div>
+                                        <div id="log-intro-challenge" class="challenge-problem-container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-1">
+                                <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700 sticky top-24">
+                                    <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                        <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">📜</span> Sifat-sifat Logarithms</h3>
+                                    </div>
+                                    <div class="p-6">
+                                        <ul class="space-y-4">
+                                            <li class="p-4 bg-slate-100 dark:bg-slate-900/50 rounded-lg">
+                                                <div class="font-semibold text-purple-700 dark:text-purple-400">Hukum Hasil Darab</div>
+                                                <div class="mt-1 text-sm sm:text-base">
+                                                    <div class="formula-container">
+                                                        <span class="font-mono text-lg"><span class="text-purple-500 dark:text-purple-400">log</span><sub>b</sub>(xy) = <span class="text-purple-500 dark:text-purple-400">log</span><sub>b</sub>(x) + <span class="text-purple-500 dark:text-purple-400">log</span><sub>b</sub>(y)</span>
+                                                        <span class="tooltip-text">Logaritma bagi hasil darab ialah hasil tambah logaritma bagi faktor-faktornya.</span>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs mt-2 text-slate-600 dark:text-slate-400">Logaritma hasil darab ialah hasil tambah logaritma individu.</p>
+                                                <p class="text-xs mt-2 p-2 bg-slate-200 dark:bg-slate-800 rounded font-mono">Contoh: log₂(4×8) = log₂(4) + log₂(8) = 2 + 3 = 5</p>
+                                            </li>
+                                            <li class="p-4 bg-slate-100 dark:bg-slate-900/50 rounded-lg">
+                                                <div class="font-semibold text-purple-700 dark:text-purple-400">Hukum Hasil Bahagi</div>
+                                                <div class="mt-1 text-sm sm:text-base">
+                                                    <div class="formula-container">
+                                                        <span class="font-mono text-lg"><span class="text-purple-500 dark:text-purple-400">log</span><sub>b</sub>(x/y) = <span class="text-purple-500 dark:text-purple-400">log</span><sub>b</sub>(x) - <span class="text-purple-500 dark:text-purple-400">log</span><sub>b</sub>(y)</span>
+                                                        <span class="tooltip-text">Logaritma bagi hasil bahagi ialah perbezaan logaritma pengangka dan penyebut.</span>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs mt-2 text-slate-600 dark:text-slate-400">Logaritma hasil bahagi ialah perbezaan logaritma individu.</p>
+                                                <p class="text-xs mt-2 p-2 bg-slate-200 dark:bg-slate-800 rounded font-mono">Contoh: log₃(27/3) = log₃(27) - log₃(3) = 3 - 1 = 2</p>
+                                            </li>
+                                            <li class="p-4 bg-slate-100 dark:bg-slate-900/50 rounded-lg">
+                                                <div class="font-semibold text-purple-700 dark:text-purple-400">Hukum Kuasa</div>
+                                                <div class="mt-1 text-sm sm:text-base">
+                                                    <div class="formula-container">
+                                                        <span class="font-mono text-lg"><span class="text-purple-500 dark:text-purple-400">log</span><sub>b</sub>(x<sup>n</sup>) = n <span class="text-purple-500 dark:text-purple-400">log</span><sub>b</sub>(x)</span>
+                                                        <span class="tooltip-text">Logaritma bagi satu nombor yang dikuasakan ialah kuasa tersebut didarab dengan logaritma nombor itu.</span>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs mt-2 text-slate-600 dark:text-slate-400">Logaritma nombor dengan kuasa ialah kuasa didarab dengan logaritma nombor itu.</p>
+                                                <p class="text-xs mt-2 p-2 bg-slate-200 dark:bg-slate-800 rounded font-mono">Contoh: log₁₀(100²) = 2 × log₁₀(100) = 2 × 2 = 4</p>
+                                            </li>
+                                            <li class="p-4 bg-slate-100 dark:bg-slate-900/50 rounded-lg">
+                                                <div class="font-semibold text-purple-700 dark:text-purple-400">Logaritma Asas</div>
+                                                <div class="mt-1 text-sm sm:text-base">
+                                                    <div class="formula-container">
+                                                        <span class="font-mono text-lg"><span class="text-purple-500 dark:text-purple-400">log</span><sub>b</sub>(b) = 1</span>
+                                                        <span class="tooltip-text">Logaritma bagi nombor yang sama dengan asasnya sentiasa 1.<br><strong>Contoh:</strong> log₅(5) = 1</span>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs mt-2 text-slate-600 dark:text-slate-400">Logaritma nombor yang sama dengan asasnya sentiasa 1.</p>
+                                                <p class="text-xs mt-2 p-2 bg-slate-200 dark:bg-slate-800 rounded font-mono">Contoh: log₇(7) = 1</p>
+                                            </li>
+                                             <li class="p-4 bg-slate-100 dark:bg-slate-900/50 rounded-lg">
+                                                <div class="font-semibold text-purple-700 dark:text-purple-400">Logaritma Satu</div>
+                                                <div class="mt-1 text-sm sm:text-base">
+                                                    <div class="formula-container">
+                                                        <span class="font-mono text-lg"><span class="text-purple-500 dark:text-purple-400">log</span><sub>b</sub>(1) = 0</span>
+                                                        <span class="tooltip-text">Logaritma bagi 1 untuk sebarang asas (b>1) sentiasa 0.<br><strong>Contoh:</strong> log₇(1) = 0</span>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs mt-2 text-slate-600 dark:text-slate-400">Logaritma bagi 1 dengan sebarang asas (b > 0, b ≠ 1) sentiasa 0.</p>
+                                                <p class="text-xs mt-2 p-2 bg-slate-200 dark:bg-slate-800 rounded font-mono">Contoh: log₅(1) = 0</p>
+                                            </li>
+                                            <li class="p-4 bg-slate-100 dark:bg-slate-900/50 rounded-lg">
+                                                <div class="font-semibold text-purple-700 dark:text-purple-400">Penukaran Asas</div>
+                                                <div class="mt-1 text-sm sm:text-base">
+                                                    <div class="formula-container">
+                                                        <span class="font-mono text-lg"><span class="text-purple-500 dark:text-purple-400">log</span><sub>b</sub>(x) = <span class="text-purple-500 dark:text-purple-400">log</span><sub>c</sub>(x) / <span class="text-purple-500 dark:text-purple-400">log</span><sub>c</sub>(b)</span>
+                                                        <span class="tooltip-text">Tukarkan kepada asas yang lebih mudah (seperti 10 atau e) untuk pengiraan kalkulator.</span>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs mt-2 text-slate-600 dark:text-slate-400">Membolehkan anda menukar logaritma daripada satu asas ke asas yang lain (biasanya 10 atau e).</p>
+                                                <p class="text-xs mt-2 p-2 bg-slate-200 dark:bg-slate-800 rounded font-mono">Contoh: log₄(64) = log₂(64) / log₂(4) = 6 / 2 = 3</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Conversion Tab -->
+                    <div id="tab-content-conversion" class="tab-content">
+                        <div class="max-w-4xl mx-auto">
+                            <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700">
+                                <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                    <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">🔄</span> Penukaran Antara Bentuk Indices & Logarithms</h3>
+                                </div>
+                                <div class="p-6">
+                                    <p class="mb-6 text-center">Lihat bagaimana bentuk Indices dan Logarithms saling berkaitan. Ubah nilai di satu bahagian dan lihat bahagian lain dikemas kini secara automatik!</p>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                                        <div class="p-6 border-2 border-blue-300 dark:border-blue-700 rounded-lg bg-blue-50 dark:bg-blue-900/30">
+                                            <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 text-center">Bentuk Indices</h3>
+                                            <div id="conversion-indices-display" class="text-center text-3xl mb-6">
+                                                <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">2</span><sup><span class="text-red-500 dark:text-red-400">3</span></sup> = <span class="text-green-600 dark:text-green-400">8</span></span>
+                                            </div>
+                                            <div class="space-y-4">
+                                                <div>
+                                                    <label class="font-medium">Base (<span class="text-blue-500 dark:text-blue-400">a</span>): <span id="conv-base-val-1">2</span></label>
+                                                    <input id="conv-base-1" type="range" min="2" max="10" value="2" class="w-full">
+                                                </div>
+                                                <div>
+                                                    <label class="font-medium">Exponent (<span class="text-red-500 dark:text-red-400">n</span>): <span id="conv-exp-val">3</span></label>
+                                                    <input id="conv-exponent" type="range" min="-3" max="5" step="0.5" value="3" class="w-full">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-6 border-2 border-purple-300 dark:border-purple-700 rounded-lg bg-purple-50 dark:bg-purple-900/30">
+                                            <h3 class="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-4 text-center">Bentuk Logarithms</h3>
+                                            <div id="conversion-log-display" class="text-center text-3xl mb-6">
+                                                <span class="font-mono text-lg"><span class="text-purple-500 dark:text-purple-400">log</span><sub><span class="text-blue-500 dark:text-blue-400">2</span></sub>(<span class="text-orange-500 dark:text-orange-400">8</span>) = <span class="text-red-500 dark:text-red-400">3</span></span>
+                                            </div>
+                                            <div class="space-y-4">
+                                                <div>
+                                                    <label class="font-medium">Base (<span class="text-blue-500 dark:text-blue-400">b</span>): <span id="conv-base-val-2">2</span></label>
+                                                    <input id="conv-base-2" type="range" min="2" max="10" value="2" class="w-full">
+                                                </div>
+                                                <div>
+                                                    <label class="font-medium">Value (<span class="text-orange-500 dark:text-orange-400">x</span>): <span id="conv-res-val">8</span></label>
+                                                    <input id="conv-result" type="range" min="1" max="1000" value="8" class="w-full">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-8 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
+                                        <h4 class="font-bold text-lg text-center">Hubungan Utama</h4>
+                                        <p class="text-center mt-2 font-mono text-xl">
+                                            <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">b</span><sup><span class="text-red-500 dark:text-red-400">y</span></sup> = <span class="text-green-600 dark:text-green-400">x</span></span>
+                                            <span class="mx-4 font-sans text-2xl">⟷</span>
+                                            <span class="font-mono text-lg"><span class="text-purple-500 dark:text-purple-400">log</span><sub><span class="text-blue-500 dark:text-blue-400">b</span></sub>(<span class="text-orange-500 dark:text-orange-400">x</span>) = <span class="text-red-500 dark:text-red-400">y</span></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Indices Solution Tab -->
+                    <div id="tab-content-indices-solution" class="tab-content">
+                        <div class="space-y-6">
+                            <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700">
+                                <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                    <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">👯</span> Jenis 1: Same Base</h3>
+                                </div>
+                                <div class="p-6">
+                                    <p>Jika base sama, maka exponent mestilah sama. Contoh: Jika <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">2</span><sup><span class="text-red-500 dark:text-red-400">x</span></sup> = <span class="text-blue-500 dark:text-blue-400">2</span><sup><span class="text-red-500 dark:text-red-400">5</span></sup></span>, maka <span class="text-green-600 dark:text-green-400">x = 5</span>.</p>
+                                    <div id="indices-sol-1-practice" class="practice-exercise-container"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700">
+                                <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                    <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">⛓️</span> Jenis 2: Same Index</h3>
+                                </div>
+                                <div class="p-6">
+                                    <p>Jika index/exponent sama, maka base mestilah sama. Contoh: Jika <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">x</span><sup><span class="text-red-500 dark:text-red-400">3</span></sup> = <span class="text-green-600 dark:text-green-400">8</span></span>, maka <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">x</span><sup><span class="text-red-500 dark:text-red-400">3</span></sup> = <span class="text-blue-500 dark:text-blue-400">2</span><sup><span class="text-red-500 dark:text-red-400">3</span></sup></span>, jadi <span class="text-green-600 dark:text-green-400">x = 2</span>.</p>
+                                    <div id="indices-sol-2-practice" class="practice-exercise-container"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700">
+                                <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                    <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">🔄</span> Jenis 3: Convert to Logarithms</h3>
+                                </div>
+                                <div class="p-6">
+                                    <p>Apabila base tidak boleh disamakan, tukar persamaan kepada bentuk logarithm. Contoh: Jika <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">3</span><sup><span class="text-red-500 dark:text-red-400">x</span></sup> = <span class="text-green-600 dark:text-green-400">10</span></span>, maka <span class="text-green-600 dark:text-green-400">x = log₃(10)</span>.</p>
+                                    <div class="p-4 text-center bg-slate-100 dark:bg-slate-800 rounded-lg mt-4">
+                                        <p class="font-semibold">Bahagian ini akan diliputi dalam tab Penyelesaian Logarithms.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Logarithms Solution Tab -->
+                    <div id="tab-content-logarithms-solution" class="tab-content">
+                        <div class="space-y-6">
+                            <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700">
+                                <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                    <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">💡</span> Jenis 1 & 3: Same Base / Convert to Indices</h3>
+                                </div>
+                                <div class="p-6">
+                                    <p>Kaedah ini adalah sama. Jika base sama, kita boleh samakan nilainya. Selalunya, ini melibatkan penukaran kepada bentuk indices. Contoh: Jika <span class="font-mono text-lg"><span class="text-purple-500 dark:text-purple-400">log</span><sub><span class="text-blue-500 dark:text-blue-400">2</span></sub>(<span class="text-orange-500 dark:text-orange-400">x</span>) = <span class="text-red-500 dark:text-red-400">3</span></span>, tukar kepada bentuk indices: <span class="font-mono text-lg"><span class="text-blue-500 dark:text-blue-400">2</span><sup><span class="text-red-500 dark:text-red-400">3</span></sup></span>, jadi <span class="text-green-600 dark:text-green-400">x = 8</span>.</p>
+                                    <div id="log-sol-1-practice" class="practice-exercise-container"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-700">
+                                <div class="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                    <h3 class="text-xl font-bold flex items-center"><span class="mr-3 text-2xl">↔️</span> Jenis 2: Change of Base</h3>
+                                </div>
+                                <div class="p-6">
+                                    <p>Gunakan formula penukaran asas untuk selesaikan. Formula: <span class="font-mono bg-slate-100 dark:bg-slate-800 p-2 rounded">log<sub>b</sub>(x) = log<sub>a</sub>(x) / log<sub>a</sub>(b)</span>. Ini berguna apabila kita perlu menukar kepada base yang lebih mudah (seperti base 10 atau base e).</p>
+                                    <div id="log-sol-2-practice" class="practice-exercise-container"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // --- UTILITIES ---
+    const COLORS = {
+        base: 'text-blue-500 dark:text-blue-400',
+        exponent: 'text-red-500 dark:text-red-400',
+        result: 'text-green-600 dark:text-green-400',
+        log: 'text-purple-500 dark:text-purple-400',
+        value: 'text-orange-500 dark:text-orange-400',
+    };
+
+    const mathFormatter = (type, { base, exponent, logBase, value, result }) => {
+        let html = '<span class="font-mono text-lg">';
+        if (type === 'index') {
+            if (base !== undefined) html += `<span class="${COLORS.base}">${base}</span>`;
+            if (exponent !== undefined) html += `<sup><span class="${COLORS.exponent}">${exponent}</span></sup>`;
+            if (result !== undefined) html += ` = <span class="${COLORS.result}">${result}</span>`;
+        } else if (type === 'log') {
+            html += `<span class="${COLORS.log}">log</span>`;
+            if (logBase !== undefined) html += `<sub><span class="${COLORS.base}">${logBase}</span></sub>`;
+            html += `(<span class="${COLORS.value}">${value}</span>)`;
+            if (result !== undefined) html += ` = <span class="${COLORS.exponent}">${result}</span>`;
+        }
+        html += '</span>';
+        return html;
+    };
+
+    const Difficulty = { Easy: 'Mudah', Medium: 'Sederhana', Hard: 'Sukar' };
+
+    // --- TAB SWITCHING ---
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const activeClasses = 'bg-white dark:bg-slate-900/50 shadow-md text-blue-600 dark:text-blue-400 ring-2 ring-blue-500'.split(' ');
+    const inactiveClasses = 'text-slate-600 dark:text-slate-400 hover:bg-white/60 dark:hover:bg-slate-700/50'.split(' ');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.dataset.tab;
+
+            tabButtons.forEach(btn => {
+                btn.classList.remove(...activeClasses);
+                btn.classList.add(...inactiveClasses);
+            });
+            button.classList.add(...activeClasses);
+            button.classList.remove(...inactiveClasses);
+
+            tabContents.forEach(content => {
+                if (content.id === `tab-content-${tabId}`) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        });
+    });
+    // Set initial active button style
+    document.querySelector('.tab-button[data-tab="indices-intro"]').classList.add(...activeClasses);
+    document.querySelector('.tab-button[data-tab="indices-intro"]').classList.remove(...inactiveClasses);
+
+
+    // --- INDICES INTRO INTERACTIVE EXPLORER ---
+    const baseSlider = document.getElementById('base-slider');
+    const exponentSlider = document.getElementById('exponent-slider');
+    const baseLabel = document.getElementById('indices-base-label');
+    const exponentLabel = document.getElementById('indices-exponent-label');
+    const indicesResultDiv = document.getElementById('indices-interactive-result');
+
+    function updateIndicesExplorer() {
+        const base = parseInt(baseSlider.value);
+        const exponent = parseInt(exponentSlider.value);
+        baseLabel.textContent = base;
+        exponentLabel.textContent = exponent;
+        
+        let result = Math.pow(base, exponent);
+        if (isNaN(result) || !isFinite(result)) {
+            result = 'Error';
+        } else {
+            result = Math.round(result * 1000) / 1000;
+        }
+
+        indicesResultDiv.innerHTML = mathFormatter('index', { base, exponent, result: result.toString() });
+    }
+    baseSlider.addEventListener('input', updateIndicesExplorer);
+    exponentSlider.addEventListener('input', updateIndicesExplorer);
+
+    // --- LOGARITHMS INTRO INTERACTIVE EXPLORER ---
+    const logBaseSlider = document.getElementById('log-base-slider');
+    const logValueInput = document.getElementById('log-value-input');
+    const logBaseLabel = document.getElementById('log-base-label');
+    const logValueLabel = document.getElementById('log-value-label');
+    const logResultDiv = document.getElementById('log-interactive-result');
+
+    function updateLogExplorer() {
+        const base = parseInt(logBaseSlider.value);
+        const value = parseInt(logValueInput.value);
+        logBaseLabel.textContent = base;
+        logValueLabel.textContent = value;
+
+        let result;
+        if (base <= 1 || value <= 0 || !value) {
+            result = 'Tidak Sah';
+        } else {
+            const res = Math.log(value) / Math.log(base);
+            if (isNaN(res) || !isFinite(res)) {
+                result = 'Error';
+            } else {
+                result = Math.round(res * 1000) / 1000;
+            }
+        }
+        
+        logResultDiv.innerHTML = mathFormatter('log', { logBase: base, value: value, result: result.toString() });
+    }
+    logBaseSlider.addEventListener('input', updateLogExplorer);
+    logValueInput.addEventListener('input', updateLogExplorer);
+
+    // --- CONVERSION TAB ---
+    const conv = {
+        base1: document.getElementById('conv-base-1'),
+        base2: document.getElementById('conv-base-2'),
+        exponent: document.getElementById('conv-exponent'),
+        result: document.getElementById('conv-result'),
+        baseVal1: document.getElementById('conv-base-val-1'),
+        baseVal2: document.getElementById('conv-base-val-2'),
+        expVal: document.getElementById('conv-exp-val'),
+        resVal: document.getElementById('conv-res-val'),
+        indicesDisplay: document.getElementById('conversion-indices-display'),
+        logDisplay: document.getElementById('conversion-log-display')
+    };
+    
+    let state = { base: 2, exponent: 3, result: 8 };
+
+    function updateConversionDisplays() {
+        conv.baseVal1.textContent = state.base;
+        conv.baseVal2.textContent = state.base;
+        conv.expVal.textContent = state.exponent;
+        conv.resVal.textContent = state.result;
+
+        conv.base1.value = state.base;
+        conv.base2.value = state.base;
+        conv.exponent.value = state.exponent;
+        conv.result.value = state.result;
+
+        conv.indicesDisplay.innerHTML = mathFormatter('index', { base: state.base, exponent: state.exponent, result: state.result });
+        conv.logDisplay.innerHTML = mathFormatter('log', { logBase: state.base, value: state.result, result: state.exponent });
+    }
+
+    conv.base1.addEventListener('input', e => {
+        state.base = Number(e.target.value);
+        state.result = Math.round(Math.pow(state.base, state.exponent) * 100) / 100;
+        updateConversionDisplays();
+    });
+    conv.exponent.addEventListener('input', e => {
+        state.exponent = Number(e.target.value);
+        state.result = Math.round(Math.pow(state.base, state.exponent) * 100) / 100;
+        updateConversionDisplays();
+    });
+    conv.base2.addEventListener('input', e => {
+        state.base = Number(e.target.value);
+        if (state.base > 1 && state.result > 0) {
+            state.exponent = Math.round((Math.log(state.result) / Math.log(state.base)) * 100) / 100;
+        }
+        updateConversionDisplays();
+    });
+    conv.result.addEventListener('input', e => {
+        state.result = Number(e.target.value);
+        if (state.base > 1 && state.result > 0) {
+            state.exponent = Math.round((Math.log(state.result) / Math.log(state.base)) * 100) / 100;
+        }
+        updateConversionDisplays();
+    });
+
+    // --- DYNAMIC CONTENT SETUP (PRACTICE & CHALLENGE) ---
+    
+    // Abstract Factory for Practice Exercises
+    function createPracticeExercise(container, title, problemGenerator) {
+        container.innerHTML = `
+            <div class="mt-8">
+                <h3 class="text-2xl font-bold mb-4">${title}</h3>
+                <div class="flex flex-wrap gap-4 mb-4">
+                    <button data-difficulty="${Difficulty.Easy}" class="difficulty-btn px-4 py-2 font-semibold rounded-lg transition-transform transform hover:scale-105">🟢 ${Difficulty.Easy}</button>
+                    <button data-difficulty="${Difficulty.Medium}" class="difficulty-btn px-4 py-2 font-semibold rounded-lg transition-transform transform hover:scale-105">🟡 ${Difficulty.Medium}</button>
+                    <button data-difficulty="${Difficulty.Hard}" class="difficulty-btn px-4 py-2 font-semibold rounded-lg transition-transform transform hover:scale-105">🔴 ${Difficulty.Hard}</button>
+                </div>
+                <div class="p-6 bg-slate-100 dark:bg-slate-900/50 rounded-lg">
+                    <div class="flex justify-between items-center mb-4">
+                        <p class="question-p text-lg font-mono"></p>
+                        <span class="correct-count text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 px-3 py-1 rounded-full">Betul: 0</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="text" placeholder="Masukkan jawapan anda" class="user-answer-input flex-grow p-3 text-lg border-2 border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        <button class="check-answer-btn px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600">Semak Jawapan</button>
+                    </div>
+                    <div class="feedback-div mt-4 p-3 rounded-lg text-center font-medium" style="display: none;"></div>
+                </div>
+            </div>`;
+        
+        let difficulty = Difficulty.Easy;
+        let problem = null;
+        let attempts = 0;
+        let correctCount = 0;
+
+        const ui = {
+            difficultyBtns: container.querySelectorAll('.difficulty-btn'),
+            questionP: container.querySelector('.question-p'),
+            correctCountSpan: container.querySelector('.correct-count'),
+            userAnswerInput: container.querySelector('.user-answer-input'),
+            checkBtn: container.querySelector('.check-answer-btn'),
+            feedbackDiv: container.querySelector('.feedback-div'),
+        };
+
+        const updateDifficultyButtons = () => {
+            ui.difficultyBtns.forEach(btn => {
+                const level = btn.dataset.difficulty;
+                btn.className = "px-4 py-2 font-semibold rounded-lg transition-transform transform hover:scale-105"; // reset
+                if (level === difficulty) {
+                    let activeClass = '';
+                    if (level === Difficulty.Easy) activeClass = 'bg-green-500 text-white shadow-md ring-2 ring-offset-2 ring-green-500';
+                    else if (level === Difficulty.Medium) activeClass = 'bg-yellow-500 text-white shadow-md ring-2 ring-offset-2 ring-yellow-500';
+                    else activeClass = 'bg-red-500 text-white shadow-md ring-2 ring-offset-2 ring-red-500';
+                    btn.classList.add(...activeClass.split(' '));
+                } else {
+                    btn.classList.add('bg-slate-200', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300', 'hover:bg-slate-300', 'dark:hover:bg-slate-600');
+                }
+            });
+        };
+
+        const setFeedback = (message, type) => {
+            ui.feedbackDiv.textContent = message;
+            ui.feedbackDiv.style.display = 'block';
+            ui.feedbackDiv.className = `feedback-div mt-4 p-3 rounded-lg text-center font-medium `;
+            if(type === 'success') ui.feedbackDiv.classList.add('bg-green-100', 'dark:bg-green-900/50', 'text-green-800', 'dark:text-green-300');
+            else if (type === 'error') ui.feedbackDiv.classList.add('bg-red-100', 'dark:bg-red-900/50', 'text-red-800', 'dark:text-red-300');
+            else ui.feedbackDiv.classList.add('bg-yellow-100', 'dark:bg-yellow-900/50', 'text-yellow-800', 'dark:text-yellow-300');
+        };
+
+        const generateNewProblem = () => {
+            problem = problemGenerator(difficulty);
+            ui.questionP.innerHTML = problem.question;
+            ui.userAnswerInput.value = '';
+            ui.feedbackDiv.style.display = 'none';
+            ui.userAnswerInput.focus();
+            attempts = 0;
+        };
+        
+        const checkAnswer = () => {
+            if (!problem) return;
+            const userAnswerNum = parseFloat(ui.userAnswerInput.value);
+            if (isNaN(userAnswerNum)) {
+                setFeedback('Sila masukkan jawapan dalam bentuk nombor.', 'hint');
+                return;
+            }
+            if (Math.abs(userAnswerNum - problem.answer) < 0.01) {
+                setFeedback('✓ Betul! Hebat!', 'success');
+                correctCount++;
+                ui.correctCountSpan.textContent = `Betul: ${correctCount}`;
+                setTimeout(generateNewProblem, 1500);
+            } else {
+                attempts++;
+                if (attempts >= 2) {
+                    setFeedback(`✗ Jawapan yang betul ialah ${problem.answer}. Cuba soalan seterusnya!`, 'error');
+                    setTimeout(generateNewProblem, 3000);
+                } else {
+                    setFeedback('✗ Cuba lagi! Anda hampir berjaya.', 'hint');
+                }
+            }
+        };
+
+        ui.difficultyBtns.forEach(btn => btn.addEventListener('click', () => {
+            difficulty = btn.dataset.difficulty;
+            updateDifficultyButtons();
+            generateNewProblem();
+        }));
+        
+        ui.checkBtn.addEventListener('click', checkAnswer);
+        ui.userAnswerInput.addEventListener('keypress', (e) => e.key === 'Enter' && checkAnswer());
+        
+        updateDifficultyButtons();
+        generateNewProblem();
+    }
+
+    // Abstract Factory for Challenge Problems
+    function createChallengeProblem(container, {icon, title, context, problem, hint, solution}) {
+        container.innerHTML = `
+            <div class="mt-8">
+              <h3 class="text-2xl font-bold mb-4">${title}</h3>
+              <div class="bg-gradient-to-br from-purple-500 to-indigo-600 p-1 rounded-xl shadow-lg">
+                <div class="bg-white dark:bg-slate-800 rounded-lg p-6">
+                  <div class="flex items-start">
+                    <span class="text-4xl mr-4">${icon}</span>
+                    <div>
+                      <h4 class="font-bold text-lg text-purple-700 dark:text-purple-400">${context}</h4>
+                      <p class="mt-2 text-slate-700 dark:text-slate-300">${problem}</p>
+                    </div>
+                  </div>
+                  <div class="mt-4 flex flex-wrap gap-4">
+                    <button class="hint-btn px-4 py-2 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition">Tunjuk Hint</button>
+                    <button class="solution-btn px-4 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition">Tunjuk Penyelesaian</button>
+                  </div>
+                  <div class="hint-div mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/30 border-l-4 border-yellow-400 rounded-r-lg" style="display: none;">
+                    <p><span class="font-bold">Hint:</span> ${hint}</p>
+                  </div>
+                  <div class="solution-div mt-4 p-4 bg-green-50 dark:bg-green-900/30 border-l-4 border-green-400 rounded-r-lg" style="display: none;">
+                    <p class="font-bold mb-2">Penyelesaian:</p>
+                    <div>${solution}</div>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+        const hintBtn = container.querySelector('.hint-btn');
+        const solutionBtn = container.querySelector('.solution-btn');
+        const hintDiv = container.querySelector('.hint-div');
+        const solutionDiv = container.querySelector('.solution-div');
+        
+        hintBtn.addEventListener('click', () => {
+            const isHidden = hintDiv.style.display === 'none';
+            hintDiv.style.display = isHidden ? 'block' : 'none';
+            hintBtn.textContent = isHidden ? 'Sembunyi Hint' : 'Tunjuk Hint';
+            if (!isHidden) solutionDiv.style.display = 'none'; // hide solution when hint is hidden
+            solutionBtn.textContent = 'Tunjuk Penyelesaian';
+        });
+        solutionBtn.addEventListener('click', () => {
+            const isHidden = solutionDiv.style.display === 'none';
+            solutionDiv.style.display = isHidden ? 'block' : 'none';
+            solutionBtn.textContent = isHidden ? 'Sembunyi Penyelesaian' : 'Tunjuk Penyelesaian';
+            if (isHidden) { // if showing solution, also show hint
+                 hintDiv.style.display = 'block';
+                 hintBtn.textContent = 'Sembunyi Hint';
+            }
+        });
+    }
+
+    // --- PROBLEM GENERATORS ---
+    const problemGenerators = {
+        indicesIntro: (difficulty) => {
+            let b, e;
+            switch (difficulty) {
+                case Difficulty.Medium:
+                    b = Math.floor(Math.random() * 5) + 2; e = Math.floor(Math.random() * 3) + 2;
+                    const b2 = Math.floor(Math.random() * 5) + 2;
+                    return { question: `${mathFormatter('index', { base: b, exponent: e })} × ${mathFormatter('index', { base: b, exponent: b2 })} = ?`, answer: Math.pow(b, e + b2) };
+                case Difficulty.Hard:
+                    b = Math.floor(Math.random() * 4) + 2; e = Math.floor(Math.random() * 3) + 2;
+                    const e2 = Math.floor(Math.random() * 2) + 2;
+                    return { question: `(${mathFormatter('index', { base: b, exponent: e })})<sup><span class="${COLORS.exponent}">${e2}</span></sup> = ?`, answer: Math.pow(b, e * e2) };
+                default:
+                    b = Math.floor(Math.random() * 4) + 2; e = Math.floor(Math.random() * 3) + 2;
+                    return { question: `${mathFormatter('index', { base: b, exponent: e })} = ?`, answer: Math.pow(b, e) };
+            }
+        },
+        logIntro: (difficulty) => {
+             let b, power;
+             switch (difficulty) {
+                case Difficulty.Medium:
+                    b = Math.floor(Math.random() * 3) + 2; power = Math.floor(Math.random() * 2) + 2; const power2 = Math.floor(Math.random() * 2) + 2;
+                    const v = Math.pow(b, power); const v2 = Math.pow(b, power2);
+                    return { question: `${mathFormatter('log', { logBase: b, value: v })} + ${mathFormatter('log', { logBase: b, value: v2 })} = ?`, answer: power + power2 };
+                case Difficulty.Hard:
+                    b = Math.floor(Math.random() * 3) + 2; power = Math.floor(Math.random() * 3) + 2; const n = Math.floor(Math.random() * 2) + 2;
+                    const vHard = Math.pow(b, power);
+                    return { question: `<span class="${COLORS.exponent}">${n}</span> ${mathFormatter('log', { logBase: b, value: vHard })} = ?`, answer: n * power };
+                default:
+                    b = Math.floor(Math.random() * 4) + 2; power = Math.floor(Math.random() * 3) + 2;
+                    const vEasy = Math.pow(b, power);
+                    return { question: `${mathFormatter('log', { logBase: b, value: vEasy })} = ?`, answer: power };
+             }
+        },
+        indicesSameBase: (difficulty) => {
+            let b, e;
+            switch (difficulty) {
+                case Difficulty.Medium:
+                    b = Math.floor(Math.random() * 4) + 2; e = Math.floor(Math.random() * 5) + 2; const e2 = Math.floor(Math.random() * 3) + 1;
+                    return { question: `${mathFormatter('index', { base: b, exponent: 'x' })} = ${mathFormatter('index', { base: b, exponent: e })} × ${mathFormatter('index', { base: b, exponent: e2 })}`, answer: e + e2 };
+                case Difficulty.Hard:
+                    b = Math.floor(Math.random() * 3) + 2; e = Math.floor(Math.random() * 4) + 2;
+                    return { question: `${mathFormatter('index', { base: b, exponent: '2x' })} = ${mathFormatter('index', { base: Math.pow(b, 2), exponent: e })}`, answer: e };
+                default:
+                    b = Math.floor(Math.random() * 8) + 2; e = Math.floor(Math.random() * 5) + 2;
+                    return { question: `${mathFormatter('index', { base: b, exponent: 'x' })} = ${mathFormatter('index', { base: b, exponent: e })}`, answer: e };
+            }
+        },
+        indicesSameIndex: (difficulty) => {
+            let e, b;
+            switch (difficulty) {
+                case Difficulty.Medium:
+                    e = 3; b = Math.floor(Math.random() * 5) + 3;
+                    return { question: `${mathFormatter('index', { base: 'x+1', exponent: e })} = ${mathFormatter('index', { result: Math.pow(b, e) })}`, answer: b - 1 };
+                case Difficulty.Hard:
+                    e = 4; b = Math.floor(Math.random() * 3) + 2;
+                    return { question: `${mathFormatter('index', { base: '2x', exponent: e })} = ${mathFormatter('index', { result: Math.pow(b, e) })}`, answer: b/2 };
+                default:
+                    e = 2; b = Math.floor(Math.random() * 9) + 2;
+                    return { question: `${mathFormatter('index', { base: 'x', exponent: e })} = ${mathFormatter('index', { result: Math.pow(b, e) })}`, answer: b };
+            }
+        },
+        logSameBase: (difficulty) => {
+            let b, e;
+            switch (difficulty) {
+                case Difficulty.Medium:
+                    b = Math.floor(Math.random() * 3) + 2; e = Math.floor(Math.random() * 3) + 2;
+                    return { question: `${mathFormatter('log', { logBase: b, value: 'x' })} = ${mathFormatter('log', { logBase: b, value: Math.pow(b, e) })}`, answer: Math.pow(b, e) };
+                case Difficulty.Hard:
+                    b = 2;
+                    return { question: `${mathFormatter('log', { logBase: b, value: 'x+3' })} = ${mathFormatter('index', { result: 4 })}`, answer: Math.pow(b, 4) - 3 };
+                default:
+                    b = Math.floor(Math.random() * 4) + 2; e = Math.floor(Math.random() * 3) + 2;
+                    return { question: `${mathFormatter('log', { logBase: b, value: 'x', result: e })}`, answer: Math.pow(b, e) };
+            }
+        },
+        logChangeOfBase: (difficulty) => {
+            let b1, b2, power;
+            switch (difficulty) {
+                case Difficulty.Medium:
+                    b1 = 2; b2 = 4; power = Math.floor(Math.random() * 3) + 3;
+                    return { question: `${mathFormatter('log', { logBase: b2, value: Math.pow(b1, power) })} = ?`, answer: power / 2 };
+                case Difficulty.Hard:
+                    b1 = 3; b2 = 9; power = Math.floor(Math.random() * 4) + 2;
+                    return { question: `${mathFormatter('log', { logBase: b1, value: Math.pow(b2, power) })} / ${mathFormatter('log', { logBase: b1, value: b2 })} = ?`, answer: power };
+                default:
+                    b1 = 10; b2 = Math.floor(Math.random() * 5) + 2; power = Math.floor(Math.random() * 2) + 2;
+                    return { question: `log(${mathFormatter('index', { base: b2, exponent: power })}) / log(${b2}) = ?`, answer: power };
+            }
+        },
+    };
+
+    // --- INITIALIZE ALL DYNAMIC CONTENT FROM JSON ---
+    function initializeDynamicContent(data) {
+        // Indices Intro Tab
+        const indicesIntroPracticeData = data.indicesIntro.practice;
+        createPracticeExercise(
+            document.getElementById('indices-intro-practice'),
+            indicesIntroPracticeData.title,
+            problemGenerators[indicesIntroPracticeData.generator]
+        );
+        createChallengeProblem(
+            document.getElementById('indices-intro-challenge'),
+            data.indicesIntro.challenge
+        );
+
+        // Logarithms Intro Tab
+        const logIntroPracticeData = data.logIntro.practice;
+        createPracticeExercise(
+            document.getElementById('log-intro-practice'),
+            logIntroPracticeData.title,
+            problemGenerators[logIntroPracticeData.generator]
+        );
+        createChallengeProblem(
+            document.getElementById('log-intro-challenge'),
+            data.logIntro.challenge
+        );
+
+        // Indices Solution Tab
+        const indicesSolSameBase = data.indicesSolution.sameBase;
+        createPracticeExercise(
+            document.getElementById('indices-sol-1-practice'),
+            indicesSolSameBase.title,
+            problemGenerators[indicesSolSameBase.generator]
+        );
+        const indicesSolSameIndex = data.indicesSolution.sameIndex;
+        createPracticeExercise(
+            document.getElementById('indices-sol-2-practice'),
+            indicesSolSameIndex.title,
+            problemGenerators[indicesSolSameIndex.generator]
+        );
+
+        // Logarithms Solution Tab
+        const logSolSameBase = data.logSolution.sameBase;
+        createPracticeExercise(
+            document.getElementById('log-sol-1-practice'),
+            logSolSameBase.title,
+            problemGenerators[logSolSameBase.generator]
+        );
+        const logSolChangeOfBase = data.logSolution.changeOfBase;
+        createPracticeExercise(
+            document.getElementById('log-sol-2-practice'),
+            logSolChangeOfBase.title,
+            problemGenerators[logSolChangeOfBase.generator]
+        );
+    }
+
+    // Fetch problem data and initialize the app
+    fetch('problems.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            initializeDynamicContent(data);
+        })
+        .catch(error => {
+            console.error('Error fetching or parsing problems.json:', error);
+            // Optionally, display an error message to the user in the UI
+        });
+});
+</script>
+
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

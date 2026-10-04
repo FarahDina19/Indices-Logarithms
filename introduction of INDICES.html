@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Indices - Interactive App</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Nunito', Arial, sans-serif;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .header {
+            background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 50%, #7c3aed 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 36px 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -40px; right: -40px;
+            width: 200px; height: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: 30%;
+            width: 280px; height: 280px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+        }
+        h1 { font-family: 'Baloo 2', Arial, sans-serif; font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+        h2 { font-family: 'Baloo 2', Arial, sans-serif; font-size: 1.6em; font-weight: 700; margin-bottom: 18px; color: #4f46e5; }
+        .law-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .law-btn {
+            padding: 18px 14px;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .law-btn:hover { transform: translateY(-4px); box-shadow: 0 5px 15px rgba(0,0,0,0.15); border-color: #a855f7; }
+        .law-btn.active {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border-color: #4f46e5;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(79,70,229,0.4);
+        }
+        .law-name { font-weight: 800; font-size: 1.0em; margin-bottom: 4px; }
+        .law-formula { font-size: 0.85em; opacity: 0.75; }
+
+        /* ── Terminology Section ── */
+        .term-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .term-card {
+            background: linear-gradient(135deg, #f0f9ff, #dbeafe);
+            border: 2px solid #93c5fd;
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+        }
+        .term-word {
+            font-family: 'Baloo 2', Arial, sans-serif;
+            font-size: 1.15em;
+            font-weight: 800;
+            color: #1e40af;
+            margin-bottom: 4px;
+        }
+        .term-meaning {
+            font-size: 0.88em;
+            color: #374151;
+            line-height: 1.5;
+        }
+        .notation-demo {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 3px solid #f59e0b;
+            border-radius: 16px;
+            padding: 22px;
+            text-align: center;
+            margin-top: 6px;
+        }
+        .notation-big {
+            font-size: 3.5em;
+            font-weight: 900;
+            color: #92400e;
+            letter-spacing: 4px;
+            display: inline-block;
+            position: relative;
+        }
+        .notation-labels {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+        .notation-label {
+            font-weight: 700;
+            font-size: 0.9em;
+            color: #78350f;
+        }
+        .notation-label span {
+            display: block;
+            font-size: 1.4em;
+            font-weight: 900;
+            color: #92400e;
+            margin-bottom: 2px;
+        }
+
+        /* ── Applications Section ── */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+        }
+        .app-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 16px 12px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .app-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .app-emoji { font-size: 2em; margin-bottom: 8px; }
+        .app-title { font-weight: 800; font-size: 0.9em; color: #1f2937; margin-bottom: 4px; }
+        .app-example { font-size: 0.8em; color: #6b7280; line-height: 1.4; }
+        .app-value { font-size: 1.1em; font-weight: 900; color: #4f46e5; margin-top: 4px; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            h1 { font-size: 1.7em; }
+            .notation-labels { gap: 30px; }
+        }
+
+        .slider-group { margin-bottom: 22px; }
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .slider-value {
+            font-size: 1.4em;
+            color: #4f46e5;
+            font-weight: 900;
+        }
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        }
+
+        .preset-btns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .preset-btn {
+            padding: 11px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: 'Nunito', sans-serif;
+        }
+        .preset-btn:hover { transform: scale(1.06); box-shadow: 0 4px 12px rgba(79,70,229,0.4); }
+
+        .visualizer {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+            border-radius: 15px;
+            padding: 28px;
+            min-height: 520px;
+            overflow-y: auto;
+        }
+
+        .step {
+            background: #f3f4f6;
+            padding: 13px 16px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 5px solid #4f46e5;
+            font-size: 0.97em;
+            line-height: 1.5;
+        }
+        .step.highlight { background: #dcfce7; border-left-color: #10b981; }
+
+        .answer-box {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 26px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 18px;
+        }
+        .answer-value { font-size: 2.3em; font-weight: 900; }
+
+        .practice-input {
+            width: 65%;
+            padding: 13px 16px;
+            font-size: 1.05em;
+            border: 3px solid #e0e0e0;
+            border-radius: 10px;
+            margin-right: 10px;
+            font-family: 'Nunito', sans-serif;
+        }
+        .check-btn {
+            padding: 13px 26px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 1.05em;
+            font-family: 'Nunito', sans-serif;
+        }
+        .check-btn:hover { transform: scale(1.05); }
+
+        .result-box {
+            margin-top: 16px;
+            padding: 18px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+        .result-box.correct { background: #dcfce7; color: #166534; border: 3px solid #10b981; }
+        .result-box.wrong { background: #fef3c7; color: #92400e; border: 3px solid #f59e0b; }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 28px;
+        }
+        .solution-btn {
+            width: 100%;
+            padding: 14px;
+            background: white;
+            color: #4f46e5;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 1.05em;
+            margin-top: 18px;
+            font-family: 'Nunito', sans-serif;
+        }
+        .solution-btn:hover { background: #ede9fe; }
+        .solution { margin-top: 16px; background: rgba(255,255,255,0.18); padding: 18px; border-radius: 10px; }
+        .hidden { display: none; }
+
+        .formula-box {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 26px;
+            border-radius: 15px;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .formula-text { font-size: 1.9em; font-weight: 900; margin-bottom: 8px; }
+        .formula-desc { opacity: 0.9; font-size: 0.95em; }
+
+        .tip-box {
+            background: #dbeafe;
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            padding: 14px;
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        .explain-box {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+            border-radius: 12px;
+            padding: 16px 18px;
+            line-height: 1.7;
+            font-size: 1.0em;
+            color: #14532d;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            font-size: 0.75em;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ═══ HEADER ═══ -->
+    <div class="header">
+        <h1>⚡ Introduction to Indices</h1>
+        <p style="font-size: 1.1em; opacity: 0.9; margin-top: 6px;">Learn the power of indices with colourful balls you can count! 🎾⚽🏀</p>
+    </div>
+
+    <!-- ═══ TERMINOLOGY SECTION ═══ -->
+    <div class="card">
+        <div class="section-badge">📖 KEY WORDS</div>
+        <h2 style="margin-top:0">Important Words to Know (Terminology)</h2>
+        <div class="term-grid">
+            <div class="term-card">
+                <div class="term-word">Index (Indices)</div>
+                <div class="term-meaning">The <strong>small number</strong> written at the top right. It tells you <em>how many times</em> to multiply the base by itself. "Indices" is just the plural of "index".</div>
+            </div>
+            <div class="term-card" style="background: linear-gradient(135deg,#fdf4ff,#f3e8ff); border-color:#c084fc;">
+                <div class="term-word" style="color:#6b21a8;">Base</div>
+                <div class="term-meaning">The <strong>big number</strong> at the bottom. It is the number being multiplied by itself.</div>
+            </div>
+            <div class="term-card" style="background: linear-gradient(135deg,#f0fdf4,#dcfce7); border-color:#86efac;">
+                <div class="term-word" style="color:#14532d;">Power / Exponent</div>
+                <div class="term-meaning">Another name for <strong>index</strong>. All three words — index, power, and exponent — mean the same small number on top!</div>
+            </div>
+            <div class="term-card" style="background: linear-gradient(135deg,#fff7ed,#fed7aa); border-color:#fdba74;">
+                <div class="term-word" style="color:#7c2d12;">Index Notation</div>
+                <div class="term-meaning">Writing a number using a base and an index. Example: 2³ instead of writing 2 × 2 × 2 = 8 out in full.</div>
+            </div>
+            <div class="term-card" style="background: linear-gradient(135deg,#fef9c3,#fef08a); border-color:#facc15;">
+                <div class="term-word" style="color:#713f12;">Laws of Indices</div>
+                <div class="term-meaning">Special <strong>shortcut rules</strong> that help us work with index notation quickly, without multiplying everything out!</div>
+            </div>
+            <div class="term-card" style="background: linear-gradient(135deg,#fce7f3,#fbcfe8); border-color:#f9a8d4;">
+                <div class="term-word" style="color:#831843;">Evaluate / Simplify</div>
+                <div class="term-meaning"><strong>Evaluate</strong> = find the number value. <strong>Simplify</strong> = write in a shorter, neater index form.</div>
+            </div>
+        </div>
+        <div class="notation-demo">
+            <div style="font-weight: 800; color: #92400e; margin-bottom: 10px; font-size: 1.0em;">🔍 Parts of an Index Notation</div>
+            <div class="notation-big">
+                2<sup style="font-size:0.55em; vertical-align:super;">3</sup>
+            </div>
+            <div class="notation-labels">
+                <div class="notation-label"><span>2</span>BASE — the number being multiplied</div>
+                <div class="notation-label"><span>3</span>INDEX — how many times to multiply</div>
+                <div class="notation-label"><span>= 8</span>because 2 × 2 × 2 = 8</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ LAW SELECTOR ═══ -->
+    <div class="card">
+        <h2>🗺️ Choose a Law to Explore</h2>
+        <div class="law-buttons" id="lawButtons"></div>
+    </div>
+
+    <!-- ═══ MAIN GRID ═══ -->
+    <div class="grid-2">
+        <div>
+            <!-- Law + Explanation -->
+            <div class="card">
+                <h2>📚 The Law</h2>
+                <div class="formula-box">
+                    <div class="formula-text" id="lawFormula">aᵐ × aⁿ = aᵐ⁺ⁿ</div>
+                    <div class="formula-desc" id="lawDesc">When multiplying powers with the same base, add the indices</div>
+                </div>
+                <div class="explain-box">
+                    <p id="lawExplain"></p>
+                </div>
+            </div>
+
+            <!-- Control Panel -->
+            <div class="card">
+                <h2>🎮 Control Panel</h2>
+                <div id="sliders"></div>
+                <div id="presets"></div>
+            </div>
+
+            <!-- Steps -->
+            <div class="card">
+                <h2>📝 Step-by-Step Solution</h2>
+                <div id="steps"></div>
+                <div class="answer-box">
+                    <div style="font-size: 1.0em; opacity: 0.9; margin-bottom: 8px;">✅ Final Answer</div>
+                    <div class="answer-value" id="finalAnswer">2⁷ = 128</div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <!-- Visual -->
+            <div class="card">
+                <h2>🎨 See It with Balls!</h2>
+                <div class="visualizer" id="visualizer"></div>
+                <div class="tip-box">
+                    <span style="font-size:1.1em; margin-right:5px;">💡</span>
+                    <span id="visualTip" style="font-weight: 700; color: #1e40af;"></span>
+                </div>
+            </div>
+
+            <!-- Practice -->
+            <div class="card">
+                <h2>✏️ Practice Exercise</h2>
+                <p style="font-size: 1.2em; font-weight: 700; margin-bottom: 14px;">
+                    Simplify: <span id="practiceProblem" style="color: #f59e0b; font-size: 1.4em;">7⁴ × 7²</span>
+                </p>
+                <p style="font-size: 0.9em; color: #6b7280; margin-bottom: 14px;">
+                    💬 Type your answer like this: <strong>7^6</strong> or <strong>1/16</strong>
+                </p>
+                <div style="display: flex; align-items: center;">
+                    <input type="text" id="practiceInput" class="practice-input" placeholder="e.g., 7^6">
+                    <button class="check-btn" onclick="checkAnswer()">Check ✓</button>
+                </div>
+                <div id="practiceResult"></div>
+            </div>
+
+            <!-- Challenge -->
+            <div class="challenge-box">
+                <h2 style="color: white; margin-bottom: 14px;">🌟 Real-Life Challenge</h2>
+                <div id="challengeText" style="background: rgba(255,255,255,0.18); padding: 18px; border-radius: 10px;"></div>
+                <button class="solution-btn" onclick="toggleSolution()">
+                    <span id="solutionBtnText">Show Answer 👀</span>
+                </button>
+                <div id="challengeSolution" class="solution hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ APPLICATIONS SECTION ═══ -->
+    <div class="card" style="margin-top: 20px;">
+        <div class="section-badge">🌍 WHY IT MATTERS</div>
+        <h2 style="margin-top:0">Where Do We Use Indices in Real Life?</h2>
+        <p style="margin-bottom: 18px; color: #4b5563; line-height: 1.7;">
+            Indices are not just maths tricks — they are used everywhere in the real world! Here are some cool examples:
+        </p>
+        <div class="app-grid">
+            <div class="app-card">
+                <div class="app-emoji">💾</div>
+                <div class="app-title">Computer Storage</div>
+                <div class="app-example">1 Kilobyte = 2¹⁰ bytes. 1 Gigabyte = 2³⁰ bytes!</div>
+                <div class="app-value">2¹⁰ = 1,024</div>
+            </div>
+            <div class="app-card">
+                <div class="app-emoji">📐</div>
+                <div class="app-title">Area of a Square</div>
+                <div class="app-example">Area = side × side = side². A 5m room has area = 5² = 25 m²</div>
+                <div class="app-value">5² = 25 m²</div>
+            </div>
+            <div class="app-card">
+                <div class="app-emoji">📦</div>
+                <div class="app-title">Volume of a Box</div>
+                <div class="app-example">Volume = side³. A box of 3 cm sides = 3³ = 27 cm³</div>
+                <div class="app-value">3³ = 27 cm³</div>
+            </div>
+            <div class="app-card">
+                <div class="app-emoji">🦠</div>
+                <div class="app-title">Bacteria Growth</div>
+                <div class="app-example">Bacteria doubles every hour. After 4 hours: 2⁴ = 16 bacteria</div>
+                <div class="app-value">2⁴ = 16</div>
+            </div>
+            <div class="app-card">
+                <div class="app-emoji">🌍</div>
+                <div class="app-title">Very Big Numbers</div>
+                <div class="app-example">The mass of Earth = 6 × 10²⁴ kg — easier to write using indices!</div>
+                <div class="app-value">10²⁴</div>
+            </div>
+            <div class="app-card">
+                <div class="app-emoji">💰</div>
+                <div class="app-title">Bank Savings</div>
+                <div class="app-example">Money growing in a bank uses powers — more time = more growth!</div>
+                <div class="app-value">A × rⁿ</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    let state = {
+        law: 'multiplication',
+        base: 2,
+        exp1: 3,
+        exp2: 4,
+        showSolution: false
+    };
+
+    const laws = {
+        multiplication: {
+            name: 'Multiplication Law',
+            formula: 'aᵐ × aⁿ = aᵐ⁺ⁿ',
+            desc: 'Same base? Just ADD the indices (small numbers)!',
+            explain: '🍎 Imagine collecting bags of apples. If you have 2³ (3 bags) and get 2⁴ more (4 bags), now you have 2⁷ (7 bags total). The BASE (2) stays the same — you just ADD the indices: 3 + 4 = 7. Easy!'
+        },
+        division: {
+            name: 'Division Law',
+            formula: 'aᵐ ÷ aⁿ = aᵐ⁻ⁿ',
+            desc: 'Same base? Just SUBTRACT the indices (small numbers)!',
+            explain: '🎈 Imagine you have 3⁵ balloons and give away 3² balloons. You just TAKE AWAY the small numbers: 5 − 2 = 3. So 3 bags of balloons are left = 3³. The BASE (3) stays the same — only the index changes!'
+        },
+        power: {
+            name: 'Power of a Power',
+            formula: '(aᵐ)ⁿ = aᵐˣⁿ',
+            desc: 'A power raised to another power? Just MULTIPLY the indices!',
+            explain: '📦 Think of copying groups of groups! (2³)² means you copy the group of 2³ exactly 2 times. Instead of adding, you MULTIPLY the small numbers together: 3 × 2 = 6. So (2³)² becomes 2⁶. That\'s the shortcut!'
+        },
+        zero: {
+            name: 'Zero Index Law',
+            formula: 'a⁰ = 1',
+            desc: 'Any number (except 0) with index 0 ALWAYS equals 1!',
+            explain: '⭐ This is a magic rule! ANY number with index 0 gives the answer 1. Why? Because if you divide a number by itself (like 2³ ÷ 2³), you always get 1 — and the index law gives you 2³⁻³ = 2⁰. So 2⁰ = 1! Works for any base!'
+        },
+        negative: {
+            name: 'Negative Index Law',
+            formula: 'a⁻ⁿ = 1/aⁿ',
+            desc: 'Negative index? FLIP the number into a fraction (1 over it)!',
+            explain: '🔄 A negative index is like the number "flipping upside down"! For example, 2⁻³ simply means 1 ÷ 2³ = 1/8. Just write 1 on top, and put the number with a positive index on the bottom. The minus sign disappears after the flip!'
+        }
+    };
+
+    const presets = {
+        multiplication: [
+            {base: 2, e1: 3, e2: 4, label: '2³ × 2⁴'},
+            {base: 5, e1: 2, e2: 1, label: '5² × 5¹'},
+            {base: 3, e1: 2, e2: 3, label: '3² × 3³'}
+        ],
+        division: [
+            {base: 3, e1: 5, e2: 2, label: '3⁵ ÷ 3²'},
+            {base: 5, e1: 4, e2: 1, label: '5⁴ ÷ 5¹'},
+            {base: 2, e1: 6, e2: 3, label: '2⁶ ÷ 2³'}
+        ],
+        power: [
+            {base: 2, e1: 3, e2: 2, label: '(2³)²'},
+            {base: 3, e1: 2, e2: 3, label: '(3²)³'},
+            {base: 2, e1: 4, e2: 2, label: '(2⁴)²'}
+        ],
+        zero: [
+            {base: 2, e1: 0, e2: 0, label: '2⁰'},
+            {base: 5, e1: 0, e2: 0, label: '5⁰'},
+            {base: 10, e1: 0, e2: 0, label: '10⁰'}
+        ],
+        negative: [
+            {base: 2, e1: -3, e2: 0, label: '2⁻³'},
+            {base: 5, e1: -2, e2: 0, label: '5⁻²'},
+            {base: 3, e1: -4, e2: 0, label: '3⁻⁴'}
+        ]
+    };
+
+    const problems = {
+        multiplication: {q: '7⁴ × 7²', a: '7^6'},
+        division: {q: '8⁵ ÷ 8³', a: '8^2'},
+        power: {q: '(4²)³', a: '4^6'},
+        zero: {q: '9⁰', a: '1'},
+        negative: {q: '4⁻²', a: '1/16'}
+    };
+
+    function sup(n) {
+        const s = {'0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹','-':'⁻'};
+        return String(n).split('').map(c => s[c] || c).join('');
+    }
+
+    function calc() {
+        const {law, base, exp1, exp2} = state;
+        if (law === 'multiplication') return {e: exp1 + exp2, v: Math.pow(base, exp1 + exp2)};
+        if (law === 'division') return {e: exp1 - exp2, v: Math.pow(base, exp1 - exp2)};
+        if (law === 'power') return {e: exp1 * exp2, v: Math.pow(base, exp1 * exp2)};
+        if (law === 'zero') return {e: 0, v: 1};
+        if (law === 'negative') return {e: exp1, v: (1 / Math.pow(base, Math.abs(exp1))).toFixed(4)};
+    }
+
+    // Shows exactly `total` balls — correct for indices (base^exp)
+    function makeBalls(total, color, crossed = false) {
+        const maxShow = 32;
+        const count = Math.min(total, maxShow);
+        const cols = total <= 8 ? total : total <= 16 ? 8 : total <= 27 ? 9 : 8;
+        return `
+            <div style="display: flex; flex-wrap: wrap; gap: 7px; max-width: 340px; margin: 0 auto; justify-content: center;">
+                ${Array(count).fill(0).map(() => `
+                    <div style="width: 34px; height: 34px; background: ${color}; border-radius: 50%;
+                                display: flex; align-items: center; justify-content: center;
+                                color: white; font-weight: 900; font-size: 0.75em;
+                                box-shadow: ${crossed ? '0 3px 6px rgba(0,0,0,0.25) inset' : '0 3px 6px rgba(0,0,0,0.25)'};
+                                position: relative; flex-shrink: 0;
+                                ${crossed ? 'opacity: 0.35; filter: grayscale(0.6);' : ''}">
+                        ${crossed ? '<span style="font-size:1.1em;">✕</span>' : '<div style="position:absolute;top:18%;left:22%;width:28%;height:28%;background:rgba(255,255,255,0.45);border-radius:50%;filter:blur(6px);"></div>'}
+                    </div>
+                `).join('')}
+                ${total > maxShow ? `<div style="width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:1.3em;font-weight:900;color:#555;">…</div>` : ''}
+            </div>
+        `;
+    }
+
+    // Shows multiplication chain: 2 × 2 × 2 = 8
+    function multChain(base, exp) {
+        const terms = Array(Math.min(exp, 5)).fill(base);
+        let s = terms.join(' × ');
+        if (exp > 5) s += ' × …';
+        return s + ` = ${Math.pow(base, exp)}`;
+    }
+
+    function renderVisual() {
+        const {law, base, exp1, exp2} = state;
+        const r = calc();
+        const val1 = Math.pow(base, exp1);
+        const val2 = Math.pow(base, exp2);
+        let html = '';
+
+        if (law === 'multiplication') {
+            const valR = Math.pow(base, r.e);
+            html = `
+                <!-- STAGE 1 -->
+                <div style="background:#f0f9ff;border:3px solid #3b82f6;border-radius:14px;padding:13px;margin-bottom:16px;text-align:center;">
+                    <div style="font-weight:800;color:#1e40af;margin-bottom:4px;">🔵 Stage 1: CONCRETE — Count the balls!</div>
+                    <div style="font-size:0.88em;color:#374151;">${base}${sup(exp1)} means: ${base} × ${base}… multiplied ${exp1} time(s)</div>
+                </div>
+
+                <div style="background:rgba(168,85,247,0.13);padding:16px;border-radius:14px;margin-bottom:12px;border:3px solid #a855f7;">
+                    <div style="text-align:center;font-weight:800;color:#7c3aed;margin-bottom:10px;">
+                        ${base}${sup(exp1)} = ${multChain(base, exp1)}
+                    </div>
+                    ${makeBalls(val1, 'linear-gradient(135deg,#a855f7,#7c3aed)')}
+                    <div style="text-align:center;margin-top:10px;font-weight:700;color:#7c3aed;">
+                        👆 ${val1} purple balls
+                    </div>
+                </div>
+
+                <div style="text-align:center;font-size:2em;font-weight:900;color:#666;margin:12px 0;">×</div>
+
+                <div style="background:rgba(236,72,153,0.13);padding:16px;border-radius:14px;margin-bottom:12px;border:3px solid #ec4899;">
+                    <div style="text-align:center;font-weight:800;color:#ec4899;margin-bottom:10px;">
+                        ${base}${sup(exp2)} = ${multChain(base, exp2)}
+                    </div>
+                    ${makeBalls(val2, 'linear-gradient(135deg,#ec4899,#db2777)')}
+                    <div style="text-align:center;margin-top:10px;font-weight:700;color:#ec4899;">
+                        👆 ${val2} pink balls
+                    </div>
+                </div>
+
+                <!-- STAGE 2 -->
+                <div style="background:#fef3c7;border:3px solid #f59e0b;border-radius:14px;padding:13px;margin:16px 0;">
+                    <div style="text-align:center;font-weight:800;color:#92400e;margin-bottom:6px;">🟡 Stage 2: PATTERN — What do you notice?</div>
+                    <div style="text-align:center;color:#78350f;font-weight:700;">
+                        Index ${exp1} + Index ${exp2} = ${r.e} &nbsp;→&nbsp; Just ADD the small numbers (indices)!
+                    </div>
+                </div>
+
+                <div style="text-align:center;font-size:1.8em;font-weight:900;color:#10b981;margin:12px 0;">↓ Put all balls together ↓</div>
+
+                <!-- STAGE 3 -->
+                <div style="background:rgba(16,185,129,0.13);padding:16px;border-radius:14px;border:3px solid #10b981;">
+                    <div style="text-align:center;font-weight:800;color:#059669;margin-bottom:10px;">
+                        ${base}${sup(r.e)} = ${multChain(base, r.e)}
+                    </div>
+                    ${makeBalls(valR, 'linear-gradient(135deg,#10b981,#059669)')}
+                    <div style="text-align:center;margin-top:10px;font-weight:700;color:#059669;font-size:1.1em;">
+                        👆 ${valR} green balls total! 🎾
+                    </div>
+                </div>
+                <div style="background:#dcfce7;border:3px solid #10b981;border-radius:14px;padding:16px;margin-top:16px;">
+                    <div style="text-align:center;font-weight:800;color:#065f46;margin-bottom:10px;">🟢 Stage 3: FORMULA</div>
+                    <div style="background:white;padding:12px;border-radius:10px;margin-bottom:8px;">
+                        <div style="font-size:1.7em;font-weight:900;color:#059669;text-align:center;">
+                            ${base}${sup(exp1)} × ${base}${sup(exp2)} = ${base}${sup(r.e)}
+                        </div>
+                    </div>
+                    <div style="text-align:center;color:#065f46;font-weight:700;">
+                        Same base ✔ → ADD the indices: ${exp1} + ${exp2} = ${r.e}
+                    </div>
+                </div>
+            `;
+
+        } else if (law === 'division') {
+            const valR = Math.pow(base, r.e);
+            html = `
+                <!-- STAGE 1 -->
+                <div style="background:#f0f9ff;border:3px solid #3b82f6;border-radius:14px;padding:13px;margin-bottom:16px;text-align:center;">
+                    <div style="font-weight:800;color:#1e40af;margin-bottom:4px;">🔵 Stage 1: CONCRETE — Start with all the balls!</div>
+                    <div style="font-size:0.88em;color:#374151;">${base}${sup(exp1)} means: ${multChain(base, exp1)}</div>
+                </div>
+
+                <div style="background:rgba(168,85,247,0.13);padding:16px;border-radius:14px;margin-bottom:12px;border:3px solid #a855f7;">
+                    <div style="text-align:center;font-weight:800;color:#7c3aed;margin-bottom:10px;">
+                        We start with ${base}${sup(exp1)} = ${val1} purple balls
+                    </div>
+                    ${makeBalls(val1, 'linear-gradient(135deg,#a855f7,#7c3aed)')}
+                    <div style="text-align:center;margin-top:10px;font-weight:700;color:#7c3aed;">
+                        👆 ${val1} purple balls
+                    </div>
+                </div>
+
+                <div style="text-align:center;font-size:2em;font-weight:900;color:#666;margin:12px 0;">÷ take away</div>
+
+                <div style="background:rgba(220,38,38,0.13);padding:16px;border-radius:14px;margin-bottom:12px;border:3px dashed #dc2626;">
+                    <div style="text-align:center;font-weight:800;color:#dc2626;margin-bottom:10px;">
+                        Remove ${base}${sup(exp2)} = ${val2} balls (these are crossed out 🚫)
+                    </div>
+                    ${makeBalls(val2, 'linear-gradient(135deg,#dc2626,#b91c1c)', true)}
+                    <div style="text-align:center;margin-top:10px;font-weight:700;color:#dc2626;">
+                        👆 ${val2} balls removed
+                    </div>
+                </div>
+
+                <!-- STAGE 2 -->
+                <div style="background:#fef3c7;border:3px solid #f59e0b;border-radius:14px;padding:13px;margin:16px 0;">
+                    <div style="text-align:center;font-weight:800;color:#92400e;margin-bottom:6px;">🟡 Stage 2: PATTERN — What do you notice?</div>
+                    <div style="text-align:center;color:#78350f;font-weight:700;">
+                        Index ${exp1} − Index ${exp2} = ${r.e} &nbsp;→&nbsp; Just SUBTRACT the small numbers (indices)!
+                    </div>
+                </div>
+
+                <div style="text-align:center;font-size:1.8em;font-weight:900;color:#10b981;margin:12px 0;">↓ Balls remaining ↓</div>
+
+                <!-- STAGE 3 -->
+                <div style="background:rgba(16,185,129,0.13);padding:16px;border-radius:14px;border:3px solid #10b981;">
+                    <div style="text-align:center;font-weight:800;color:#059669;margin-bottom:10px;">
+                        ${base}${sup(r.e)} = ${multChain(base, r.e)} balls left
+                    </div>
+                    ${makeBalls(valR, 'linear-gradient(135deg,#10b981,#059669)')}
+                    <div style="text-align:center;margin-top:10px;font-weight:700;color:#059669;font-size:1.1em;">
+                        👆 ${valR} green balls remaining ✅
+                    </div>
+                </div>
+                <div style="background:#dcfce7;border:3px solid #10b981;border-radius:14px;padding:16px;margin-top:16px;">
+                    <div style="text-align:center;font-weight:800;color:#065f46;margin-bottom:10px;">🟢 Stage 3: FORMULA</div>
+                    <div style="background:white;padding:12px;border-radius:10px;margin-bottom:8px;">
+                        <div style="font-size:1.7em;font-weight:900;color:#059669;text-align:center;">
+                            ${base}${sup(exp1)} ÷ ${base}${sup(exp2)} = ${base}${sup(r.e)}
+                        </div>
+                    </div>
+                    <div style="text-align:center;color:#065f46;font-weight:700;">
+                        Same base ✔ → SUBTRACT the indices: ${exp1} − ${exp2} = ${r.e}
+                    </div>
+                </div>
+            `;
+
+        } else if (law === 'power') {
+            const valR = Math.pow(base, r.e);
+            // Show exp2 copies of the inner group
+            const innerBoxes = Array(Math.min(exp2, 5)).fill(0).map((_, i) => `
+                <div style="background:rgba(124,58,237,0.15);border:2px solid #7c3aed;border-radius:10px;padding:8px;text-align:center;min-width:60px;">
+                    <div style="font-weight:800;color:#7c3aed;font-size:0.85em;margin-bottom:6px;">${base}${sup(exp1)} = ${val1}</div>
+                    ${makeBalls(Math.min(val1, 8), 'linear-gradient(135deg,#7c3aed,#6d28d9)')}
+                </div>
+            `).join('<div style="font-size:1.6em;font-weight:900;color:#666;align-self:center;">×</div>');
+
+            html = `
+                <!-- STAGE 1 -->
+                <div style="background:#f0f9ff;border:3px solid #3b82f6;border-radius:14px;padding:13px;margin-bottom:16px;text-align:center;">
+                    <div style="font-weight:800;color:#1e40af;margin-bottom:4px;">🔵 Stage 1: CONCRETE — See the groups!</div>
+                    <div style="font-size:0.88em;color:#374151;">(${base}${sup(exp1)})${sup(exp2)} means: copy the group of ${base}${sup(exp1)} exactly ${exp2} time(s)</div>
+                </div>
+
+                <div style="background:#e9d5ff;border:3px solid #7c3aed;border-radius:14px;padding:14px;margin-bottom:12px;">
+                    <div style="text-align:center;font-weight:800;color:#581c87;margin-bottom:12px;">
+                        ${base}${sup(exp1)} = ${multChain(base, exp1)} &nbsp;→&nbsp; ${val1} balls per group
+                    </div>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:flex-start;">
+                        ${innerBoxes}
+                        ${exp2 > 5 ? '<div style="align-self:center;font-size:1.3em;font-weight:900;color:#666;">…</div>' : ''}
+                    </div>
+                    <div style="text-align:center;margin-top:10px;font-weight:700;color:#581c87;">
+                        👆 ${exp2} groups, each with ${val1} balls
+                    </div>
+                </div>
+
+                <!-- STAGE 2 -->
+                <div style="background:#fef3c7;border:3px solid #f59e0b;border-radius:14px;padding:13px;margin:16px 0;">
+                    <div style="text-align:center;font-weight:800;color:#92400e;margin-bottom:6px;">🟡 Stage 2: PATTERN — What do you notice?</div>
+                    <div style="text-align:center;color:#78350f;font-weight:700;">
+                        Index ${exp1} × Index ${exp2} = ${r.e} &nbsp;→&nbsp; MULTIPLY the small numbers (indices)!
+                    </div>
+                </div>
+
+                <div style="text-align:center;font-size:1.8em;font-weight:900;color:#10b981;margin:12px 0;">↓ All balls together ↓</div>
+
+                <!-- STAGE 3 -->
+                <div style="background:rgba(16,185,129,0.13);padding:16px;border-radius:14px;border:3px solid #10b981;">
+                    <div style="text-align:center;font-weight:800;color:#059669;margin-bottom:10px;">
+                        ${base}${sup(r.e)} = ${multChain(base, r.e)}
+                    </div>
+                    ${makeBalls(Math.min(valR, 32), 'linear-gradient(135deg,#10b981,#059669)')}
+                    <div style="text-align:center;margin-top:10px;font-weight:700;color:#059669;font-size:1.1em;">
+                        👆 ${valR} green balls total 🎾
+                    </div>
+                </div>
+                <div style="background:#dcfce7;border:3px solid #10b981;border-radius:14px;padding:16px;margin-top:16px;">
+                    <div style="text-align:center;font-weight:800;color:#065f46;margin-bottom:10px;">🟢 Stage 3: FORMULA</div>
+                    <div style="background:white;padding:12px;border-radius:10px;margin-bottom:8px;">
+                        <div style="font-size:1.7em;font-weight:900;color:#059669;text-align:center;">
+                            (${base}${sup(exp1)})${sup(exp2)} = ${base}${sup(r.e)}
+                        </div>
+                    </div>
+                    <div style="text-align:center;color:#065f46;font-weight:700;">
+                        Power of a power ✔ → MULTIPLY the indices: ${exp1} × ${exp2} = ${r.e}
+                    </div>
+                </div>
+            `;
+
+        } else if (law === 'zero') {
+            // Note: base is already declared above — no re-declaration needed
+            html = `
+                <!-- STAGE 1 -->
+                <div style="background:#f0f9ff;border:3px solid #3b82f6;border-radius:14px;padding:13px;margin-bottom:16px;text-align:center;">
+                    <div style="font-weight:800;color:#1e40af;margin-bottom:4px;">🔵 Stage 1: CONCRETE — Watch the balls shrink!</div>
+                    <div style="font-size:0.88em;color:#374151;">Every time we ÷ ${base}, the index goes down by 1</div>
+                </div>
+
+                <div style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:4px solid #f59e0b;border-radius:14px;padding:16px;">
+                    <div style="font-weight:800;font-size:1.05em;margin-bottom:12px;text-align:center;color:#92400e;">
+                        The Countdown!
+                    </div>
+                    ${['3','2','1','0'].map(exp => `
+                        <div style="background:${exp==='0'?'#dcfce7':'rgba(255,255,255,0.55)'};
+                                    border:${exp==='0'?'3px solid #10b981':'2px solid rgba(0,0,0,0.06)'};
+                                    padding:10px 14px;border-radius:10px;margin-bottom:${exp!=='0'?'4px':'0'};
+                                    display:flex;justify-content:space-between;align-items:center;gap:10px;">
+                            <span style="font-weight:800;font-size:1em;">${base}${sup(exp)} =</span>
+                            <div style="flex:1;">${exp!=='0' ? makeBalls(Math.min(Math.pow(base,parseInt(exp)),16),'linear-gradient(135deg,#a855f7,#7c3aed)') : ''}</div>
+                            <span style="color:${exp==='0'?'#059669':'#7c3aed'};font-weight:${exp==='0'?'900':'700'};font-size:${exp==='0'?'1.3em':'1em'};white-space:nowrap;">
+                                ${exp==='0'?'1 ⭐':Math.pow(base,parseInt(exp))+' balls'}
+                            </span>
+                        </div>
+                        ${exp!=='0'?`<div style="text-align:center;font-size:1em;color:#666;margin:3px 0;">↓ ÷ ${base}</div>`:''}
+                    `).join('')}
+                </div>
+
+                <!-- STAGE 2 -->
+                <div style="background:#fef3c7;border:3px solid #f59e0b;border-radius:14px;padding:13px;margin:16px 0;">
+                    <div style="text-align:center;font-weight:800;color:#92400e;margin-bottom:6px;">🟡 Stage 2: PATTERN — What do you notice?</div>
+                    <div style="text-align:center;color:#78350f;font-weight:700;">
+                        Each ÷ ${base} drops the index by 1.<br/>
+                        When the index reaches 0 → only <strong>1</strong> ball is left!
+                    </div>
+                </div>
+
+                <!-- STAGE 3 -->
+                <div style="background:#dcfce7;border:4px solid #10b981;border-radius:14px;padding:16px;margin-top:16px;">
+                    <div style="text-align:center;font-weight:800;color:#065f46;margin-bottom:12px;">🟢 Stage 3: FORMULA (the magic rule!)</div>
+                    <div style="background:white;padding:12px;border-radius:10px;margin-bottom:8px;">
+                        <div style="font-size:2.2em;font-weight:900;color:#059669;text-align:center;">
+                            ${base}⁰ = 1
+                        </div>
+                    </div>
+                    <div style="text-align:center;color:#065f46;font-weight:700;">
+                        ANY number with index 0 = 1 (always — try any base!)
+                    </div>
+                </div>
+            `;
+
+        } else if (law === 'negative') {
+            const absExp = Math.abs(exp1);
+            html = `
+                <!-- STAGE 1 -->
+                <div style="background:#f0f9ff;border:3px solid #3b82f6;border-radius:14px;padding:13px;margin-bottom:16px;text-align:center;">
+                    <div style="font-weight:800;color:#1e40af;margin-bottom:4px;">🔵 Stage 1: CONCRETE — Spot the negative!</div>
+                    <div style="font-size:0.88em;color:#374151;">A negative index means the number is a fraction (less than 1)</div>
+                </div>
+
+                <div style="background:#fecaca;border:4px solid #dc2626;border-radius:14px;padding:20px;text-align:center;margin-bottom:14px;">
+                    <div style="font-size:0.95em;font-weight:700;margin-bottom:8px;color:#7f1d1d;">We see a negative index:</div>
+                    <div style="font-size:2.6em;font-weight:900;color:#dc2626;">${base}${sup(exp1)}</div>
+                    <div style="margin-top:8px;color:#7f1d1d;font-weight:700;">⚠️ Negative index = it becomes a fraction!</div>
+                </div>
+
+                <!-- STAGE 2 -->
+                <div style="background:#fef3c7;border:3px solid #f59e0b;border-radius:14px;padding:13px;margin:14px 0;">
+                    <div style="text-align:center;font-weight:800;color:#92400e;margin-bottom:6px;">🟡 Stage 2: PATTERN — FLIP IT!</div>
+                    <div style="text-align:center;color:#78350f;font-weight:700;line-height:1.7;">
+                        Put <strong>1 on top</strong> and move the base with a <strong>positive</strong> index to the bottom.<br/>
+                        The minus sign disappears after the flip! 🎉
+                    </div>
+                </div>
+
+                <div style="background:#dbeafe;border:4px solid #3b82f6;border-radius:14px;padding:20px;text-align:center;margin-bottom:14px;">
+                    <div style="font-size:0.95em;font-weight:700;margin-bottom:12px;color:#1e3a8a;">It becomes a fraction:</div>
+                    <div style="display:inline-flex;flex-direction:column;align-items:center;gap:0;">
+                        <div style="font-size:2.2em;font-weight:900;color:#1e40af;padding-bottom:8px;border-bottom:4px solid #3b82f6;width:100%;text-align:center;">1</div>
+                        <div style="font-size:2.2em;font-weight:900;color:#1e40af;padding-top:8px;">${base}${sup(absExp)}</div>
+                    </div>
+                    <div style="margin-top:12px;color:#1e3a8a;font-weight:700;">
+                        = 1 ÷ ${Math.pow(base, absExp)} = ${r.v}
+                    </div>
+                </div>
+
+                <!-- STAGE 3 -->
+                <div style="background:#dcfce7;border:3px solid #10b981;border-radius:14px;padding:16px;">
+                    <div style="text-align:center;font-weight:800;color:#065f46;margin-bottom:12px;">🟢 Stage 3: FORMULA</div>
+                    <div style="background:white;padding:12px;border-radius:10px;margin-bottom:8px;">
+                        <div style="font-size:1.7em;font-weight:900;color:#059669;text-align:center;">
+                            ${base}${sup(exp1)} = 1 / ${base}${sup(absExp)} = ${r.v}
+                        </div>
+                    </div>
+                    <div style="text-align:center;color:#065f46;font-weight:700;">
+                        Negative index ✔ → Flip to fraction!
+                    </div>
+                </div>
+            `;
+        }
+
+        document.getElementById('visualizer').innerHTML = html;
+
+        const tips = {
+            multiplication: '3 stages: Count balls → See the pattern → Learn the formula 🎾',
+            division: '3 stages: Count balls → See them removed → Learn the formula 🚫',
+            power: '3 stages: Count balls → See groups of groups → Learn the formula 🏀',
+            zero: '3 stages: Watch the countdown → See the pattern → Discover why = 1 ⭐',
+            negative: '3 stages: Spot the negative → Watch the flip → Understand fractions 🔄'
+        };
+        document.getElementById('visualTip').textContent = tips[law];
+    }
+
+    function render() {
+        renderButtons();
+        renderTheory();
+        renderSliders();
+        renderPresets();
+        renderSteps();
+        renderVisual();
+        renderPractice();
+        renderChallenge();
+    }
+
+    function renderButtons() {
+        document.getElementById('lawButtons').innerHTML = Object.keys(laws).map(k => `
+            <div class="law-btn ${state.law === k ? 'active' : ''}" onclick="selectLaw('${k}')">
+                <div class="law-name">${laws[k].name}</div>
+                <div class="law-formula">${laws[k].formula}</div>
+            </div>
+        `).join('');
+    }
+
+    function renderTheory() {
+        const l = laws[state.law];
+        document.getElementById('lawFormula').textContent = l.formula;
+        document.getElementById('lawDesc').textContent = l.desc;
+        document.getElementById('lawExplain').textContent = l.explain;
+    }
+
+    function renderSliders() {
+        let html = `
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Base (a) — the big number:</span>
+                    <span class="slider-value">${state.base}</span>
+                </div>
+                <input type="range" min="2" max="6" value="${state.base}"
+                       oninput="state.base=parseInt(this.value); render()">
+            </div>
+        `;
+
+        if (state.law !== 'zero') {
+            html += `
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Index ${state.law === 'negative' ? '(n) — the small number' : '1 (m) — first small number'}:</span>
+                        <span class="slider-value">${state.exp1}</span>
+                    </div>
+                    <input type="range" min="${state.law === 'negative' ? '-6' : '1'}"
+                           max="${state.law === 'negative' ? '-1' : '6'}" value="${state.exp1}"
+                           oninput="state.exp1=parseInt(this.value); render()">
+                </div>
+            `;
+        }
+
+        if (state.law !== 'zero' && state.law !== 'negative') {
+            html += `
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Index 2 (n) — second small number:</span>
+                        <span class="slider-value">${state.exp2}</span>
+                    </div>
+                    <input type="range" min="1" max="6" value="${state.exp2}"
+                           oninput="state.exp2=parseInt(this.value); render()">
+                </div>
+            `;
+        }
+
+        document.getElementById('sliders').innerHTML = html;
+    }
+
+    function renderPresets() {
+        const p = presets[state.law];
+        if (!p) {
+            document.getElementById('presets').innerHTML = '';
+            return;
+        }
+        document.getElementById('presets').innerHTML = `
+            <h3 style="margin-top: 18px; margin-bottom: 10px; font-weight: 800; color: #4f46e5;">⚡ Quick Examples:</h3>
+            <div class="preset-btns">
+                ${p.map((pr, i) => `
+                    <button class="preset-btn" onclick="applyPreset(${i})">
+                        ${pr.label}
+                    </button>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    function renderSteps() {
+        const {base, exp1, exp2} = state;
+        const r = calc();
+        let steps = [];
+
+        if (state.law === 'multiplication') {
+            steps = [
+                `Look at: base = ${base} (big number), indices = ${exp1} and ${exp2} (small numbers)`,
+                `Rule: When the base is the SAME, just ADD the indices`,
+                `Add the indices: ${exp1} + ${exp2} = ${r.e}`,
+                `Answer: ${base}${sup(r.e)} = ${r.v}`
+            ];
+        } else if (state.law === 'division') {
+            steps = [
+                `Look at: base = ${base} (big number), indices = ${exp1} and ${exp2}`,
+                `Rule: When the base is the SAME, just SUBTRACT the indices`,
+                `Subtract the indices: ${exp1} − ${exp2} = ${r.e}`,
+                `Answer: ${base}${sup(r.e)} = ${r.v}`
+            ];
+        } else if (state.law === 'power') {
+            steps = [
+                `Look at: base = ${base}, indices = ${exp1} and ${exp2}`,
+                `Rule: When a power is raised to ANOTHER power, MULTIPLY the indices`,
+                `Multiply the indices: ${exp1} × ${exp2} = ${r.e}`,
+                `Answer: ${base}${sup(r.e)} = ${r.v}`
+            ];
+        } else if (state.law === 'zero') {
+            steps = [
+                `We have ${base}${sup(0)} — the index is zero`,
+                `Magic rule: ANY number with index 0 = 1`,
+                `Think: ${base}${sup(1)} ÷ ${base}${sup(1)} = ${base}${sup(0)} = 1 (a number divided by itself = 1)`,
+                `Answer: ${base}⁰ = 1 ✅`
+            ];
+        } else if (state.law === 'negative') {
+            steps = [
+                `We have ${base}${sup(exp1)} — the index is negative (${exp1})`,
+                `Rule: Negative index = flip to a fraction (1 on top, number on bottom)`,
+                `Flip it: ${base}${sup(exp1)} = 1 ÷ ${base}${sup(Math.abs(exp1))} = 1 ÷ ${Math.pow(base, Math.abs(exp1))}`,
+                `Answer: ${r.v}`
+            ];
+        }
+
+        document.getElementById('steps').innerHTML = steps.map((s, i) => `
+            <div class="step ${i === steps.length - 1 ? 'highlight' : ''}">
+                <strong>Step ${i + 1}.</strong> ${s}
+            </div>
+        `).join('');
+
+        let ans = '';
+        if (state.law === 'zero') {
+            ans = `${base}⁰ = 1`;
+        } else if (state.law === 'negative') {
+            ans = `${base}${sup(exp1)} = ${r.v}`;
+        } else {
+            ans = `${base}${sup(r.e)} = ${r.v}`;
+        }
+        document.getElementById('finalAnswer').textContent = ans;
+    }
+
+    function renderPractice() {
+        const p = problems[state.law];
+        document.getElementById('practiceProblem').textContent = p.q;
+    }
+
+    function renderChallenge() {
+        const challenges = {
+            multiplication: {
+                title: '🍪 Cookie Challenge',
+                text: `You bake 2³ cookies on Monday and 2⁴ cookies on Tuesday. How many cookies do you have altogether? Write as a single power of 2.`,
+                solution: `2³ × 2⁴ = 2⁽³⁺⁴⁾ = 2⁷ = 128 cookies! Add the indices: 3 + 4 = 7 🍪`
+            },
+            division: {
+                title: '🎈 Balloon Party',
+                text: `You start with 3⁵ balloons. By the end of the party, only 3² balloons are left. Write how many are left as a single power of 3.`,
+                solution: `3⁵ ÷ 3² = 3⁽⁵⁻²⁾ = 3³ = 27 balloons left! Subtract the indices: 5 − 2 = 3 🎈`
+            },
+            power: {
+                title: '🌱 Growing Plants',
+                text: `A flower pot holds 2² seeds. Your teacher gives you (2²)³ seeds in total. Write this as a single power of 2 and find the value.`,
+                solution: `(2²)³ = 2⁽²ˣ³⁾ = 2⁶ = 64 seeds! Multiply the indices: 2 × 3 = 6 🌱`
+            },
+            zero: {
+                title: '🎲 Board Game Reset',
+                text: `Your game score is 5³ points. You land on a RESET square that divides your score by 5³. What is your score now?`,
+                solution: `5³ ÷ 5³ = 5⁽³⁻³⁾ = 5⁰ = 1 point — back to start! Zero index always = 1 🎲`
+            },
+            negative: {
+                title: '🍕 Sharing Pizza',
+                text: `A pizza slice is 2⁻² of the whole pizza. Can you write this as a simple fraction? (Hint: flip it!)`,
+                solution: `2⁻² = 1/2² = 1/4 of the pizza. Flip the negative index: it becomes 1 over 2² = 1/4 🍕`
+            }
+        };
+
+        const c = challenges[state.law];
+        document.getElementById('challengeText').innerHTML = `
+            <h3 style="font-weight: 800; font-size: 1.2em; margin-bottom: 10px;">${c.title}</h3>
+            <p style="line-height: 1.7; font-size: 0.97em;">${c.text}</p>
+        `;
+
+        document.getElementById('challengeSolution').innerHTML = `
+            <div style="font-size: 1.1em; line-height: 1.7; font-weight: 700;">${c.solution}</div>
+        `;
+
+        if (!state.showSolution) {
+            document.getElementById('challengeSolution').classList.add('hidden');
+            document.getElementById('solutionBtnText').textContent = 'Show Answer 👀';
+        }
+    }
+
+    function selectLaw(l) {
+        state.law = l;
+        state.showSolution = false;
+        document.getElementById('practiceInput').value = '';
+        document.getElementById('practiceResult').innerHTML = '';
+
+        if (l === 'zero') {
+            state.exp1 = 0; state.exp2 = 0;
+        } else if (l === 'negative') {
+            state.exp1 = -3; state.exp2 = 0;
+        } else {
+            state.exp1 = 3; state.exp2 = 4;
+        }
+        render();
+    }
+
+    function applyPreset(i) {
+        const p = presets[state.law][i];
+        state.base = p.base;
+        state.exp1 = p.e1;
+        state.exp2 = p.e2;
+        render();
+    }
+
+    function checkAnswer() {
+        const input = document.getElementById('practiceInput').value.toLowerCase().trim().replace(/\s/g, '');
+        const correct = problems[state.law].a.toLowerCase().replace(/\s/g, '');
+        const result = document.getElementById('practiceResult');
+
+        let isCorrect = input === correct;
+
+        if (state.law === 'negative' && !isCorrect) {
+            const num = parseFloat(input);
+            if (!isNaN(num) && Math.abs(num - 0.0625) < 0.01) isCorrect = true;
+        }
+
+        if (isCorrect) {
+            result.className = 'result-box correct';
+            result.innerHTML = '✅ <strong>Excellent!</strong> You got it right! Well done! 🎉';
+        } else {
+            result.className = 'result-box wrong';
+            result.innerHTML = '❌ <strong>Not quite!</strong> Hint: Remember the ' + laws[state.law].name + '! Try again 💪';
+        }
+    }
+
+    function toggleSolution() {
+        state.showSolution = !state.showSolution;
+        const sol = document.getElementById('challengeSolution');
+        const btn = document.getElementById('solutionBtnText');
+        if (state.showSolution) {
+            sol.classList.remove('hidden');
+            btn.textContent = 'Hide Answer 🙈';
+        } else {
+            sol.classList.add('hidden');
+            btn.textContent = 'Show Answer 👀';
+        }
+    }
+
+    render();
+</script>
+</body>
+</html>

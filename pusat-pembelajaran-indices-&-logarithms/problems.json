@@ -1,0 +1,50 @@
+{
+  "indicesIntro": {
+    "practice": {
+      "title": "Latihan Pengukuhan",
+      "generator": "indicesIntro"
+    },
+    "challenge": {
+      "icon": "📈",
+      "title": "Cabaran Dunia Sebenar",
+      "context": "Video TikTok Viral",
+      "problem": "Sebuah video TikTok mendapat 3 'likes' pada hari pertama. Setiap hari, jumlah 'likes' berganda sebanyak 3 kali. Berapakah jumlah 'likes' selepas 4 hari?",
+      "hint": "Ini adalah masalah pertumbuhan eksponen. Gunakan formula: likes = (likes_awal) × (faktor_ganda)^(bilangan_hari - 1).",
+      "solution": "<div class=\"space-y-2 font-mono\"><p>Likes Awal = 3</p><p>Faktor Ganda = 3</p><p>Hari = 4</p><p>Formula: 3 × 3^(4-1)</p><p>= 3 × 3³</p><p>= 3 × 27</p><p class=\"font-bold\">Jawapan Akhir: <span class=\"p-2 bg-green-200 dark:bg-green-800 rounded\">81 likes</span></p></div>"
+    }
+  },
+  "logIntro": {
+    "practice": {
+      "title": "Latihan Pengukuhan",
+      "generator": "logIntro"
+    },
+    "challenge": {
+      "icon": "🔊",
+      "title": "Cabaran Dunia Sebenar",
+      "context": "Tahap Bunyi Konsert",
+      "problem": "Jika intensiti bunyi sebuah konsert adalah 10,000,000 kali lebih kuat daripada bunyi rujukan (intensity = 10^7), berapakah tahap decibelnya? (Hint: Decibels = 10 * log_10(intensiti))",
+      "hint": "Gantikan nilai intensiti ke dalam formula decibel dan selesaikan.",
+      "solution": "<div class=\"space-y-2 font-mono\"><p>Formula: Decibels = 10 × log₁₀(intensiti)</p><p>Intensiti = 10⁷</p><p>= 10 × log₁₀(10⁷)</p><p>Guna Law of Logarithms: log(xⁿ) = n log(x)</p><p>= 10 × (7 × log₁₀(10))</p><p>Tahu bahawa log₁₀(10) = 1</p><p>= 10 × (7 × 1) = 70</p><p class=\"font-bold\">Jawapan Akhir: <span class=\"p-2 bg-green-200 dark:bg-green-800 rounded\">70 dB</span></p></div>"
+    }
+  },
+  "indicesSolution": {
+    "sameBase": {
+      "title": "Latihan: Cari nilai x",
+      "generator": "indicesSameBase"
+    },
+    "sameIndex": {
+      "title": "Latihan: Cari nilai x",
+      "generator": "indicesSameIndex"
+    }
+  },
+  "logSolution": {
+    "sameBase": {
+      "title": "Latihan: Cari nilai x",
+      "generator": "logSameBase"
+    },
+    "changeOfBase": {
+      "title": "Latihan: Selesaikan",
+      "generator": "logChangeOfBase"
+    }
+  }
+}
