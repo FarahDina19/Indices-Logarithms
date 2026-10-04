@@ -1,0 +1,455 @@
+<title>Indices & Logarithms Learning Hub</title>
+
+<style>
+/* Layout: Hero + grid-based course sections with modern card system */
+
+:root {
+  --bg: #fafbfc;
+  --fg: #1a2332;
+  --accent: #0066cc;
+  --accent-light: #e6f0ff;
+  --border: #e0e6ed;
+  --text-muted: #667085;
+  --primary-dark: #001a4d;
+  --teal: #00a89b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1419;
+    --fg: #e8eaed;
+    --accent: #4d94ff;
+    --accent-light: #1a3a66;
+    --border: #2d3748;
+    --text-muted: #a0aec0;
+    --primary-dark: #001a4d;
+    --teal: #00d4c4;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0f1419;
+  --fg: #e8eaed;
+  --accent: #4d94ff;
+  --accent-light: #1a3a66;
+  --border: #2d3748;
+  --text-muted: #a0aec0;
+  --primary-dark: #001a4d;
+  --teal: #00d4c4;
+  color-scheme: dark;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  max-width: 65ch;
+}
+
+/* Header & Navigation */
+header {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* Hero Section */
+.hero {
+  padding: 3rem 0;
+  margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-content h1 {
+  color: var(--fg);
+  margin-bottom: 1.5rem;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 102, 204, 0.2);
+}
+
+.hero-visual {
+  background: linear-gradient(135deg, var(--accent-light), var(--teal) 100%);
+  border-radius: 12px;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 300px;
+}
+
+.hero-visual h2 {
+  color: var(--accent);
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+/* Course Grid Section */
+.section {
+  margin-bottom: 5rem;
+}
+
+.section-title {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.course-card {
+  background: var(--fg);
+  color: var(--bg);
+  padding: 2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s;
+  border: 1px solid transparent;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.course-card h3 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.course-card p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.course-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.feature-item {
+  padding: 1.5rem;
+  background: var(--accent-light);
+  border-radius: 8px;
+  border-left: 4px solid var(--accent);
+}
+
+.feature-item h3 {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.feature-item p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, var(--primary-dark), var(--accent) 100%);
+  color: white;
+  padding: 4rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.cta-section h2 {
+  color: white;
+}
+
+.cta-section p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+footer h4 {
+  color: var(--fg);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: var(--accent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 2rem 0;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<header>
+  <nav>
+    <div class="logo">∑∛ Mathematics</div>
+    <ul>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Master Indices & Logarithms</h1>
+      <p>Learn the fundamental concepts of exponential growth, logarithmic scales, and mathematical relationships that power science and engineering.</p>
+      <button class="cta-button">Start Learning</button>
+    </div>
+    <div class="hero-visual">
+      <h2>a^x = b</h2>
+      <p style="color: var(--accent); margin: 1rem 0 0 0;">log_a(b) = x</p>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section">
+    <h2 class="section-title">Why Choose Us</h2>
+    <div class="features-grid">
+      <div class="feature-item">
+        <h3>Interactive</h3>
+        <p>Learn through hands-on problems and real-world applications</p>
+      </div>
+      <div class="feature-item">
+        <h3>Structured</h3>
+        <p>Build from fundamentals to advanced topics systematically</p>
+      </div>
+      <div class="feature-item">
+        <h3>Comprehensive</h3>
+        <p>Cover indices, logarithms, and their practical uses</p>
+      </div>
+      <div class="feature-item">
+        <h3>Expert</h3>
+        <p>Learn from experienced mathematics educators</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Grid -->
+  <section class="section" id="courses">
+    <h2 class="section-title">Course Structure</h2>
+    <div class="course-grid">
+      <a href="#" class="course-card">
+        <h3>Unit 4.1</h3>
+        <p>Indices and Law of Indices</p>
+        <span class="course-badge">Fundamentals</span>
+      </a>
+      <a href="#" class="course-card">
+        <h3>Unit 4.2</h3>
+        <p>Logarithms and Laws of Logarithms</p>
+        <span class="course-badge">Core</span>
+      </a>
+      <a href="#" class="course-card">
+        <h3>Unit 4.3</h3>
+        <p>Conversion Between Indicial and Logarithmic Form</p>
+        <span class="course-badge">Application</span>
+      </a>
+      <a href="#" class="course-card">
+        <h3>Unit 4.4</h3>
+        <p>Solutions of Indicial Equations</p>
+        <span class="course-badge">Advanced</span>
+      </a>
+      <a href="#" class="course-card">
+        <h3>Unit 4.5</h3>
+        <p>Solutions of Logarithmic Equations</p>
+        <span class="course-badge">Advanced</span>
+      </a>
+      <a href="#" class="course-card">
+        <h3>Practice</h3>
+        <p>Comprehensive problem sets and solutions</p>
+        <span class="course-badge">All Levels</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2>Ready to Unlock Mathematical Mastery?</h2>
+    <p>Join thousands of students mastering indices and logarithms today</p>
+    <button class="cta-button">Sign Up Free</button>
+  </section>
+</main>
+
+<footer>
+  <div>
+    <h4>Learn</h4>
+    <ul>
+      <li><a href="#">All Courses</a></li>
+      <li><a href="#">Practice Problems</a></li>
+      <li><a href="#">Resources</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Company</h4>
+    <ul>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Legal</h4>
+    <ul>
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Cookies</a></li>
+    </ul>
+  </div>
+  <div style="grid-column: 1 / -1;">
+    <p>&copy; 2026 Indices & Logarithms Learning Hub. All rights reserved.</p>
+  </div>
+</footer>
