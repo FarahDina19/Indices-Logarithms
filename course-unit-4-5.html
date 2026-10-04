@@ -1,0 +1,221 @@
+<title>Unit 4.5: Solutions of Logarithmic Equations</title>
+
+<style>
+:root { --bg: #fafbfc; --fg: #1a2332; --accent: #4f46e5; --accent-light: #eef2ff; --border: #e0e6ed; --text-muted: #667085; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0f1419; --fg: #e8eaed; --accent: #a78bfa; --accent-light: #3730a3; --border: #2d3748; --text-muted: #a0aec0; color-scheme: dark; } }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; font-size: 16px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+header { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%); color: white; padding: 40px 20px; margin-bottom: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+header h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+.subtitle { font-size: 1.1em; opacity: 0.9; }
+.breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+.breadcrumb a { color: var(--accent); text-decoration: none; }
+.card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+h2 { font-size: 1.8em; font-weight: 700; margin: 0 0 1.5rem 0; color: var(--accent); border-bottom: 3px solid var(--accent-light); padding-bottom: 0.5rem; }
+.example-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; }
+.example-box h4 { color: var(--accent); margin: 0 0 0.5rem 0; }
+.method-card { padding: 1.5rem; background: var(--accent-light); border-radius: 8px; border-left: 4px solid var(--accent); margin: 1rem 0; }
+.method-card h3 { color: var(--accent); margin: 0 0 0.5rem 0; font-size: 1.1em; }
+.practice-problem { background: var(--bg); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; }
+.difficulty { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; color: white; }
+.difficulty.easy { background: #059669; }
+.difficulty.medium { background: #d97706; }
+.difficulty.hard { background: #dc2626; }
+.toggle-button { background: var(--accent); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; font-weight: 600; }
+.solution { margin-top: 1rem; padding: 1rem; background: var(--border); border-radius: 4px; display: none; font-family: 'Courier New', monospace; }
+.solution.show { display: block; }
+.navigation { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+.nav-button { padding: 1rem; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--fg); transition: all 0.2s; display: flex; flex-direction: column; gap: 0.5rem; }
+.nav-button:hover { background: var(--accent-light); border-color: var(--accent); }
+.nav-label { font-size: 0.85rem; color: var(--text-muted); }
+.nav-title { color: var(--accent); font-weight: 600; }
+@media (max-width: 768px) { header h1 { font-size: 1.8em; } .navigation { grid-template-columns: 1fr; } }
+</style>
+
+<div class="container">
+  <div class="breadcrumb"><a href="indices-logarithms-landing.html">Courses</a> / Unit 4.5</div>
+  <header><h1>Unit 4.5: Solutions of Logarithmic Equations</h1><p class="subtitle">Solve equations involving logarithms using properties and exponential form</p></header>
+
+  <div class="card">
+    <h2>What is a Logarithmic Equation?</h2>
+    <p>A logarithmic equation contains logarithms of variables.</p>
+    <p><strong>Examples:</strong> log(x) = 2 or log₂(x) = 5 or ln(x+1) = 3</p>
+  </div>
+
+  <div class="card">
+    <h2>Method 1: Convert to Exponential Form</h2>
+    <div class="method-card">
+      <h3>Strategy</h3>
+      <p>Use the definition: If log_a(x) = y, then a<sup>y</sup> = x</p>
+    </div>
+
+    <div class="example-box">
+      <h4>Example 1</h4>
+      <p><strong>Solve:</strong> log₂(x) = 5</p>
+      <div style="margin-top: 1rem;">
+        <p><strong>Step 1:</strong> Convert to exponential form<br>2⁵ = x</p>
+        <p><strong>Step 2:</strong> Calculate<br><strong>x = 32</strong></p>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <h4>Example 2</h4>
+      <p><strong>Solve:</strong> log(x) = 3</p>
+      <div style="margin-top: 1rem;">
+        <p><strong>Convert to exponential:</strong> 10³ = x<br><strong>x = 1000</strong></p>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <h4>Example 3</h4>
+      <p><strong>Solve:</strong> ln(x) = 2</p>
+      <div style="margin-top: 1rem;">
+        <p><strong>Convert to exponential:</strong> e² = x<br><strong>x ≈ 7.389</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Method 2: Using Logarithm Laws</h2>
+    <div class="method-card">
+      <h3>Strategy</h3>
+      <p>Apply logarithm laws to simplify, then convert to exponential form.</p>
+    </div>
+
+    <div class="example-box">
+      <h4>Example 4</h4>
+      <p><strong>Solve:</strong> log(2x) = 1</p>
+      <div style="margin-top: 1rem;">
+        <p><strong>Step 1:</strong> Convert to exponential<br>10¹ = 2x</p>
+        <p><strong>Step 2:</strong> Solve for x<br>10 = 2x<br><strong>x = 5</strong></p>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <h4>Example 5</h4>
+      <p><strong>Solve:</strong> log(x²) = 4</p>
+      <div style="margin-top: 1rem;">
+        <p><strong>Step 1:</strong> Convert to exponential<br>10⁴ = x²</p>
+        <p><strong>Step 2:</strong> Solve for x<br>10000 = x²<br><strong>x = ±100</strong></p>
+        <p><small>Note: Must check that solutions are valid for the original equation</small></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Method 3: Complex Logarithmic Equations</h2>
+    <div class="example-box">
+      <h4>Example 6</h4>
+      <p><strong>Solve:</strong> log₂(x) + log₂(x-2) = 3</p>
+      <div style="margin-top: 1rem;">
+        <p><strong>Step 1:</strong> Use product rule<br>log₂[x(x-2)] = 3</p>
+        <p><strong>Step 2:</strong> Convert to exponential<br>x(x-2) = 2³ = 8</p>
+        <p><strong>Step 3:</strong> Expand and rearrange<br>x² - 2x = 8<br>x² - 2x - 8 = 0</p>
+        <p><strong>Step 4:</strong> Factor<br>(x - 4)(x + 2) = 0<br>x = 4 or x = -2</p>
+        <p><strong>Step 5:</strong> Check validity<br>x = -2 is invalid (log of negative)<br><strong>x = 4</strong></p>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <h4>Example 7</h4>
+      <p><strong>Solve:</strong> log(x) - log(x-1) = 1</p>
+      <div style="margin-top: 1rem;">
+        <p><strong>Step 1:</strong> Use quotient rule<br>log[x/(x-1)] = 1</p>
+        <p><strong>Step 2:</strong> Convert to exponential<br>x/(x-1) = 10¹ = 10</p>
+        <p><strong>Step 3:</strong> Solve for x<br>x = 10(x-1)<br>x = 10x - 10<br>-9x = -10<br><strong>x = 10/9 ≈ 1.11</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Important: Domain Restrictions</h2>
+    <p>Remember: <strong>You can only take the logarithm of positive numbers!</strong></p>
+    <div style="padding: 1.5rem; background: var(--accent-light); border-radius: 8px; border-left: 4px solid var(--accent); margin: 1rem 0;">
+      <p><strong>Always check:</strong></p>
+      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li>Arguments must be positive (> 0)</li>
+        <li>Reject solutions that violate the domain</li>
+        <li>Verify solutions in the original equation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Practice Problems</h2>
+
+    <div class="practice-problem">
+      <h4>Problem 1: Basic logarithmic equation</h4>
+      <span class="difficulty easy">Easy</span>
+      <p><strong>Solve:</strong> log₃(x) = 2</p>
+      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+      <div class="solution">
+        Convert to exponential: 3² = x
+        x = 9
+      </div>
+    </div>
+
+    <div class="practice-problem">
+      <h4>Problem 2: Natural logarithm</h4>
+      <span class="difficulty easy">Easy</span>
+      <p><strong>Solve:</strong> ln(x) = 1</p>
+      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+      <div class="solution">
+        e¹ = x
+        x = e ≈ 2.718
+      </div>
+    </div>
+
+    <div class="practice-problem">
+      <h4>Problem 3: Logarithm with arithmetic</h4>
+      <span class="difficulty medium">Medium</span>
+      <p><strong>Solve:</strong> log(3x) = 2</p>
+      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+      <div class="solution">
+        10² = 3x
+        100 = 3x
+        x = 100/3 ≈ 33.33
+      </div>
+    </div>
+
+    <div class="practice-problem">
+      <h4>Problem 4: Using logarithm laws</h4>
+      <span class="difficulty medium">Medium</span>
+      <p><strong>Solve:</strong> log(x) + log(5) = 1</p>
+      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+      <div class="solution">
+        log(5x) = 1
+        5x = 10¹ = 10
+        x = 2
+      </div>
+    </div>
+
+    <div class="practice-problem">
+      <h4>Problem 5: Product rule</h4>
+      <span class="difficulty hard">Hard</span>
+      <p><strong>Solve:</strong> log₂(x) + log₂(x+1) = 1</p>
+      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+      <div class="solution">
+        log₂[x(x+1)] = 1
+        x(x+1) = 2¹ = 2
+        x² + x - 2 = 0
+        (x + 2)(x - 1) = 0
+        x = -2 or x = 1
+        Valid: x = 1 (reject x = -2 as it's negative)
+      </div>
+    </div>
+  </div>
+
+  <div class="navigation">
+    <a href="course-unit-4-4.html" class="nav-button"><span class="nav-label">← Previous Unit</span><span class="nav-title">Unit 4.4: Indicial</span></a>
+    <a href="indices-logarithms-landing.html" class="nav-button"><span class="nav-label">Back to</span><span class="nav-title">Course Overview</span></a>
+  </div>
+</div>
+
+<script>
+function toggleSolution(button) {
+  const solution = button.nextElementSibling;
+  solution.classList.toggle('show');
+  button.textContent = solution.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+}
+</script>
