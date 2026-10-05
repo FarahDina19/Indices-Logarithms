@@ -38,171 +38,68 @@ h2 { font-size: 1.8em; font-weight: 700; margin: 0 0 1.5rem 0; color: var(--acce
   <header><h1>Unit 4.5: Solutions of Logarithmic Equations</h1><p class="subtitle">Solve equations involving logarithms using properties and exponential form</p></header>
 
   <div class="card">
-    <h2>What is a Logarithmic Equation?</h2>
-    <p>A logarithmic equation contains logarithms of variables.</p>
-    <p><strong>Examples:</strong> log(x) = 2 or log₂(x) = 5 or ln(x+1) = 3</p>
-  </div>
-
-  <div class="card">
-    <h2>Method 1: Convert to Exponential Form</h2>
+    <h2>📊 3 Kaedah Untuk Logarithmic Equations</h2>
     <div class="method-card">
-      <h3>Strategy</h3>
-      <p>Use the definition: If log_a(x) = y, then a<sup>y</sup> = x</p>
+      <h3>Kaedah 1: Comparison of Base</h3>
+      <p>Bandingkan arguments apabila base sama. Gunakan untuk satu logarithm pada setiap side dengan base yang sama.</p>
+      <p><strong>Langkah:</strong> Check base sama, bandingkan arguments, kemudian solve untuk x.</p>
+      <p><strong>Contoh:</strong> log₂ x = log₂ 8, maka x = 8.</p>
     </div>
-
-    <div class="example-box">
-      <h4>Example 1</h4>
-      <p><strong>Solve:</strong> log₂(x) = 5</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Convert to exponential form<br>2⁵ = x</p>
-        <p><strong>Step 2:</strong> Calculate<br><strong>x = 32</strong></p>
-      </div>
-    </div>
-
-    <div class="example-box">
-      <h4>Example 2</h4>
-      <p><strong>Solve:</strong> log(x) = 3</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Convert to exponential:</strong> 10³ = x<br><strong>x = 1000</strong></p>
-      </div>
-    </div>
-
-    <div class="example-box">
-      <h4>Example 3</h4>
-      <p><strong>Solve:</strong> ln(x) = 2</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Convert to exponential:</strong> e² = x<br><strong>x ≈ 7.389</strong></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Method 2: Using Logarithm Laws</h2>
     <div class="method-card">
-      <h3>Strategy</h3>
-      <p>Apply logarithm laws to simplify, then convert to exponential form.</p>
+      <h3>Kaedah 2: Laws of Logarithms</h3>
+      <p>Combine atau expand logarithms apabila terdapat beberapa logarithms.</p>
+      <p><strong>Langkah:</strong> Apply laws untuk combine, simplify kepada single log, kemudian compare atau solve.</p>
+      <p><strong>Contoh:</strong> log x + log 3 = log 15; log(3x) = log 15; 3x = 15; maka x = 5.</p>
     </div>
-
-    <div class="example-box">
-      <h4>Example 4</h4>
-      <p><strong>Solve:</strong> log(2x) = 1</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Convert to exponential<br>10¹ = 2x</p>
-        <p><strong>Step 2:</strong> Solve for x<br>10 = 2x<br><strong>x = 5</strong></p>
-      </div>
+    <div class="method-card">
+      <h3>Kaedah 3: Change to Index Form</h3>
+      <p>Convert untuk menghapuskan log apabila perlu atau kaedah lain tidak sesuai.</p>
+      <p><strong>Langkah:</strong> Simplify jika perlu, convert log<sub>a</sub> b = x kepada a<sup>x</sup> = b, kemudian solve indicial equation.</p>
+      <p><strong>Contoh:</strong> log₂ (x + 1) = 3; 2³ = x + 1; maka x = 7.</p>
     </div>
-
     <div class="example-box">
-      <h4>Example 5</h4>
-      <p><strong>Solve:</strong> log(x²) = 4</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Convert to exponential<br>10⁴ = x²</p>
-        <p><strong>Step 2:</strong> Solve for x<br>10000 = x²<br><strong>x = ±100</strong></p>
-        <p><small>Note: Must check that solutions are valid for the original equation</small></p>
-      </div>
+      <h4>Nota Form 5</h4>
+      <p>Untuk soalan logarithms yang lebih kompleks, tukar asas menggunakan log<sub>a</sub> b = log<sub>c</sub> b / log<sub>c</sub> a. Jika terdapat corak berulang seperti (log x)², gunakan substitution (let y = log x) untuk menukar kepada bentuk kuadratik.</p>
+      <p><strong>Contoh (Change Base):</strong> log₂ x + log₄ x = 6.</p>
+      <p><strong>Contoh (Substitution):</strong> log₃ x + 4 log<sub>x</sub> 3 = 4.</p>
     </div>
   </div>
 
   <div class="card">
-    <h2>Method 3: Complex Logarithmic Equations</h2>
-    <div class="example-box">
-      <h4>Example 6</h4>
-      <p><strong>Solve:</strong> log₂(x) + log₂(x-2) = 3</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Use product rule<br>log₂[x(x-2)] = 3</p>
-        <p><strong>Step 2:</strong> Convert to exponential<br>x(x-2) = 2³ = 8</p>
-        <p><strong>Step 3:</strong> Expand and rearrange<br>x² - 2x = 8<br>x² - 2x - 8 = 0</p>
-        <p><strong>Step 4:</strong> Factor<br>(x - 4)(x + 2) = 0<br>x = 4 or x = -2</p>
-        <p><strong>Step 5:</strong> Check validity<br>x = -2 is invalid (log of negative)<br><strong>x = 4</strong></p>
-      </div>
-    </div>
-
-    <div class="example-box">
-      <h4>Example 7</h4>
-      <p><strong>Solve:</strong> log(x) - log(x-1) = 1</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Use quotient rule<br>log[x/(x-1)] = 1</p>
-        <p><strong>Step 2:</strong> Convert to exponential<br>x/(x-1) = 10¹ = 10</p>
-        <p><strong>Step 3:</strong> Solve for x<br>x = 10(x-1)<br>x = 10x - 10<br>-9x = -10<br><strong>x = 10/9 ≈ 1.11</strong></p>
-      </div>
+    <h2>🤔 Decision Guide: Pilih Method</h2>
+    <div class="method-card">
+      <p><strong>Single log each side, base sama?</strong> Ya → Kaedah 1: Comparison.</p>
+      <p><strong>Multiple logs boleh combine?</strong> Ya → Kaedah 2: Laws.</p>
+      <p><strong>Ada base berbeza atau bentuk kuadratik?</strong> Ya → Change Base atau Substitution (Form 5).</p>
+      <p>Jika tidak, gunakan Kaedah 3: Index Form.</p>
     </div>
   </div>
 
   <div class="card">
-    <h2>Important: Domain Restrictions</h2>
-    <p>Remember: <strong>You can only take the logarithm of positive numbers!</strong></p>
-    <div style="padding: 1.5rem; background: var(--accent-light); border-radius: 8px; border-left: 4px solid var(--accent); margin: 1rem 0;">
-      <p><strong>Always check:</strong></p>
-      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-        <li>Arguments must be positive (> 0)</li>
-        <li>Reject solutions that violate the domain</li>
-        <li>Verify solutions in the original equation</li>
-      </ul>
-    </div>
+    <h2>⚠️ Domain Restrictions</h2>
+    <p><strong>Logarithm argument mesti lebih besar daripada 0.</strong> Always check arguments, reject solutions that violate the domain, and verify solutions in the original equation.</p>
   </div>
 
   <div class="card">
-    <h2>Practice Problems</h2>
-
+    <h2>✏️ Try It: Logarithmic Equations</h2>
+    <p>Cuba selesaikan setiap soalan, kemudian tunjukkan penyelesaian langkah demi langkah.</p>
     <div class="practice-problem">
-      <h4>Problem 1: Basic logarithmic equation</h4>
-      <span class="difficulty easy">Easy</span>
-      <p><strong>Solve:</strong> log₃(x) = 2</p>
+      <h4>Example 1: Comparison Method (Mudah)</h4>
+      <p><strong>Solve:</strong> log₃ x = log₃ 9</p>
       <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        Convert to exponential: 3² = x
-        x = 9
-      </div>
+      <div class="solution">Base sama, jadi arguments sama.<br><strong>x = 9</strong></div>
     </div>
-
     <div class="practice-problem">
-      <h4>Problem 2: Natural logarithm</h4>
-      <span class="difficulty easy">Easy</span>
-      <p><strong>Solve:</strong> ln(x) = 1</p>
+      <h4>Example 2: Laws Method (Mudah)</h4>
+      <p><strong>Solve:</strong> log₂ x + log₂ 4 = log₂ 12</p>
       <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        e¹ = x
-        x = e ≈ 2.718
-      </div>
+      <div class="solution">log₂ (x × 4) = log₂ 12<br>4x = 12<br><strong>x = 3</strong></div>
     </div>
-
     <div class="practice-problem">
-      <h4>Problem 3: Logarithm with arithmetic</h4>
-      <span class="difficulty medium">Medium</span>
-      <p><strong>Solve:</strong> log(3x) = 2</p>
+      <h4>Example 3: Index Form (Sederhana)</h4>
+      <p><strong>Solve:</strong> log₅ (x - 2) = 2</p>
       <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        10² = 3x
-        100 = 3x
-        x = 100/3 ≈ 33.33
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 4: Using logarithm laws</h4>
-      <span class="difficulty medium">Medium</span>
-      <p><strong>Solve:</strong> log(x) + log(5) = 1</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        log(5x) = 1
-        5x = 10¹ = 10
-        x = 2
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 5: Product rule</h4>
-      <span class="difficulty hard">Hard</span>
-      <p><strong>Solve:</strong> log₂(x) + log₂(x+1) = 1</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        log₂[x(x+1)] = 1
-        x(x+1) = 2¹ = 2
-        x² + x - 2 = 0
-        (x + 2)(x - 1) = 0
-        x = -2 or x = 1
-        Valid: x = 1 (reject x = -2 as it's negative)
-      </div>
+      <div class="solution">5² = x - 2<br>25 = x - 2<br><strong>x = 27</strong></div>
     </div>
   </div>
 
