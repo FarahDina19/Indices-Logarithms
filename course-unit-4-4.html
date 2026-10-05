@@ -38,136 +38,68 @@ h2 { font-size: 1.8em; font-weight: 700; margin: 0 0 1.5rem 0; color: var(--acce
   <header><h1>Unit 4.4: Solutions of Indicial Equations</h1><p class="subtitle">Solve exponential equations using indices and logarithms</p></header>
 
   <div class="card">
-    <h2>What is an Indicial Equation?</h2>
-    <p>An indicial equation (or exponential equation) is one where the variable appears in an exponent.</p>
-    <p><strong>Examples:</strong> 2<sup>x</sup> = 8 or 3<sup>2x</sup> = 27 or 5<sup>x</sup> = 100</p>
-  </div>
-
-  <div class="card">
-    <h2>Method 1: Same Base</h2>
+    <h2>🔢 3 Kaedah Untuk Indicial Equations</h2>
     <div class="method-card">
-      <h3>Strategy</h3>
-      <p>If both sides have the same base, equate the exponents:</p>
-      <p style="text-align: center; font-family: 'Courier New', monospace; margin-top: 1rem;">If a<sup>x</sup> = a<sup>y</sup>, then x = y</p>
+      <h3>Kaedah 1: Comparison of Base</h3>
+      <p>Bandingkan base bila boleh express sama. Guna apabila kedua-dua sides boleh ditulis dengan base yang sama.</p>
+      <p><strong>Langkah:</strong> Express kedua-dua sides dengan base sama, bandingkan powers, kemudian solve untuk x.</p>
+      <p><strong>Contoh:</strong> 2<sup>x</sup> = 8 = 2³, maka x = 3.</p>
     </div>
-
-    <div class="example-box">
-      <h4>Example 1</h4>
-      <p><strong>Solve:</strong> 2<sup>x</sup> = 8</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Rewrite 8 as a power of 2<br>8 = 2³</p>
-        <p><strong>Step 2:</strong> Rewrite the equation<br>2<sup>x</sup> = 2³</p>
-        <p><strong>Step 3:</strong> Equate exponents<br><strong>x = 3</strong></p>
-      </div>
-    </div>
-
-    <div class="example-box">
-      <h4>Example 2</h4>
-      <p><strong>Solve:</strong> 9<sup>x</sup> = 27</p>
-      <div style="margin-top: 1rem;">
-        <p>9 = 3², 27 = 3³<br>(3²)<sup>x</sup> = 3³<br>3<sup>2x</sup> = 3³<br><strong>2x = 3, so x = 1.5</strong></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Method 2: Using Logarithms</h2>
     <div class="method-card">
-      <h3>Strategy</h3>
-      <p>When bases cannot be made the same, take logarithms of both sides:</p>
-      <p style="text-align: center; font-family: 'Courier New', monospace; margin-top: 1rem;">a<sup>x</sup> = b ⟹ x × log(a) = log(b) ⟹ x = log(b)/log(a)</p>
+      <h3>Kaedah 2: Using Laws of Indices</h3>
+      <p>Guna laws untuk simplify dahulu apabila ada products atau quotients.</p>
+      <p><strong>Langkah:</strong> Apply laws of indices, express dengan base sama, kemudian solve untuk x.</p>
+      <p><strong>Contoh:</strong> 2<sup>x</sup> × 2³ = 32; 2<sup>x+3</sup> = 2⁵; x + 3 = 5; maka x = 2.</p>
     </div>
-
-    <div class="example-box">
-      <h4>Example 3</h4>
-      <p><strong>Solve:</strong> 5<sup>x</sup> = 100</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Take logarithms of both sides<br>log(5<sup>x</sup>) = log(100)</p>
-        <p><strong>Step 2:</strong> Apply power rule<br>x × log(5) = log(100)</p>
-        <p><strong>Step 3:</strong> Solve for x<br>x = log(100) / log(5) = 2 / 0.699 ≈ <strong>2.86</strong></p>
-      </div>
+    <div class="method-card">
+      <h3>Kaedah 3: Logarithmic Form</h3>
+      <p>Convert apabila tidak boleh express kedua-dua sides dengan base yang sama.</p>
+      <p><strong>Langkah:</strong> Isolate a<sup>x</sup> = b, convert kepada x = log<sub>a</sub> b, kemudian calculate nilai x.</p>
+      <p><strong>Contoh:</strong> 3<sup>x</sup> = 20; x = log₃ 20 = log 20 / log 3 ≈ 2.73.</p>
     </div>
-
     <div class="example-box">
-      <h4>Example 4</h4>
-      <p><strong>Solve:</strong> 2<sup>3x+1</sup> = 16</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Rewrite 16 as 2⁴:</strong><br>2<sup>3x+1</sup> = 2⁴</p>
-        <p><strong>Equate exponents:</strong><br>3x + 1 = 4</p>
-        <p><strong>Solve:</strong><br>3x = 3<br><strong>x = 1</strong></p>
-      </div>
+      <h4>Nota Form 5: Substitution</h4>
+      <p>Kadang-kadang, gunakan substitution (contohnya, let y = a<sup>x</sup>) untuk menukar soalan indices kepada bentuk kuadratik, ay² + by + c = 0.</p>
+      <p><strong>Contoh bentuk:</strong> 2<sup>2x</sup> - 5(2<sup>x</sup>) + 4 = 0.</p>
     </div>
   </div>
 
   <div class="card">
-    <h2>Method 3: Quadratic Indicial Equations</h2>
-    <p>Some equations become quadratic when we substitute.</p>
+    <h2>🤔 Decision Guide: Pilih Method</h2>
+    <div class="method-card">
+      <p><strong>Boleh express dengan base yang sama?</strong> Ya → Kaedah 1: Comparison.</p>
+      <p><strong>Ada products atau quotients?</strong> Ya → Kaedah 2: Laws.</p>
+      <p><strong>Boleh jadi kuadratik (contohnya a<sup>2x</sup>)?</strong> Ya → Substitution (let y = a<sup>x</sup>).</p>
+      <p>Jika tidak, gunakan Kaedah 3: Logarithmic Form.</p>
+    </div>
+  </div>
 
-    <div class="example-box">
-      <h4>Example 5</h4>
+  <div class="card">
+    <h2>✏️ Try It: Indicial Equations</h2>
+    <p>Cuba selesaikan setiap soalan, kemudian tunjukkan penyelesaian langkah demi langkah.</p>
+    <div class="practice-problem">
+      <h4>Example 1: Comparison Method (Mudah)</h4>
+      <p><strong>Solve:</strong> 2<sup>x</sup> = 16</p>
+      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+      <div class="solution">16 = 2⁴<br>2<sup>x</sup> = 2⁴<br><strong>x = 4</strong></div>
+    </div>
+    <div class="practice-problem">
+      <h4>Example 2: Laws Method (Mudah)</h4>
+      <p><strong>Solve:</strong> 3<sup>x</sup> × 3² = 81</p>
+      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+      <div class="solution">3<sup>x+2</sup> = 81 = 3⁴<br>x + 2 = 4<br><strong>x = 2</strong></div>
+    </div>
+    <div class="practice-problem">
+      <h4>Example 3: Logarithmic Form (Sederhana)</h4>
+      <p><strong>Solve to 2 decimal places:</strong> 2<sup>x</sup> = 10</p>
+      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+      <div class="solution">10 is not a perfect power of 2, so use logarithmic form.<br>x = log<sub>2</sub> 10 = log 10 / log 2 ≈ <strong>3.32</strong></div>
+    </div>
+    <div class="practice-problem">
+      <h4>Practice: Quadratic Form</h4>
       <p><strong>Solve:</strong> 4<sup>x</sup> - 5(2<sup>x</sup>) + 4 = 0</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Note that 4<sup>x</sup> = (2²)<sup>x</sup> = (2<sup>x</sup>)²<br>Let y = 2<sup>x</sup></p>
-        <p><strong>Step 2:</strong> Rewrite the equation<br>y² - 5y + 4 = 0</p>
-        <p><strong>Step 3:</strong> Factor<br>(y - 4)(y - 1) = 0<br>y = 4 or y = 1</p>
-        <p><strong>Step 4:</strong> Substitute back<br>If 2<sup>x</sup> = 4: x = 2<br>If 2<sup>x</sup> = 1: x = 0</p>
-        <p><strong>Solutions: x = 0 or x = 2</strong></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Practice Problems</h2>
-
-    <div class="practice-problem">
-      <h4>Problem 1: Same base method</h4>
-      <span class="difficulty easy">Easy</span>
-      <p><strong>Solve:</strong> 3<sup>x</sup> = 81</p>
       <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        3<sup>x</sup> = 81 = 3⁴
-        Therefore x = 4
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 2: Logarithm method</h4>
-      <span class="difficulty easy">Easy</span>
-      <p><strong>Solve:</strong> 2<sup>x</sup> = 50</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        log(2<sup>x</sup>) = log(50)
-        x × log(2) = log(50)
-        x = log(50) / log(2) ≈ 5.64
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 3: Linear exponent</h4>
-      <span class="difficulty medium">Medium</span>
-      <p><strong>Solve:</strong> 2<sup>2x+1</sup> = 32</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        2<sup>2x+1</sup> = 32 = 2⁵
-        2x + 1 = 5
-        2x = 4
-        x = 2
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 4: Quadratic form</h4>
-      <span class="difficulty hard">Hard</span>
-      <p><strong>Solve:</strong> 9<sup>x</sup> - 10(3<sup>x</sup>) + 9 = 0</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        Let y = 3<sup>x</sup>, so 9<sup>x</sup> = y²
-        y² - 10y + 9 = 0
-        (y - 1)(y - 9) = 0
-        y = 1 or y = 9
-        3<sup>x</sup> = 1 ⟹ x = 0
-        3<sup>x</sup> = 9 = 3² ⟹ x = 2
-      </div>
+      <div class="solution">Let y = 2<sup>x</sup>, so 4<sup>x</sup> = y².<br>y² - 5y + 4 = 0<br>(y - 1)(y - 4) = 0, so y = 1 or 4.<br>2<sup>x</sup> = 1 gives x = 0; 2<sup>x</sup> = 4 gives x = 2.<br><strong>x = 0 or x = 2</strong></div>
     </div>
   </div>
 
