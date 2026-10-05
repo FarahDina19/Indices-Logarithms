@@ -1,80 +1,196 @@
-<title>Unit 4.3: Conversion Between Indicial and Logarithmic Form</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4.3: Conversion Between Indicial and Logarithmic Form - Comprehensive Learning</title>
 
 <style>
 :root {
-  --bg: #fafbfc;
-  --fg: #1a2332;
-  --accent: #4f46e5;
-  --accent-light: #eef2ff;
-  --border: #e0e6ed;
-  --text-muted: #667085;
+  --primary-color: #6366f1;
+  --secondary-color: #10b981;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #06b6d4;
+  --purple-color: #a855f7;
+
+  --background-light: #f9fafb;
+  --background-card: #ffffff;
+  --text-dark: #1f2937;
+  --text-medium: #4b5563;
+  --text-light: #6b7280;
+
+  --method1-color: #3b82f6;
+  --method2-color: #8b5cf6;
+  --method3-color: #ec4899;
+  --highlight-color: #fef3c7;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0f1419;
-    --fg: #e8eaed;
-    --accent: #a78bfa;
-    --accent-light: #3730a3;
-    --border: #2d3748;
-    --text-muted: #a0aec0;
+    --background-light: #0f1419;
+    --background-card: #1a1f2e;
+    --text-dark: #e8eaed;
+    --text-medium: #a0aec0;
+    --text-light: #6b7280;
     color-scheme: dark;
   }
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--text-dark);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   font-size: 16px;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: var(--background-light);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
 
 header {
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 40px 20px;
-  margin-bottom: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 40px 30px;
+  text-align: center;
 }
 
-header h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
-.subtitle { font-size: 1.1em; opacity: 0.9; }
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
 
-.breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
-.breadcrumb a { color: var(--accent); text-decoration: none; }
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.95;
+  margin-bottom: 20px;
+}
+
+.learning-objectives {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: left;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.learning-objectives h3 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.learning-objectives ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.learning-objectives li {
+  padding: 8px 0;
+  padding-left: 30px;
+  position: relative;
+  color: white;
+}
+
+.learning-objectives li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.tab-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background: white;
+  border-bottom: 2px solid #e5e7eb;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 12px 30px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  color: var(--text-dark);
+}
+
+.tab-btn:hover, .tab-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.content-section {
+  display: none;
+  padding: 30px;
+}
+
+.content-section.active {
+  display: block;
+}
 
 .card {
-  background: var(--bg);
-  border: 1px solid var(--border);
+  background: var(--background-card);
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
   padding: 28px;
   margin-bottom: 24px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-md);
 }
 
 h2 {
   font-size: 1.8em;
   font-weight: 700;
   margin: 0 0 1.5rem 0;
-  color: var(--accent);
-  border-bottom: 3px solid var(--accent-light);
+  color: var(--primary-color);
+  border-bottom: 3px solid #eef2ff;
   padding-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin: 1.5rem 0 1rem 0;
+  color: var(--primary-color);
 }
 
 .conversion-box {
   padding: 1.5rem;
-  background: var(--accent-light);
+  background: #eef2ff;
   border-radius: 8px;
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--primary-color);
   margin: 1.5rem 0;
 }
-
-.conversion-box h3 { color: var(--accent); margin: 0 0 1rem 0; font-size: 1.1em; }
 
 .conversion-pair {
   display: grid;
@@ -86,7 +202,7 @@ h2 {
 
 .conversion-pair div {
   padding: 1rem;
-  background: var(--bg);
+  background: var(--background-light);
   border-radius: 8px;
   text-align: center;
   font-family: 'Courier New', monospace;
@@ -95,23 +211,72 @@ h2 {
 .conversion-arrow {
   text-align: center;
   font-size: 1.2em;
-  color: var(--accent);
+  color: var(--primary-color);
   font-weight: 700;
 }
 
+.solution-method {
+  background: white;
+  border-left: 4px solid var(--primary-color);
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.solution-method.method1 { border-left-color: var(--method1-color); }
+.solution-method.method2 { border-left-color: var(--method2-color); }
+.solution-method.method3 { border-left-color: var(--method3-color); }
+
+.method-title {
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-bottom: 12px;
+  color: var(--text-dark);
+}
+
+.method1 .method-title { color: var(--method1-color); }
+.method2 .method-title { color: var(--method2-color); }
+.method3 .method-title { color: var(--method3-color); }
+
+.step-box {
+  background: #f0f9ff;
+  border-left: 4px solid var(--info-color);
+  padding: 15px;
+  margin: 12px 0;
+  border-radius: 6px;
+}
+
+.step-number {
+  display: inline-block;
+  background: var(--info-color);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 700;
+  margin-right: 10px;
+}
+
 .example-box {
-  background: var(--accent-light);
-  border-left: 4px solid var(--accent);
+  background: #eef2ff;
+  border-left: 4px solid var(--primary-color);
   padding: 1.5rem;
   border-radius: 8px;
   margin: 1.5rem 0;
 }
 
-.example-box h4 { color: var(--accent); margin: 0 0 0.5rem 0; }
+.example-box h4 {
+  color: var(--primary-color);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1em;
+}
 
 .practice-problem {
-  background: var(--bg);
-  border: 1px solid var(--border);
+  background: var(--background-card);
+  border: 1px solid #e5e7eb;
   padding: 1.5rem;
   border-radius: 8px;
   margin: 1rem 0;
@@ -127,228 +292,428 @@ h2 {
   color: white;
 }
 
-.difficulty.easy { background: #059669; }
-.difficulty.medium { background: #d97706; }
+.difficulty.easy { background: var(--secondary-color); }
+.difficulty.medium { background: var(--warning-color); }
 
 .toggle-button {
-  background: var(--accent);
+  background: var(--primary-color);
   color: white;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
-  font-weight: 600;
   transition: background 0.2s;
+  font-weight: 600;
+}
+
+.toggle-button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .solution {
   margin-top: 1rem;
   padding: 1rem;
-  background: var(--border);
+  background: #f3f4f6;
   border-radius: 4px;
   display: none;
   font-family: 'Courier New', monospace;
+  border-left: 4px solid var(--secondary-color);
 }
 
 .solution.show { display: block; }
 
-.navigation {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.nav-button {
+table tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+table th {
+  background: #eef2ff;
+  color: var(--primary-color);
   padding: 1rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  text-decoration: none;
-  color: var(--fg);
-  transition: all 0.2s;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  text-align: left;
+  font-weight: 700;
+  border-bottom: 2px solid var(--primary-color);
 }
 
-.nav-button:hover {
-  background: var(--accent-light);
-  border-color: var(--accent);
+table td {
+  padding: 1rem;
 }
-
-.nav-label { font-size: 0.85rem; color: var(--text-muted); }
-.nav-title { color: var(--accent); font-weight: 600; }
 
 @media (max-width: 768px) {
   header h1 { font-size: 1.8em; }
+  .tab-navigation { flex-direction: column; }
+  .tab-btn { width: 100%; }
   .conversion-pair { grid-template-columns: 1fr; }
   .conversion-arrow { transform: rotate(90deg); }
-  .navigation { grid-template-columns: 1fr; }
 }
 </style>
-
-<div class="container">
-  <div class="breadcrumb">
-    <a href="index.html">Courses</a> / Unit 4.3
-  </div>
-
+</head>
+<body>
+<div class="main-container">
   <header>
     <h1>Unit 4.3: Conversion Between Indicial and Logarithmic Form</h1>
     <p class="subtitle">Master converting between exponential and logarithmic equations</p>
+    <div class="learning-objectives">
+      <h3>Learning Objectives</h3>
+      <ul>
+        <li>Understand the fundamental relationship between exponential and logarithmic forms</li>
+        <li>Convert from exponential form to logarithmic form</li>
+        <li>Convert from logarithmic form to exponential form</li>
+        <li>Work with different logarithm bases (common, natural, and general)</li>
+        <li>Apply conversions to solve equations</li>
+      </ul>
+    </div>
   </header>
 
-  <div class="card">
-    <h2>The Fundamental Relationship</h2>
-    <p>Exponential and logarithmic forms are two ways of expressing the same mathematical relationship:</p>
-    <div class="conversion-box">
-      <h3>Core Principle</h3>
-      <div class="conversion-pair">
-        <div><strong>Exponential Form:</strong><br>a<sup>x</sup> = b</div>
-        <div class="conversion-arrow">⟺</div>
-        <div><strong>Logarithmic Form:</strong><br>log<sub>a</sub>(b) = x</div>
-      </div>
-      <p style="margin-top: 1rem; text-align: center;"><small>"To what power must we raise <em>a</em> to get <em>b</em>?" Answer: <em>x</em></small></p>
-    </div>
+  <div class="tab-navigation">
+    <button class="tab-btn active" onclick="switchTab('fundamentals')">Fundamentals</button>
+    <button class="tab-btn" onclick="switchTab('methods')">Conversion Methods</button>
+    <button class="tab-btn" onclick="switchTab('solutions')">Step-by-Step Solutions</button>
+    <button class="tab-btn" onclick="switchTab('practice')">Practice Problems</button>
   </div>
 
-  <div class="card">
-    <h2>Conversion Examples</h2>
+  <div class="content">
+    <!-- FUNDAMENTALS TAB -->
+    <div id="fundamentals" class="content-section active">
+      <div class="card">
+        <h2>The Fundamental Relationship</h2>
+        <p>Exponential and logarithmic forms are two ways of expressing the same mathematical relationship:</p>
+        <div class="conversion-box">
+          <h3>Core Principle</h3>
+          <div class="conversion-pair">
+            <div><strong>Exponential Form:</strong><br>a<sup>x</sup> = b</div>
+            <div class="conversion-arrow">⟺</div>
+            <div><strong>Logarithmic Form:</strong><br>log<sub>a</sub>(b) = x</div>
+          </div>
+          <p style="margin-top: 1rem; text-align: center;"><small>"To what power must we raise <em>a</em> to get <em>b</em>?" Answer: <em>x</em></small></p>
+        </div>
+      </div>
 
-    <div class="example-box">
-      <h4>Example 1: Exponential to Logarithmic</h4>
-      <p><strong>Convert:</strong> 2<sup>5</sup> = 32</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Identify the parts:</strong></p>
-        <ul style="margin-left: 1.5rem;">
-          <li>Base (a) = 2</li>
-          <li>Exponent (x) = 5</li>
-          <li>Result (b) = 32</li>
-        </ul>
-        <p style="margin-top: 1rem;"><strong>Logarithmic form:</strong> log₂(32) = 5</p>
+      <div class="card">
+        <h2>Understanding the Components</h2>
+
+        <div class="example-box">
+          <h4>Example: Identifying Parts</h4>
+          <p><strong>Exponential Form:</strong> 2⁵ = 32</p>
+          <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+            <li><strong>Base (a):</strong> 2 - the number being multiplied</li>
+            <li><strong>Exponent (x):</strong> 5 - how many times the base is used</li>
+            <li><strong>Result (b):</strong> 32 - the answer</li>
+          </ul>
+          <p style="margin-top: 1rem;"><strong>Logarithmic Form:</strong> log₂(32) = 5</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Common Logarithm Bases</h2>
+
+        <div class="conversion-box">
+          <h3>Base 10 (Common Logarithm)</h3>
+          <div class="conversion-pair">
+            <div><strong>Exponential:</strong><br>10² = 100</div>
+            <div class="conversion-arrow">⟺</div>
+            <div><strong>Logarithmic:</strong><br>log(100) = 2</div>
+          </div>
+        </div>
+
+        <div class="conversion-box">
+          <h3>Base e (Natural Logarithm)</h3>
+          <div class="conversion-pair">
+            <div><strong>Exponential:</strong><br>e¹ ≈ 2.718</div>
+            <div class="conversion-arrow">⟺</div>
+            <div><strong>Logarithmic:</strong><br>ln(e) = 1</div>
+          </div>
+        </div>
+
+        <div class="conversion-box">
+          <h3>General Base a</h3>
+          <div class="conversion-pair">
+            <div><strong>Exponential:</strong><br>a<sup>x</sup> = b</div>
+            <div class="conversion-arrow">⟺</div>
+            <div><strong>Logarithmic:</strong><br>log<sub>a</sub>(b) = x</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="example-box">
-      <h4>Example 2: Logarithmic to Exponential</h4>
-      <p><strong>Convert:</strong> log₃(81) = 4</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Identify the parts:</strong></p>
-        <ul style="margin-left: 1.5rem;">
-          <li>Base (a) = 3</li>
-          <li>Logarithm (x) = 4</li>
-          <li>Argument (b) = 81</li>
-        </ul>
-        <p style="margin-top: 1rem;"><strong>Exponential form:</strong> 3<sup>4</sup> = 81</p>
+    <!-- CONVERSION METHODS TAB -->
+    <div id="methods" class="content-section">
+      <div class="card">
+        <h2>Conversion Examples</h2>
+
+        <div class="example-box">
+          <h4>Example 1: Exponential to Logarithmic</h4>
+          <p><strong>Convert:</strong> 2⁵ = 32</p>
+          <div style="margin-top: 1rem;">
+            <p><strong>Identify the parts:</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Base (a) = 2</li>
+              <li>Exponent (x) = 5</li>
+              <li>Result (b) = 32</li>
+            </ul>
+            <p style="margin-top: 1rem;"><strong>Logarithmic form:</strong> log₂(32) = 5</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <h4>Example 2: Logarithmic to Exponential</h4>
+          <p><strong>Convert:</strong> log₃(81) = 4</p>
+          <div style="margin-top: 1rem;">
+            <p><strong>Identify the parts:</strong></p>
+            <ul style="margin-left: 1.5rem;">
+              <li>Base (a) = 3</li>
+              <li>Logarithm (x) = 4</li>
+              <li>Argument (b) = 81</li>
+            </ul>
+            <p style="margin-top: 1rem;"><strong>Exponential form:</strong> 3⁴ = 81</p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <h4>Example 3: Natural Logarithm</h4>
+          <p><strong>Convert:</strong> e² ≈ 7.389</p>
+          <div style="margin-top: 1rem;">
+            <p><strong>Logarithmic form:</strong> ln(7.389) ≈ 2</p>
+            <p><small>Note: ln represents log with base e</small></p>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <h4>Example 4: Common Logarithm</h4>
+          <p><strong>Convert:</strong> log(100) = 2</p>
+          <div style="margin-top: 1rem;">
+            <p><strong>Exponential form:</strong> 10² = 100</p>
+            <p><small>Note: log without a base means log₁₀</small></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Common Base Conversions Reference</h2>
+        <table>
+          <tr>
+            <th>Exponential Form</th>
+            <th>Logarithmic Form</th>
+          </tr>
+          <tr>
+            <td>2⁴ = 16</td>
+            <td>log₂(16) = 4</td>
+          </tr>
+          <tr>
+            <td>3³ = 27</td>
+            <td>log₃(27) = 3</td>
+          </tr>
+          <tr>
+            <td>5² = 25</td>
+            <td>log₅(25) = 2</td>
+          </tr>
+          <tr>
+            <td>10³ = 1000</td>
+            <td>log(1000) = 3</td>
+          </tr>
+          <tr>
+            <td>e¹ = e ≈ 2.718</td>
+            <td>ln(e) = 1</td>
+          </tr>
+        </table>
       </div>
     </div>
 
-    <div class="example-box">
-      <h4>Example 3: Natural Logarithm</h4>
-      <p><strong>Convert:</strong> e<sup>2</sup> ≈ 7.389</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Logarithmic form:</strong> ln(7.389) ≈ 2</p>
-        <p><small>Note: ln represents log with base e</small></p>
+    <!-- STEP-BY-STEP SOLUTIONS TAB -->
+    <div id="solutions" class="content-section">
+      <div class="card">
+        <h2>Method 1: Exponential to Logarithmic</h2>
+
+        <div class="solution-method method1">
+          <div class="method-title">Example: Convert 7² = 49</div>
+          <div class="step-box">
+            <span class="step-number">1</span>
+            <strong>Identify Components:</strong> a = 7, x = 2, b = 49
+          </div>
+          <div class="step-box">
+            <span class="step-number">2</span>
+            <strong>Recall the Pattern:</strong> a<sup>x</sup> = b becomes log<sub>a</sub>(b) = x
+          </div>
+          <div class="step-box">
+            <span class="step-number">3</span>
+            <strong>Apply the Pattern:</strong> log₇(49) = 2
+          </div>
+          <div class="step-box">
+            <span class="step-number">4</span>
+            <strong>Answer:</strong> log₇(49) = 2
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Method 2: Logarithmic to Exponential</h2>
+
+        <div class="solution-method method2">
+          <div class="method-title">Example: Convert log₂(64) = 6</div>
+          <div class="step-box">
+            <span class="step-number">1</span>
+            <strong>Identify Components:</strong> a = 2, x = 6, b = 64
+          </div>
+          <div class="step-box">
+            <span class="step-number">2</span>
+            <strong>Recall the Pattern:</strong> log<sub>a</sub>(b) = x becomes a<sup>x</sup> = b
+          </div>
+          <div class="step-box">
+            <span class="step-number">3</span>
+            <strong>Apply the Pattern:</strong> 2⁶ = 64
+          </div>
+          <div class="step-box">
+            <span class="step-number">4</span>
+            <strong>Verify:</strong> 2 × 2 × 2 × 2 × 2 × 2 = 64 ✓
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Method 3: Natural Logarithm</h2>
+
+        <div class="solution-method method3">
+          <div class="method-title">Example: Convert ln(20.09) ≈ 3</div>
+          <div class="step-box">
+            <span class="step-number">1</span>
+            <strong>Identify the Base:</strong> ln means base e (e ≈ 2.71828)
+          </div>
+          <div class="step-box">
+            <span class="step-number">2</span>
+            <strong>Identify Components:</strong> a = e, x = 3, b ≈ 20.09
+          </div>
+          <div class="step-box">
+            <span class="step-number">3</span>
+            <strong>Apply Conversion:</strong> e³ ≈ 20.09
+          </div>
+          <div class="step-box">
+            <span class="step-number">4</span>
+            <strong>Answer:</strong> e³ ≈ 20.09
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Method 4: Common Logarithm</h2>
+
+        <div class="solution-method method1">
+          <div class="method-title">Example: Convert log(1000) = 3</div>
+          <div class="step-box">
+            <span class="step-number">1</span>
+            <strong>Identify the Base:</strong> log without a base means base 10
+          </div>
+          <div class="step-box">
+            <span class="step-number">2</span>
+            <strong>Identify Components:</strong> a = 10, x = 3, b = 1000
+          </div>
+          <div class="step-box">
+            <span class="step-number">3</span>
+            <strong>Apply Conversion:</strong> 10³ = 1000
+          </div>
+          <div class="step-box">
+            <span class="step-number">4</span>
+            <strong>Verify:</strong> 10 × 10 × 10 = 1000 ✓
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="example-box">
-      <h4>Example 4: Common Logarithm</h4>
-      <p><strong>Convert:</strong> log(100) = 2</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Exponential form:</strong> 10<sup>2</sup> = 100</p>
-        <p><small>Note: log without a base means log₁₀</small></p>
+    <!-- PRACTICE PROBLEMS TAB -->
+    <div id="practice" class="content-section">
+      <div class="card">
+        <h2>Practice Problems</h2>
+
+        <div class="practice-problem">
+          <h4>Problem 1: Convert to logarithmic form</h4>
+          <span class="difficulty easy">Easy</span>
+          <p><strong>Convert to logarithmic form:</strong> 7² = 49</p>
+          <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution">
+            <strong>Step 1:</strong> Identify a = 7, x = 2, b = 49<br>
+            <strong>Step 2:</strong> Apply a<sup>x</sup> = b → log<sub>a</sub>(b) = x<br>
+            <strong>Answer:</strong> log₇(49) = 2
+          </div>
+        </div>
+
+        <div class="practice-problem">
+          <h4>Problem 2: Convert to exponential form</h4>
+          <span class="difficulty easy">Easy</span>
+          <p><strong>Convert to exponential form:</strong> log₂(64) = 6</p>
+          <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution">
+            <strong>Step 1:</strong> Identify a = 2, x = 6, b = 64<br>
+            <strong>Step 2:</strong> Apply log<sub>a</sub>(b) = x → a<sup>x</sup> = b<br>
+            <strong>Answer:</strong> 2⁶ = 64
+          </div>
+        </div>
+
+        <div class="practice-problem">
+          <h4>Problem 3: Natural logarithm</h4>
+          <span class="difficulty easy">Easy</span>
+          <p><strong>Convert to exponential form:</strong> ln(20.09) ≈ 3</p>
+          <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution">
+            <strong>Step 1:</strong> ln means base e<br>
+            <strong>Step 2:</strong> Identify a = e, x = 3, b ≈ 20.09<br>
+            <strong>Step 3:</strong> Apply ln(b) = x → e<sup>x</sup> = b<br>
+            <strong>Answer:</strong> e³ ≈ 20.09
+          </div>
+        </div>
+
+        <div class="practice-problem">
+          <h4>Problem 4: Mixed conversions</h4>
+          <span class="difficulty medium">Medium</span>
+          <p><strong>Convert both ways:</strong> If 4<sup>x</sup> = 256, write in logarithmic form</p>
+          <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution">
+            <strong>Step 1:</strong> Find x: 4 × 4 × 4 × 4 = 256, so x = 4<br>
+            <strong>Step 2:</strong> The equation is 4⁴ = 256<br>
+            <strong>Step 3:</strong> Convert using a<sup>x</sup> = b → log<sub>a</sub>(b) = x<br>
+            <strong>Answer:</strong> log₄(256) = 4
+          </div>
+        </div>
+
+        <div class="practice-problem">
+          <h4>Problem 5: Complex conversion</h4>
+          <span class="difficulty medium">Medium</span>
+          <p><strong>Convert to logarithmic form:</strong> 6³ = 216</p>
+          <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution">
+            <strong>Step 1:</strong> Identify a = 6, x = 3, b = 216<br>
+            <strong>Step 2:</strong> Verify: 6 × 6 × 6 = 216 ✓<br>
+            <strong>Step 3:</strong> Apply a<sup>x</sup> = b → log<sub>a</sub>(b) = x<br>
+            <strong>Answer:</strong> log₆(216) = 3
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="card">
-    <h2>Common Base Conversions</h2>
-    <table style="width: 100%; border-collapse: collapse;">
-      <tr style="background: var(--accent-light); border-bottom: 2px solid var(--accent);">
-        <th style="padding: 1rem; text-align: left;">Exponential Form</th>
-        <th style="padding: 1rem; text-align: left;">Logarithmic Form</th>
-      </tr>
-      <tr style="border-bottom: 1px solid var(--border);">
-        <td style="padding: 1rem;">2⁴ = 16</td>
-        <td style="padding: 1rem;">log₂(16) = 4</td>
-      </tr>
-      <tr style="border-bottom: 1px solid var(--border);">
-        <td style="padding: 1rem;">3³ = 27</td>
-        <td style="padding: 1rem;">log₃(27) = 3</td>
-      </tr>
-      <tr style="border-bottom: 1px solid var(--border);">
-        <td style="padding: 1rem;">5² = 25</td>
-        <td style="padding: 1rem;">log₅(25) = 2</td>
-      </tr>
-      <tr style="border-bottom: 1px solid var(--border);">
-        <td style="padding: 1rem;">10³ = 1000</td>
-        <td style="padding: 1rem;">log(1000) = 3</td>
-      </tr>
-      <tr>
-        <td style="padding: 1rem;">e¹ = e ≈ 2.718</td>
-        <td style="padding: 1rem;">ln(e) = 1</td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="card">
-    <h2>Practice Problems</h2>
-
-    <div class="practice-problem">
-      <h4>Problem 1: Convert to logarithmic form</h4>
-      <span class="difficulty easy">Easy</span>
-      <p><strong>Convert to logarithmic form:</strong> 7² = 49</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">log₇(49) = 2</div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 2: Convert to exponential form</h4>
-      <span class="difficulty easy">Easy</span>
-      <p><strong>Convert to exponential form:</strong> log₂(64) = 6</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">2⁶ = 64</div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 3: Natural logarithm</h4>
-      <span class="difficulty easy">Easy</span>
-      <p><strong>Convert to exponential form:</strong> ln(20.09) ≈ 3</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">e³ ≈ 20.09</div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 4: Mixed conversions</h4>
-      <span class="difficulty medium">Medium</span>
-      <p><strong>Convert both ways:</strong> If 4<sup>x</sup> = 256, write in logarithmic form</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        First, find x: 4⁴ = 256, so x = 4
-        Logarithmic form: log₄(256) = 4
-      </div>
-    </div>
-  </div>
-
-  <div class="navigation">
-    <a href="course-unit-4-2.html" class="nav-button">
-      <span class="nav-label">← Previous Unit</span>
-      <span class="nav-title">Unit 4.2: Logarithms</span>
-    </a>
-    <a href="course-unit-4-4.html" class="nav-button">
-      <span class="nav-label">Next Unit →</span>
-      <span class="nav-title">Unit 4.4: Indicial Eqns</span>
-    </a>
   </div>
 </div>
 
 <script>
+function switchTab(tabName) {
+  const sections = document.querySelectorAll('.content-section');
+  sections.forEach(section => section.classList.remove('active'));
+
+  const buttons = document.querySelectorAll('.tab-btn');
+  buttons.forEach(btn => btn.classList.remove('active'));
+
+  document.getElementById(tabName).classList.add('active');
+  event.target.classList.add('active');
+}
+
 function toggleSolution(button) {
   const solution = button.nextElementSibling;
   solution.classList.toggle('show');
   button.textContent = solution.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
 }
 </script>
+</body>
+</html>
