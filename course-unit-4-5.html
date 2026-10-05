@@ -129,6 +129,54 @@ h2 { font-size: 1.8em; font-weight: 700; margin: 0 0 1.5rem 0; color: var(--acce
   </div>
 
   <div class="card">
+    <h2>Real-World Applications</h2>
+
+    <div class="example-box">
+      <h4>Application 1: Sound Intensity (Decibels)</h4>
+      <p><strong>Problem:</strong> The decibel level is given by dB = 10 log₁₀(I/I₀), where I is intensity and I₀ = 10⁻¹² (reference). If a sound is 80 dB, what is its intensity?</p>
+      <div style="margin-top: 1rem;">
+        <p><strong>Solution:</strong></p>
+        <p>80 = 10 log₁₀(I/10⁻¹²)</p>
+        <p>8 = log₁₀(I/10⁻¹²)</p>
+        <p>10⁸ = I/10⁻¹²</p>
+        <p>I = 10⁸ × 10⁻¹² = <strong>10⁻⁴ W/m²</strong></p>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <h4>Application 2: Richter Scale (Earthquakes)</h4>
+      <p><strong>Problem:</strong> The Richter magnitude is R = log₁₀(A), where A is amplitude. If an earthquake has magnitude 7, what is its amplitude?</p>
+      <div style="margin-top: 1rem;">
+        <p><strong>Solution:</strong></p>
+        <p>7 = log₁₀(A)</p>
+        <p>A = 10⁷ = <strong>10,000,000 micrometers</strong></p>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <h4>Application 3: pH Level (Chemistry)</h4>
+      <p><strong>Problem:</strong> pH = -log₁₀[H⁺]. If a solution has pH = 3, what is the hydrogen ion concentration [H⁺]?</p>
+      <div style="margin-top: 1rem;">
+        <p><strong>Solution:</strong></p>
+        <p>3 = -log₁₀[H⁺]</p>
+        <p>-3 = log₁₀[H⁺]</p>
+        <p>[H⁺] = 10⁻³ = <strong>0.001 mol/L</strong></p>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <h4>Application 4: Carbon Dating</h4>
+      <p><strong>Problem:</strong> Using t = (1/λ) ln(N/N₀), if an artifact has 25% of original C-14 (λ ≈ 0.000121/year), how old is it?</p>
+      <div style="margin-top: 1rem;">
+        <p><strong>Solution:</strong></p>
+        <p>t = (1/0.000121) ln(0.25)</p>
+        <p>t = 8264.5 × (-1.386)</p>
+        <p>t ≈ <strong>11,460 years</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
     <h2>Important: Domain Restrictions</h2>
     <p>Remember: <strong>You can only take the logarithm of positive numbers!</strong></p>
     <div style="padding: 1.5rem; background: var(--accent-light); border-radius: 8px; border-left: 4px solid var(--accent); margin: 1rem 0;">
