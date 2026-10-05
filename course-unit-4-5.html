@@ -1,269 +1,750 @@
-<title>Unit 4.5: Solutions of Logarithmic Equations</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4.5: Solutions of Logarithmic Equations - Complete Learning Guide</title>
 
-<style>
-:root { --bg: #fafbfc; --fg: #1a2332; --accent: #4f46e5; --accent-light: #eef2ff; --border: #e0e6ed; --text-muted: #667085; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0f1419; --fg: #e8eaed; --accent: #a78bfa; --accent-light: #3730a3; --border: #2d3748; --text-muted: #a0aec0; color-scheme: dark; } }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--bg); color: var(--fg); font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; font-size: 16px; }
-.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-header { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%); color: white; padding: 40px 20px; margin-bottom: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-header h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
-.subtitle { font-size: 1.1em; opacity: 0.9; }
-.breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
-.breadcrumb a { color: var(--accent); text-decoration: none; }
-.card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-h2 { font-size: 1.8em; font-weight: 700; margin: 0 0 1.5rem 0; color: var(--accent); border-bottom: 3px solid var(--accent-light); padding-bottom: 0.5rem; }
-.example-box { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; }
-.example-box h4 { color: var(--accent); margin: 0 0 0.5rem 0; }
-.method-card { padding: 1.5rem; background: var(--accent-light); border-radius: 8px; border-left: 4px solid var(--accent); margin: 1rem 0; }
-.method-card h3 { color: var(--accent); margin: 0 0 0.5rem 0; font-size: 1.1em; }
-.practice-problem { background: var(--bg); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; }
-.difficulty { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; color: white; }
-.difficulty.easy { background: #059669; }
-.difficulty.medium { background: #d97706; }
-.difficulty.hard { background: #dc2626; }
-.toggle-button { background: var(--accent); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; font-weight: 600; }
-.solution { margin-top: 1rem; padding: 1rem; background: var(--border); border-radius: 4px; display: none; font-family: 'Courier New', monospace; }
-.solution.show { display: block; }
-.navigation { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
-.nav-button { padding: 1rem; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: var(--fg); transition: all 0.2s; display: flex; flex-direction: column; gap: 0.5rem; }
-.nav-button:hover { background: var(--accent-light); border-color: var(--accent); }
-.nav-label { font-size: 0.85rem; color: var(--text-muted); }
-.nav-title { color: var(--accent); font-weight: 600; }
-@media (max-width: 768px) { header h1 { font-size: 1.8em; } .navigation { grid-template-columns: 1fr; } }
-</style>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #06b6d4;
+            --bg: #fafbfc;
+            --fg: #1a2332;
+            --border: #e0e6ed;
+            --text-muted: #667085;
+        }
 
-<div class="container">
-  <div class="breadcrumb"><a href="index.html">Courses</a> / Unit 4.5</div>
-  <header><h1>Unit 4.5: Solutions of Logarithmic Equations</h1><p class="subtitle">Solve equations involving logarithms using properties and exponential form</p></header>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f1419;
+                --fg: #e8eaed;
+                --border: #2d3748;
+                --text-muted: #a0aec0;
+            }
+        }
 
-  <div class="card">
-    <h2>What is a Logarithmic Equation?</h2>
-    <p>A logarithmic equation contains logarithms of variables.</p>
-    <p><strong>Examples:</strong> log(x) = 2 or log₂(x) = 5 or ln(x+1) = 3</p>
-  </div>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            font-size: 16px;
+        }
 
-  <div class="card">
-    <h2>Method 1: Convert to Exponential Form</h2>
-    <div class="method-card">
-      <h3>Strategy</h3>
-      <p>Use the definition: If log_a(x) = y, then a<sup>y</sup> = x</p>
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+            color: white;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        header h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+        .subtitle { font-size: 1.1em; opacity: 0.9; }
+
+        .breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 0 0 1.5rem 0;
+            color: var(--primary);
+            border-bottom: 3px solid rgba(99, 102, 241, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 { font-size: 1.3em; font-weight: 600; margin: 1.5rem 0 1rem 0; }
+
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .method-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            border-left: 5px solid var(--primary);
+            padding: 20px;
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+
+        .method-card:hover { transform: translateY(-2px); }
+        .method-card h4 { color: var(--primary); margin-bottom: 10px; font-size: 1.1em; }
+
+        .example-box {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 { color: var(--primary); margin-bottom: 10px; }
+
+        .practice-problem {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .difficulty.easy { background: #059669; }
+        .difficulty.medium { background: #d97706; }
+        .difficulty.hard { background: #dc2626; }
+
+        .flowchart {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(168, 85, 247, 0.05));
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .flow-question { font-weight: 700; font-size: 1.1em; color: var(--primary); margin-bottom: 10px; }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(245, 158, 11, 0.1));
+            border-left: 4px solid var(--danger);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 { color: var(--danger); margin-bottom: 10px; font-size: 1.1em; }
+        .warning-box ul { margin-left: 20px; }
+        .warning-box li { margin: 8px 0; }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .tip-box {
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid var(--warning);
+        }
+
+        .tip-box.mistakes { background: rgba(239, 68, 68, 0.1); border-left-color: var(--danger); }
+        .tip-box.tips { background: rgba(6, 182, 212, 0.1); border-left-color: var(--info); }
+
+        .tip-box h4 { margin-bottom: 15px; font-size: 1.1em; }
+        .tip-item { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .tip-item:last-child { border-bottom: none; }
+
+        .reference-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .reference-table th {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .reference-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border);
+            font-family: 'Courier New', monospace;
+        }
+
+        .reference-table tr:hover { background: rgba(99, 102, 241, 0.05); }
+
+        .formulas {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .formula-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .navigation {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .nav-button {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--fg);
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-button:hover { background: rgba(99, 102, 241, 0.1); border-color: var(--primary); }
+
+        .nav-label { font-size: 0.85rem; color: var(--text-muted); }
+        .nav-title { color: var(--primary); font-weight: 600; }
+
+        .toggle-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .solution { margin-top: 1rem; padding: 1rem; background: var(--border); border-radius: 4px; display: none; }
+        .solution.show { display: block; }
+
+        .app-link {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .app-link a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .app-link a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .navigation { grid-template-columns: 1fr; }
+            .methods-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb"><a href="index.html">Courses</a> / Unit 4.5</div>
+        <header>
+            <h1>Unit 4.5: Solutions of Logarithmic Equations</h1>
+            <p class="subtitle">Comprehensive Guide - 3 Methods & Real-World Applications</p>
+        </header>
+
+        <div class="card">
+            <h2>📊 What is a Logarithmic Equation?</h2>
+            <p>A logarithmic equation contains logarithms of variables or expressions.</p>
+            <p><strong>Examples:</strong> log(x) = 2 | log₂(x) = 5 | ln(x+1) = 3 | log(x) + log(3) = 1</p>
+        </div>
+
+        <div class="card">
+            <h2>📋 3 Methods to Solve Logarithmic Equations</h2>
+
+            <div class="methods-grid">
+                <div class="method-card">
+                    <h4>Method 1: Comparison</h4>
+                    <p><strong>When to use:</strong> Single log on each side with SAME BASE</p>
+                    <p><strong>Strategy:</strong> If log<sub>a</sub>(x) = log<sub>a</sub>(y), then x = y</p>
+                    <div class="example-box" style="margin-top: 15px;">
+                        <strong>Example:</strong><br>
+                        log₂ x = log₂ 8<br>
+                        ∴ x = 8
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <h4>Method 2: Laws of Logarithms</h4>
+                    <p><strong>When to use:</strong> Multiple logs that need combining</p>
+                    <p><strong>Strategy:</strong> Use laws to combine, then solve</p>
+                    <div class="example-box" style="margin-top: 15px;">
+                        <strong>Example:</strong><br>
+                        log(x) + log(3) = log(15)<br>
+                        log(3x) = log(15)<br>
+                        3x = 15 ∴ x = 5
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <h4>Method 3: Index Form</h4>
+                    <p><strong>When to use:</strong> Single log equals constant</p>
+                    <p><strong>Strategy:</strong> Convert: log<sub>a</sub>(b) = x ⟹ a<sup>x</sup> = b</p>
+                    <div class="example-box" style="margin-top: 15px;">
+                        <strong>Example:</strong><br>
+                        log₂(x) = 5<br>
+                        2⁵ = x<br>
+                        ∴ x = 32
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🤔 Decision Guide: Which Method to Use?</h2>
+            <div class="flowchart">
+                <div class="flow-step">
+                    <div class="flow-question">❓ Single log on each side with the SAME BASE?</div>
+                    <p style="margin-top: 10px;"><strong style="color: var(--secondary);">✓ YES</strong> → Use <strong>Method 1: Comparison</strong></p>
+                    <p><strong style="color: var(--danger);">✗ NO</strong> → Continue below</p>
+                </div>
+
+                <div style="text-align: center; font-size: 1.5em; color: var(--primary); margin: 15px 0;">↓</div>
+
+                <div class="flow-step">
+                    <div class="flow-question">❓ Multiple logs that can be combined?</div>
+                    <p style="margin-top: 10px;"><strong style="color: var(--secondary);">✓ YES</strong> → Use <strong>Method 2: Laws of Logarithms</strong></p>
+                    <p><strong style="color: var(--danger);">✗ NO</strong> → Continue below</p>
+                </div>
+
+                <div style="text-align: center; font-size: 1.5em; color: var(--primary); margin: 15px 0;">↓</div>
+
+                <div class="flow-step">
+                    <div class="flow-question">❓ Different bases OR quadratic form?</div>
+                    <p style="margin-top: 10px;"><strong style="color: var(--secondary);">✓ YES (Form 5)</strong> → Use <strong>Change Base or Substitution</strong></p>
+                    <p><strong style="color: var(--danger);">✗ NO</strong> → Use <strong>Method 3: Index Form</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Method 1: Comparison - Detailed Examples</h2>
+
+            <div class="example-box">
+                <h4>Example 1A: Basic Comparison</h4>
+                <p><strong>Solve:</strong> log₂ x = log₂ 8</p>
+                <p><strong>Step 1:</strong> Check base - same base (2) on both sides ✓</p>
+                <p><strong>Step 2:</strong> Compare arguments: x = 8</p>
+                <p><strong>Verification:</strong> log₂(8) = log₂(2³) = 3 ✓</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Example 1B: With Constants</h4>
+                <p><strong>Solve:</strong> log₃ x = log₃ 9</p>
+                <p><strong>Step 1:</strong> Bases are same (3) ✓</p>
+                <p><strong>Step 2:</strong> x = 9</p>
+                <p><strong>Verification:</strong> log₃(9) = log₃(3²) = 2 ✓</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Method 2: Laws of Logarithms - Detailed Examples</h2>
+
+            <div class="example-box">
+                <h4>Example 2A: Product Rule</h4>
+                <p><strong>Solve:</strong> log(x) + log(3) = log(15)</p>
+                <p><strong>Step 1:</strong> Apply product rule: log(A) + log(B) = log(AB)</p>
+                <p>log(3x) = log(15)</p>
+                <p><strong>Step 2:</strong> Compare: 3x = 15</p>
+                <p><strong>Step 3:</strong> x = 5</p>
+                <p><strong>Verification:</strong> log(5) + log(3) = log(15) ✓</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Example 2B: Quotient Rule</h4>
+                <p><strong>Solve:</strong> log(x) - log(2) = 1</p>
+                <p><strong>Step 1:</strong> Apply quotient rule: log(A) - log(B) = log(A/B)</p>
+                <p>log(x/2) = 1</p>
+                <p><strong>Step 2:</strong> Convert to exponential: 10¹ = x/2</p>
+                <p><strong>Step 3:</strong> 10 = x/2, so x = 20</p>
+                <p><strong>Verification:</strong> log(20) - log(2) = log(20/2) = log(10) = 1 ✓</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Method 3: Index Form - Detailed Examples</h2>
+
+            <div class="example-box">
+                <h4>Example 3A: Simple Index Form</h4>
+                <p><strong>Solve:</strong> log₂(x) = 5</p>
+                <p><strong>Step 1:</strong> Convert to exponential form: log<sub>a</sub>(b) = x ⟹ a<sup>x</sup> = b</p>
+                <p>2⁵ = x</p>
+                <p><strong>Step 2:</strong> Calculate: x = 32</p>
+                <p><strong>Verification:</strong> log₂(32) = log₂(2⁵) = 5 ✓</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Example 3B: With Expression</h4>
+                <p><strong>Solve:</strong> log₅(x - 2) = 2</p>
+                <p><strong>Step 1:</strong> Convert to exponential: 5² = x - 2</p>
+                <p><strong>Step 2:</strong> Calculate: 25 = x - 2</p>
+                <p><strong>Step 3:</strong> x = 27</p>
+                <p><strong>Verification:</strong> log₅(27 - 2) = log₅(25) = log₅(5²) = 2 ✓</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Example 3C: Natural Logarithm</h4>
+                <p><strong>Solve:</strong> ln(x) = 2</p>
+                <p><strong>Step 1:</strong> Convert: e² = x</p>
+                <p><strong>Step 2:</strong> Calculate: x = e² ≈ 7.389</p>
+                <p><strong>Verification:</strong> ln(7.389) ≈ 2 ✓</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Complex Logarithmic Equations</h2>
+
+            <div class="example-box">
+                <h4>Example 4: Product Rule with Multiple Terms</h4>
+                <p><strong>Solve:</strong> log₂(x) + log₂(x-2) = 3</p>
+                <p><strong>Step 1:</strong> Use product rule: log₂[x(x-2)] = 3</p>
+                <p><strong>Step 2:</strong> Convert to exponential: x(x-2) = 2³ = 8</p>
+                <p><strong>Step 3:</strong> Expand: x² - 2x = 8</p>
+                <p><strong>Step 4:</strong> Rearrange: x² - 2x - 8 = 0</p>
+                <p><strong>Step 5:</strong> Factor: (x - 4)(x + 2) = 0</p>
+                <p><strong>Step 6:</strong> x = 4 or x = -2</p>
+                <p><strong>Step 7:</strong> Check validity: x = -2 is INVALID (log of negative)<br>
+                <strong>Solution: x = 4</strong></p>
+            </div>
+
+            <div class="example-box">
+                <h4>Example 5: Using Power Rule</h4>
+                <p><strong>Solve:</strong> log(x²) = 4</p>
+                <p><strong>Step 1:</strong> Apply power rule: 2log(x) = 4</p>
+                <p><strong>Step 2:</strong> Simplify: log(x) = 2</p>
+                <p><strong>Step 3:</strong> Convert: 10² = x</p>
+                <p><strong>Step 4:</strong> x = 100</p>
+                <p><strong>Note:</strong> When solving log(x²), remember x² is always positive,<br>so both positive and negative x values need checking!</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>⚠️ Important: Domain Restrictions</h2>
+
+            <div class="warning-box">
+                <h4>🚨 You can ONLY take logarithm of POSITIVE numbers!</h4>
+                <ul>
+                    <li><strong>Arguments must be > 0:</strong> In log(x), we need x > 0</li>
+                    <li><strong>Check your solutions:</strong> Always substitute back to verify</li>
+                    <li><strong>Reject invalid solutions:</strong> If log(negative) appears, reject that solution</li>
+                    <li><strong>Domain of log(f(x)):</strong> We need f(x) > 0</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>Domain Restriction Example</h4>
+                <p><strong>Solve:</strong> log(x) + log(x-1) = 1</p>
+                <p><strong>Domain:</strong> We need x > 0 AND x - 1 > 0<br>
+                Therefore: x > 1</p>
+                <p><strong>Solution:</strong> log[x(x-1)] = 1</p>
+                <p>x(x-1) = 10<br>x² - x - 10 = 0</p>
+                <p>Using quadratic formula: x = (1 ± √41)/2</p>
+                <p>x ≈ 3.70 or x ≈ -2.70</p>
+                <p><strong>Check domain:</strong></p>
+                <p>x ≈ 3.70: Valid (> 1) ✓<br>x ≈ -2.70: Invalid (not > 1) ✗</p>
+                <p><strong>Final Answer: x ≈ 3.70</strong></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Real-World Applications</h2>
+
+            <div class="example-box">
+                <h4>Application 1: Sound Intensity (Decibels)</h4>
+                <p><strong>Formula:</strong> dB = 10 log₁₀(I/I₀) where I₀ = 10⁻¹² W/m²</p>
+                <p><strong>Problem:</strong> If a sound is 80 dB, what is its intensity?</p>
+                <p><strong>Solution:</strong><br>
+                80 = 10 log₁₀(I/10⁻¹²)<br>
+                8 = log₁₀(I/10⁻¹²)<br>
+                10⁸ = I/10⁻¹²<br>
+                I = 10⁸ × 10⁻¹² = <strong>10⁻⁴ W/m²</strong></p>
+            </div>
+
+            <div class="example-box">
+                <h4>Application 2: Richter Scale (Earthquakes)</h4>
+                <p><strong>Formula:</strong> R = log₁₀(A) where A is amplitude</p>
+                <p><strong>Problem:</strong> If an earthquake has magnitude 7, what is its amplitude?</p>
+                <p><strong>Solution:</strong><br>
+                7 = log₁₀(A)<br>
+                A = 10⁷ = <strong>10,000,000 micrometers</strong></p>
+            </div>
+
+            <div class="example-box">
+                <h4>Application 3: pH Level (Chemistry)</h4>
+                <p><strong>Formula:</strong> pH = -log₁₀[H⁺]</p>
+                <p><strong>Problem:</strong> If a solution has pH = 3, what is [H⁺]?</p>
+                <p><strong>Solution:</strong><br>
+                3 = -log₁₀[H⁺]<br>
+                -3 = log₁₀[H⁺]<br>
+                [H⁺] = 10⁻³ = <strong>0.001 mol/L</strong></p>
+            </div>
+
+            <div class="example-box">
+                <h4>Application 4: Carbon Dating</h4>
+                <p><strong>Formula:</strong> t = (1/λ) ln(N/N₀)</p>
+                <p><strong>Problem:</strong> If an artifact has 25% of original C-14 (λ ≈ 0.000121/year), how old?</p>
+                <p><strong>Solution:</strong><br>
+                t = (1/0.000121) ln(0.25)<br>
+                t = 8264.5 × (-1.386)<br>
+                t ≈ <strong>11,460 years</strong></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>⚠️ Common Mistakes & 💡 Tips</h2>
+
+            <div class="tips-grid">
+                <div class="tip-box mistakes">
+                    <h4>⚠️ Common Mistakes</h4>
+                    <div class="tip-item">
+                        <strong>Forgetting domain:</strong> log(x) only exists when x > 0. Always check!
+                    </div>
+                    <div class="tip-item">
+                        <strong>Wrong base conversion:</strong> log(A + B) ≠ log(A) + log(B). Be careful!
+                    </div>
+                    <div class="tip-item">
+                        <strong>Ignoring domain when solving:</strong> You might get 2 solutions from algebra, but only 1 is valid after domain check.
+                    </div>
+                    <div class="tip-item">
+                        <strong>Not using correct base:</strong> Check if log means log₁₀ or ln or some other base!
+                    </div>
+                    <div class="tip-item">
+                        <strong>Forgetting to solve after substitution:</strong> If you use let y = log(x), solve for y first, THEN for x.
+                    </div>
+                </div>
+
+                <div class="tip-box tips">
+                    <h4>💡 Quick Tips</h4>
+                    <div class="tip-item">
+                        <strong>Try comparison first:</strong> Fastest if both sides are single logs with same base.
+                    </div>
+                    <div class="tip-item">
+                        <strong>Know key logs:</strong> log₁₀(10) = 1, log₁₀(100) = 2, log₁₀(1) = 0, ln(e) = 1
+                    </div>
+                    <div class="tip-item">
+                        <strong>Convert to exponential:</strong> This often makes the algebra simpler.
+                    </div>
+                    <div class="tip-item">
+                        <strong>Always verify answers:</strong> Substitute back - especially checking domain!
+                    </div>
+                    <div class="tip-item">
+                        <strong>Quadratic in disguise:</strong> Look for patterns like (log x)² or log<sub>x</sub> pattern.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📋 Reference: Laws of Logarithms</h2>
+            <div class="formulas">
+                <h3>Essential Laws</h3>
+                <table class="reference-table">
+                    <thead>
+                        <tr>
+                            <th>Law</th>
+                            <th>Formula</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Product</td>
+                            <td>log(MN) = log(M) + log(N)</td>
+                            <td>log(30) = log(3) + log(10)</td>
+                        </tr>
+                        <tr>
+                            <td>Quotient</td>
+                            <td>log(M/N) = log(M) - log(N)</td>
+                            <td>log(5) = log(50) - log(10)</td>
+                        </tr>
+                        <tr>
+                            <td>Power</td>
+                            <td>log(M<sup>p</sup>) = p log(M)</td>
+                            <td>log(x³) = 3log(x)</td>
+                        </tr>
+                        <tr>
+                            <td>Change of Base</td>
+                            <td>log<sub>a</sub>(b) = log(b)/log(a)</td>
+                            <td>log₂(8) = log(8)/log(2) = 3</td>
+                        </tr>
+                        <tr>
+                            <td>Reciprocal</td>
+                            <td>log<sub>a</sub>(b) = 1/log<sub>b</sub>(a)</td>
+                            <td>log₂(8) = 1/log₈(2)</td>
+                        </tr>
+                        <tr>
+                            <td>Special Cases</td>
+                            <td>log<sub>a</sub>(a) = 1, log<sub>a</sub>(1) = 0</td>
+                            <td>log₁₀(10) = 1, log₅(1) = 0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📊 Quick Reference: Methods Summary</h2>
+            <table class="reference-table">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>When to Use</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Comparison</strong></td>
+                        <td>Single log, same base</td>
+                        <td>log₂ x = log₂ 8 → x = 8</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Laws</strong></td>
+                        <td>Multiple logs, combine</td>
+                        <td>log x + log 2 = log 10 → x = 5</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Index Form</strong></td>
+                        <td>Single log = constant</td>
+                        <td>log₂ x = 3 → x = 8</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Change Base (F5)</strong></td>
+                        <td>Different bases</td>
+                        <td>log₂ x + log₄ x = 6 → x = 16</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5. Substitution (F5)</strong></td>
+                        <td>Quadratic form</td>
+                        <td>log₃ x + 4 log<sub>x</sub> 3 = 4 → x = 3, 81</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>📝 Practice Problems</h2>
+
+            <div class="practice-problem">
+                <h4>Problem 1: Comparison Method</h4>
+                <span class="difficulty easy">Easy</span>
+                <p><strong>Solve:</strong> log₃(x) = 2</p>
+                <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+                <div class="solution">
+                    Convert to exponential: 3² = x<br>
+                    x = 9
+                </div>
+            </div>
+
+            <div class="practice-problem">
+                <h4>Problem 2: Natural Logarithm</h4>
+                <span class="difficulty easy">Easy</span>
+                <p><strong>Solve:</strong> ln(x) = 1</p>
+                <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+                <div class="solution">
+                    e¹ = x<br>
+                    x = e ≈ 2.718
+                </div>
+            </div>
+
+            <div class="practice-problem">
+                <h4>Problem 3: Laws of Logarithms</h4>
+                <span class="difficulty medium">Medium</span>
+                <p><strong>Solve:</strong> log(x) + log(5) = 1</p>
+                <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+                <div class="solution">
+                    log(5x) = 1<br>
+                    5x = 10¹ = 10<br>
+                    x = 2
+                </div>
+            </div>
+
+            <div class="practice-problem">
+                <h4>Problem 4: Product Rule with Domain Check</h4>
+                <span class="difficulty hard">Hard</span>
+                <p><strong>Solve:</strong> log₂(x) + log₂(x+1) = 1</p>
+                <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+                <div class="solution">
+                    log₂[x(x+1)] = 1<br>
+                    x(x+1) = 2¹ = 2<br>
+                    x² + x - 2 = 0<br>
+                    (x + 2)(x - 1) = 0<br>
+                    x = -2 or x = 1<br>
+                    Domain check: x > 0, so x = 1 (reject x = -2)<br>
+                    Solution: x = 1
+                </div>
+            </div>
+        </div>
+
+        <div class="app-link">
+            <p>🎯 Want interactive practice with step-by-step guidance?</p>
+            <p style="margin-top: 10px;">Open the full <a href="SOLUTION OF INDICES AND LOGARITHMS.html" target="_blank">Interactive Learning App →</a></p>
+        </div>
+
+        <div class="navigation">
+            <a href="course-unit-4-4.html" class="nav-button"><span class="nav-label">← Previous Unit</span><span class="nav-title">Unit 4.4: Indicial</span></a>
+            <a href="index.html" class="nav-button"><span class="nav-label">Back to</span><span class="nav-title">Course Overview</span></a>
+        </div>
     </div>
 
-    <div class="example-box">
-      <h4>Example 1</h4>
-      <p><strong>Solve:</strong> log₂(x) = 5</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Convert to exponential form<br>2⁵ = x</p>
-        <p><strong>Step 2:</strong> Calculate<br><strong>x = 32</strong></p>
-      </div>
-    </div>
-
-    <div class="example-box">
-      <h4>Example 2</h4>
-      <p><strong>Solve:</strong> log(x) = 3</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Convert to exponential:</strong> 10³ = x<br><strong>x = 1000</strong></p>
-      </div>
-    </div>
-
-    <div class="example-box">
-      <h4>Example 3</h4>
-      <p><strong>Solve:</strong> ln(x) = 2</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Convert to exponential:</strong> e² = x<br><strong>x ≈ 7.389</strong></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Method 2: Using Logarithm Laws</h2>
-    <div class="method-card">
-      <h3>Strategy</h3>
-      <p>Apply logarithm laws to simplify, then convert to exponential form.</p>
-    </div>
-
-    <div class="example-box">
-      <h4>Example 4</h4>
-      <p><strong>Solve:</strong> log(2x) = 1</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Convert to exponential<br>10¹ = 2x</p>
-        <p><strong>Step 2:</strong> Solve for x<br>10 = 2x<br><strong>x = 5</strong></p>
-      </div>
-    </div>
-
-    <div class="example-box">
-      <h4>Example 5</h4>
-      <p><strong>Solve:</strong> log(x²) = 4</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Convert to exponential<br>10⁴ = x²</p>
-        <p><strong>Step 2:</strong> Solve for x<br>10000 = x²<br><strong>x = ±100</strong></p>
-        <p><small>Note: Must check that solutions are valid for the original equation</small></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Method 3: Complex Logarithmic Equations</h2>
-    <div class="example-box">
-      <h4>Example 6</h4>
-      <p><strong>Solve:</strong> log₂(x) + log₂(x-2) = 3</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Use product rule<br>log₂[x(x-2)] = 3</p>
-        <p><strong>Step 2:</strong> Convert to exponential<br>x(x-2) = 2³ = 8</p>
-        <p><strong>Step 3:</strong> Expand and rearrange<br>x² - 2x = 8<br>x² - 2x - 8 = 0</p>
-        <p><strong>Step 4:</strong> Factor<br>(x - 4)(x + 2) = 0<br>x = 4 or x = -2</p>
-        <p><strong>Step 5:</strong> Check validity<br>x = -2 is invalid (log of negative)<br><strong>x = 4</strong></p>
-      </div>
-    </div>
-
-    <div class="example-box">
-      <h4>Example 7</h4>
-      <p><strong>Solve:</strong> log(x) - log(x-1) = 1</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Step 1:</strong> Use quotient rule<br>log[x/(x-1)] = 1</p>
-        <p><strong>Step 2:</strong> Convert to exponential<br>x/(x-1) = 10¹ = 10</p>
-        <p><strong>Step 3:</strong> Solve for x<br>x = 10(x-1)<br>x = 10x - 10<br>-9x = -10<br><strong>x = 10/9 ≈ 1.11</strong></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Real-World Applications</h2>
-
-    <div class="example-box">
-      <h4>Application 1: Sound Intensity (Decibels)</h4>
-      <p><strong>Problem:</strong> The decibel level is given by dB = 10 log₁₀(I/I₀), where I is intensity and I₀ = 10⁻¹² (reference). If a sound is 80 dB, what is its intensity?</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Solution:</strong></p>
-        <p>80 = 10 log₁₀(I/10⁻¹²)</p>
-        <p>8 = log₁₀(I/10⁻¹²)</p>
-        <p>10⁸ = I/10⁻¹²</p>
-        <p>I = 10⁸ × 10⁻¹² = <strong>10⁻⁴ W/m²</strong></p>
-      </div>
-    </div>
-
-    <div class="example-box">
-      <h4>Application 2: Richter Scale (Earthquakes)</h4>
-      <p><strong>Problem:</strong> The Richter magnitude is R = log₁₀(A), where A is amplitude. If an earthquake has magnitude 7, what is its amplitude?</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Solution:</strong></p>
-        <p>7 = log₁₀(A)</p>
-        <p>A = 10⁷ = <strong>10,000,000 micrometers</strong></p>
-      </div>
-    </div>
-
-    <div class="example-box">
-      <h4>Application 3: pH Level (Chemistry)</h4>
-      <p><strong>Problem:</strong> pH = -log₁₀[H⁺]. If a solution has pH = 3, what is the hydrogen ion concentration [H⁺]?</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Solution:</strong></p>
-        <p>3 = -log₁₀[H⁺]</p>
-        <p>-3 = log₁₀[H⁺]</p>
-        <p>[H⁺] = 10⁻³ = <strong>0.001 mol/L</strong></p>
-      </div>
-    </div>
-
-    <div class="example-box">
-      <h4>Application 4: Carbon Dating</h4>
-      <p><strong>Problem:</strong> Using t = (1/λ) ln(N/N₀), if an artifact has 25% of original C-14 (λ ≈ 0.000121/year), how old is it?</p>
-      <div style="margin-top: 1rem;">
-        <p><strong>Solution:</strong></p>
-        <p>t = (1/0.000121) ln(0.25)</p>
-        <p>t = 8264.5 × (-1.386)</p>
-        <p>t ≈ <strong>11,460 years</strong></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Important: Domain Restrictions</h2>
-    <p>Remember: <strong>You can only take the logarithm of positive numbers!</strong></p>
-    <div style="padding: 1.5rem; background: var(--accent-light); border-radius: 8px; border-left: 4px solid var(--accent); margin: 1rem 0;">
-      <p><strong>Always check:</strong></p>
-      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-        <li>Arguments must be positive (> 0)</li>
-        <li>Reject solutions that violate the domain</li>
-        <li>Verify solutions in the original equation</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Practice Problems</h2>
-
-    <div class="practice-problem">
-      <h4>Problem 1: Basic logarithmic equation</h4>
-      <span class="difficulty easy">Easy</span>
-      <p><strong>Solve:</strong> log₃(x) = 2</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        Convert to exponential: 3² = x
-        x = 9
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 2: Natural logarithm</h4>
-      <span class="difficulty easy">Easy</span>
-      <p><strong>Solve:</strong> ln(x) = 1</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        e¹ = x
-        x = e ≈ 2.718
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 3: Logarithm with arithmetic</h4>
-      <span class="difficulty medium">Medium</span>
-      <p><strong>Solve:</strong> log(3x) = 2</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        10² = 3x
-        100 = 3x
-        x = 100/3 ≈ 33.33
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 4: Using logarithm laws</h4>
-      <span class="difficulty medium">Medium</span>
-      <p><strong>Solve:</strong> log(x) + log(5) = 1</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        log(5x) = 1
-        5x = 10¹ = 10
-        x = 2
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 5: Product rule</h4>
-      <span class="difficulty hard">Hard</span>
-      <p><strong>Solve:</strong> log₂(x) + log₂(x+1) = 1</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        log₂[x(x+1)] = 1
-        x(x+1) = 2¹ = 2
-        x² + x - 2 = 0
-        (x + 2)(x - 1) = 0
-        x = -2 or x = 1
-        Valid: x = 1 (reject x = -2 as it's negative)
-      </div>
-    </div>
-  </div>
-
-  <div class="navigation">
-    <a href="course-unit-4-4.html" class="nav-button"><span class="nav-label">← Previous Unit</span><span class="nav-title">Unit 4.4: Indicial</span></a>
-    <a href="index.html" class="nav-button"><span class="nav-label">Back to</span><span class="nav-title">Course Overview</span></a>
-  </div>
-</div>
-
-<script>
-function toggleSolution(button) {
-  const solution = button.nextElementSibling;
-  solution.classList.toggle('show');
-  button.textContent = solution.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
-}
-</script>
+    <script>
+        function toggleSolution(button) {
+            const solution = button.nextElementSibling;
+            solution.classList.toggle('show');
+            button.textContent = solution.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+        }
+    </script>
+</body>
+</html>
