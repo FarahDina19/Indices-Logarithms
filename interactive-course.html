@@ -1,0 +1,786 @@
+<title>Interactive Learning - Indices & Logarithms</title>
+
+<style>
+:root {
+  --bg: #fafbfc;
+  --fg: #1a2332;
+  --accent: #4f46e5;
+  --accent-light: #eef2ff;
+  --border: #e0e6ed;
+  --text-muted: #667085;
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1419;
+    --fg: #e8eaed;
+    --accent: #a78bfa;
+    --accent-light: #3730a3;
+    --border: #2d3748;
+    --text-muted: #a0aec0;
+    color-scheme: dark;
+  }
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+header {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+  color: white;
+  padding: 40px 20px;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+header h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+.subtitle { font-size: 1.1em; opacity: 0.9; }
+
+.progress-bar {
+  background: rgba(255,255,255,0.2);
+  height: 8px;
+  border-radius: 4px;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: #10b981;
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 1rem;
+}
+
+.tab-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  font-weight: 600;
+  transition: all 0.2s;
+  font-size: 1rem;
+}
+
+.tab-btn:hover {
+  color: var(--accent);
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.section h2 {
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  font-size: 1.8em;
+  border-bottom: 3px solid var(--accent-light);
+  padding-bottom: 0.5rem;
+}
+
+.interactive-exercise {
+  background: linear-gradient(135deg, var(--accent-light) 0%, rgba(79,70,229,0.05) 100%);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.exercise-step {
+  background: var(--bg);
+  border-left: 4px solid var(--accent);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+}
+
+.exercise-step h4 {
+  color: var(--fg);
+  margin-bottom: 0.5rem;
+}
+
+.exercise-step p {
+  color: var(--text-muted);
+  margin: 0.5rem 0;
+}
+
+.exercise-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.exercise-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.check-btn, .hint-btn, .next-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.check-btn {
+  background: var(--success);
+  color: white;
+}
+
+.check-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.hint-btn {
+  background: var(--warning);
+  color: white;
+}
+
+.hint-btn:hover {
+  opacity: 0.9;
+}
+
+.next-btn {
+  background: var(--accent);
+  color: white;
+}
+
+.next-btn:hover {
+  opacity: 0.9;
+}
+
+.feedback {
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  display: none;
+}
+
+.feedback.show {
+  display: block;
+}
+
+.feedback.success {
+  background: #d1fae5;
+  border-left: 4px solid var(--success);
+  color: #065f46;
+}
+
+.feedback.error {
+  background: #fee2e2;
+  border-left: 4px solid var(--danger);
+  color: #7f1d1d;
+}
+
+.feedback.info {
+  background: #e0e7ff;
+  border-left: 4px solid var(--accent);
+  color: #312e81;
+}
+
+.calculator-box {
+  background: var(--accent-light);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+}
+
+.calc-input-group {
+  margin: 1rem 0;
+}
+
+.calc-input-group label {
+  display: block;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 0.5rem;
+}
+
+.calc-input-group input {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.75rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.calc-result {
+  background: var(--accent);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: none;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.stat-box {
+  background: var(--accent-light);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2em;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.stat-label {
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  font-size: 0.9em;
+}
+
+.navigation {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: space-between;
+}
+
+.nav-btn {
+  padding: 1rem 2rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  header h1 { font-size: 1.8em; }
+  .tab-buttons { flex-wrap: wrap; }
+  .section { padding: 1rem; }
+}
+</style>
+
+<div class="container">
+  <header>
+    <h1>🎓 Interactive Learning Hub</h1>
+    <p class="subtitle">Master Indices & Logarithms with step-by-step interactive exercises</p>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat-box">
+      <div class="stat-number" id="completedCount">0</div>
+      <div class="stat-label">Exercises Completed</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number" id="correctCount">0</div>
+      <div class="stat-label">Correct Answers</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number" id="accuracyPercent">0%</div>
+      <div class="stat-label">Accuracy Rate</div>
+    </div>
+  </div>
+
+  <!-- Tab Navigation -->
+  <div class="tab-buttons">
+    <button class="tab-btn active" onclick="openTab(event, 'definition')">📖 Learn</button>
+    <button class="tab-btn" onclick="openTab(event, 'calculator')">🧮 Calculator</button>
+    <button class="tab-btn" onclick="openTab(event, 'exercises')">✏️ Practice</button>
+    <button class="tab-btn" onclick="openTab(event, 'reference')">📋 Reference</button>
+  </div>
+
+  <!-- Definition Tab -->
+  <div id="definition" class="tab-content active">
+    <div class="section">
+      <h2>📖 Understanding Indices & Logarithms</h2>
+
+      <div class="interactive-exercise">
+        <h3>What is a Logarithm?</h3>
+        <p style="margin: 1rem 0;">A logarithm is the inverse of exponentiation:</p>
+        <div style="background: var(--accent); color: white; padding: 1.5rem; border-radius: 8px; font-size: 1.2em; text-align: center; margin: 1rem 0;">
+          If a<sup>x</sup> = b, then log<sub>a</sub>(b) = x
+        </div>
+        <p style="margin: 1rem 0;"><strong>Question:</strong> "To what power must we raise <em>a</em> to get <em>b</em>?"</p>
+      </div>
+
+      <div class="interactive-exercise">
+        <h3>Example: Exponential vs Logarithmic</h3>
+        <div class="exercise-step">
+          <h4>Exponential Form:</h4>
+          <p>2³ = 8 (2 raised to power 3 equals 8)</p>
+        </div>
+        <div class="exercise-step">
+          <h4>Logarithmic Form:</h4>
+          <p>log₂(8) = 3 (logarithm base 2 of 8 equals 3)</p>
+        </div>
+        <p style="margin-top: 1rem; color: var(--text-muted);"><strong>Same relationship, different notation!</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculator Tab -->
+  <div id="calculator" class="tab-content">
+    <div class="section">
+      <h2>🧮 Interactive Calculator</h2>
+
+      <div class="calculator-box">
+        <h3 style="margin-bottom: 1.5rem; color: var(--accent);">Logarithm Calculator</h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+          <div>
+            <div class="calc-input-group">
+              <label for="calcBase">Base (a):</label>
+              <input type="range" id="calcBase" class="slider" min="2" max="10" value="2" oninput="calculateLog()">
+              <div style="margin-top: 0.5rem; font-weight: bold;">Value: <span id="baseValue">2</span></div>
+            </div>
+
+            <div class="calc-input-group">
+              <label for="calcValue">Argument (b):</label>
+              <input type="number" id="calcValue" class="calc-input-group" value="8" oninput="calculateLog()">
+            </div>
+          </div>
+
+          <div>
+            <div class="calc-result" id="calcResult">
+              log₂(8) = 3
+            </div>
+            <p style="text-align: center; color: var(--text-muted); margin-top: 1rem;">
+              Calculate: log<sub>base</sub>(argument)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Laws of Logarithms Calculator</h3>
+        <div class="interactive-exercise">
+          <h4>Product Rule: log(xy) = log(x) + log(y)</h4>
+          <div class="calc-input-group">
+            <label>log₂(4) + log₂(8) = ?</label>
+            <input type="number" id="productAnswer" class="exercise-input" placeholder="Enter answer">
+          </div>
+          <button class="check-btn" onclick="checkProductRule()">Check Answer</button>
+          <div id="productFeedback" class="feedback"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercises Tab -->
+  <div id="exercises" class="tab-content">
+    <div class="section">
+      <h2>✏️ Practice Exercises</h2>
+
+      <!-- Exercise 1 -->
+      <div class="interactive-exercise">
+        <h3>Exercise 1: Evaluate log₂(32)</h3>
+        <div class="exercise-step">
+          <h4>Step 1: Express 32 as a power of 2</h4>
+          <p>What is 32 as a power of 2? (32 = 2<sup>?</sup>)</p>
+          <input type="number" id="ex1step1" class="exercise-input" placeholder="Enter the exponent">
+          <div class="button-group">
+            <button class="check-btn" onclick="checkEx1Step1()">Check</button>
+            <button class="hint-btn" onclick="showHint('ex1hint1')">💡 Hint</button>
+          </div>
+          <div id="ex1hint1" class="feedback info" style="display:none;">
+            Think: 2×2=4, 4×2=8, 8×2=16, 16×2=32. Count the multiplications!
+          </div>
+          <div id="ex1step1feedback" class="feedback"></div>
+        </div>
+
+        <div class="exercise-step" id="ex1step2box" style="opacity: 0.5; pointer-events: none;">
+          <h4>Step 2: Apply the definition</h4>
+          <p>If 2<sup>5</sup> = 32, then log₂(32) = ?</p>
+          <input type="number" id="ex1step2" class="exercise-input" placeholder="Enter answer">
+          <div class="button-group">
+            <button class="check-btn" onclick="checkEx1Step2()">Check</button>
+          </div>
+          <div id="ex1step2feedback" class="feedback"></div>
+        </div>
+      </div>
+
+      <!-- Exercise 2 -->
+      <div class="interactive-exercise">
+        <h3>Exercise 2: Solve log(x) = 2</h3>
+        <div class="exercise-step">
+          <h4>Step 1: Convert to exponential form</h4>
+          <p>If log(x) = 2, then 10<sup>?</sup> = x</p>
+          <p style="font-size: 0.9em; color: var(--text-muted);">What is the exponent?</p>
+          <input type="number" id="ex2step1" class="exercise-input" placeholder="Enter the exponent">
+          <div class="button-group">
+            <button class="check-btn" onclick="checkEx2Step1()">Check</button>
+            <button class="hint-btn" onclick="showHint('ex2hint1')">💡 Hint</button>
+          </div>
+          <div id="ex2hint1" class="feedback info" style="display:none;">
+            log without a base means log base 10. So if log(x) = 2, then 10² = x
+          </div>
+          <div id="ex2step1feedback" class="feedback"></div>
+        </div>
+
+        <div class="exercise-step" id="ex2step2box" style="opacity: 0.5; pointer-events: none;">
+          <h4>Step 2: Calculate</h4>
+          <p>10² = ?</p>
+          <input type="number" id="ex2step2" class="exercise-input" placeholder="Enter answer">
+          <div class="button-group">
+            <button class="check-btn" onclick="checkEx2Step2()">Check</button>
+          </div>
+          <div id="ex2step2feedback" class="feedback"></div>
+        </div>
+      </div>
+
+      <!-- Exercise 3 -->
+      <div class="interactive-exercise">
+        <h3>Exercise 3: Simplify log₃(9) + log₃(3)</h3>
+        <div class="exercise-step">
+          <h4>Step 1: Use Product Rule</h4>
+          <p>log₃(9) + log₃(3) = log₃(9 × 3) = log₃(?)</p>
+          <input type="number" id="ex3step1" class="exercise-input" placeholder="Enter the result">
+          <div class="button-group">
+            <button class="check-btn" onclick="checkEx3Step1()">Check</button>
+          </div>
+          <div id="ex3step1feedback" class="feedback"></div>
+        </div>
+
+        <div class="exercise-step" id="ex3step2box" style="opacity: 0.5; pointer-events: none;">
+          <h4>Step 2: Evaluate</h4>
+          <p>log₃(27) = ? (What power of 3 equals 27?)</p>
+          <input type="number" id="ex3step2" class="exercise-input" placeholder="Enter answer">
+          <div class="button-group">
+            <button class="check-btn" onclick="checkEx3Step2()">Check</button>
+          </div>
+          <div id="ex3step2feedback" class="feedback"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reference Tab -->
+  <div id="reference" class="tab-content">
+    <div class="section">
+      <h2>📋 Quick Reference Guide</h2>
+
+      <div class="interactive-exercise">
+        <h3>Laws of Indices</h3>
+        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+          <tr style="background: var(--accent-light);">
+            <th style="padding: 1rem; text-align: left; border: 1px solid var(--border);">Law</th>
+            <th style="padding: 1rem; text-align: left; border: 1px solid var(--border);">Form</th>
+          </tr>
+          <tr style="border: 1px solid var(--border);">
+            <td style="padding: 1rem;">Product</td>
+            <td style="padding: 1rem;">aᵐ × aⁿ = aᵐ⁺ⁿ</td>
+          </tr>
+          <tr style="border: 1px solid var(--border);">
+            <td style="padding: 1rem;">Quotient</td>
+            <td style="padding: 1rem;">aᵐ ÷ aⁿ = aᵐ⁻ⁿ</td>
+          </tr>
+          <tr style="border: 1px solid var(--border);">
+            <td style="padding: 1rem;">Power</td>
+            <td style="padding: 1rem;">(aᵐ)ⁿ = aᵐⁿ</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="interactive-exercise">
+        <h3>Laws of Logarithms</h3>
+        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+          <tr style="background: var(--accent-light);">
+            <th style="padding: 1rem; text-align: left; border: 1px solid var(--border);">Law</th>
+            <th style="padding: 1rem; text-align: left; border: 1px solid var(--border);">Form</th>
+          </tr>
+          <tr style="border: 1px solid var(--border);">
+            <td style="padding: 1rem;">Product</td>
+            <td style="padding: 1rem;">log(xy) = log(x) + log(y)</td>
+          </tr>
+          <tr style="border: 1px solid var(--border);">
+            <td style="padding: 1rem;">Quotient</td>
+            <td style="padding: 1rem;">log(x/y) = log(x) - log(y)</td>
+          </tr>
+          <tr style="border: 1px solid var(--border);">
+            <td style="padding: 1rem;">Power</td>
+            <td style="padding: 1rem;">log(xⁿ) = n × log(x)</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="navigation">
+    <a href="index.html" class="nav-btn">← Back to Home</a>
+    <a href="practice-problems.html" class="nav-btn">View All Problems →</a>
+  </div>
+</div>
+
+<script>
+// Global state
+let completedExercises = 0;
+let correctAnswers = 0;
+
+// Tab system
+function openTab(evt, tabName) {
+  const contents = document.querySelectorAll('.tab-content');
+  contents.forEach(el => el.classList.remove('active'));
+
+  const buttons = document.querySelectorAll('.tab-btn');
+  buttons.forEach(el => el.classList.remove('active'));
+
+  document.getElementById(tabName).classList.add('active');
+  evt.currentTarget.classList.add('active');
+}
+
+// Calculator
+function calculateLog() {
+  const base = parseInt(document.getElementById('calcBase').value);
+  const value = parseFloat(document.getElementById('calcValue').value);
+  document.getElementById('baseValue').textContent = base;
+
+  if (value > 0 && base > 0 && base !== 1) {
+    const result = Math.log(value) / Math.log(base);
+    const rounded = result.toFixed(4);
+    document.getElementById('calcResult').textContent = `log₍${base}₎(${value}) = ${rounded}`;
+  }
+}
+
+// Hint system
+function showHint(id) {
+  const hint = document.getElementById(id);
+  hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
+}
+
+// Check answers
+function checkEx1Step1() {
+  const answer = document.getElementById('ex1step1').value.trim();
+  const feedback = document.getElementById('ex1step1feedback');
+
+  if (answer === '5') {
+    feedback.innerHTML = '✅ Correct! 2⁵ = 32';
+    feedback.className = 'feedback success show';
+    document.getElementById('ex1step2box').style.opacity = '1';
+    document.getElementById('ex1step2box').style.pointerEvents = 'auto';
+    correctAnswers++;
+    updateStats();
+  } else {
+    feedback.innerHTML = '❌ Try again. Hint: 2×2×2×2×2 = 32';
+    feedback.className = 'feedback error show';
+  }
+}
+
+function checkEx1Step2() {
+  const answer = document.getElementById('ex1step2').value.trim();
+  const feedback = document.getElementById('ex1step2feedback');
+
+  if (answer === '5') {
+    feedback.innerHTML = '✅ Correct! log₂(32) = 5';
+    feedback.className = 'feedback success show';
+    completedExercises++;
+    correctAnswers++;
+    updateStats();
+  } else {
+    feedback.innerHTML = '❌ Try again. The answer is the same as the exponent from Step 1.';
+    feedback.className = 'feedback error show';
+  }
+}
+
+function checkEx2Step1() {
+  const answer = document.getElementById('ex2step1').value.trim();
+  const feedback = document.getElementById('ex2step1feedback');
+
+  if (answer === '2') {
+    feedback.innerHTML = '✅ Correct! The exponent is 2.';
+    feedback.className = 'feedback success show';
+    document.getElementById('ex2step2box').style.opacity = '1';
+    document.getElementById('ex2step2box').style.pointerEvents = 'auto';
+    correctAnswers++;
+    updateStats();
+  } else {
+    feedback.innerHTML = '❌ Try again. log without base means base 10.';
+    feedback.className = 'feedback error show';
+  }
+}
+
+function checkEx2Step2() {
+  const answer = document.getElementById('ex2step2').value.trim();
+  const feedback = document.getElementById('ex2step2feedback');
+
+  if (answer === '100') {
+    feedback.innerHTML = '✅ Correct! 10² = 100, so x = 100';
+    feedback.className = 'feedback success show';
+    completedExercises++;
+    correctAnswers++;
+    updateStats();
+  } else {
+    feedback.innerHTML = '❌ Try again. 10 × 10 = 100';
+    feedback.className = 'feedback error show';
+  }
+}
+
+function checkEx3Step1() {
+  const answer = document.getElementById('ex3step1').value.trim();
+  const feedback = document.getElementById('ex3step1feedback');
+
+  if (answer === '27') {
+    feedback.innerHTML = '✅ Correct! 9 × 3 = 27';
+    feedback.className = 'feedback success show';
+    document.getElementById('ex3step2box').style.opacity = '1';
+    document.getElementById('ex3step2box').style.pointerEvents = 'auto';
+    correctAnswers++;
+    updateStats();
+  } else {
+    feedback.innerHTML = '❌ Try again. Multiply 9 × 3.';
+    feedback.className = 'feedback error show';
+  }
+}
+
+function checkEx3Step2() {
+  const answer = document.getElementById('ex3step2').value.trim();
+  const feedback = document.getElementById('ex3step2feedback');
+
+  if (answer === '3') {
+    feedback.innerHTML = '✅ Correct! 3³ = 27, so log₃(27) = 3';
+    feedback.className = 'feedback success show';
+    completedExercises++;
+    correctAnswers++;
+    updateStats();
+  } else {
+    feedback.innerHTML = '❌ Try again. What power of 3 equals 27?';
+    feedback.className = 'feedback error show';
+  }
+}
+
+function checkProductRule() {
+  const answer = document.getElementById('productAnswer').value.trim();
+  const feedback = document.getElementById('productFeedback');
+
+  // log₂(4) = 2, log₂(8) = 3, so answer is 5
+  if (answer === '5') {
+    feedback.innerHTML = '✅ Correct! log₂(4) + log₂(8) = 2 + 3 = 5';
+    feedback.className = 'feedback success show';
+  } else {
+    feedback.innerHTML = '❌ Try again. log₂(4) = 2 and log₂(8) = 3, so 2 + 3 = ?';
+    feedback.className = 'feedback error show';
+  }
+}
+
+function updateStats() {
+  document.getElementById('completedCount').textContent = completedExercises;
+  document.getElementById('correctCount').textContent = correctAnswers;
+
+  const total = completedExercises;
+  const accuracy = total > 0 ? Math.round((correctAnswers / total) * 100) : 0;
+  document.getElementById('accuracyPercent').textContent = accuracy + '%';
+
+  document.getElementById('progressFill').style.width = (completedExercises / 3) * 100 + '%';
+}
+
+// Initialize
+calculateLog();
+</script>
