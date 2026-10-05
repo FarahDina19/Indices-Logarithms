@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit 4.4: Solutions of Indicial Equations - Complete Learning Guide</title>
+    <title>Unit 4.4: Indicial Equations in Real-World Applications</title>
 
     <style>
         :root {
@@ -73,23 +73,24 @@
 
         h3 { font-size: 1.3em; font-weight: 600; margin: 1.5rem 0 1rem 0; }
 
-        .methods-grid {
+        .app-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 20px;
             margin: 20px 0;
         }
 
-        .method-card {
+        .app-card {
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
             border-left: 5px solid var(--primary);
-            padding: 20px;
+            padding: 25px;
             border-radius: 12px;
             transition: transform 0.2s;
         }
 
-        .method-card:hover { transform: translateY(-2px); }
-        .method-card h4 { color: var(--primary); margin-bottom: 10px; font-size: 1.1em; }
+        .app-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15); }
+        .app-card h3 { color: var(--primary); margin-top: 0; }
+        .app-icon { font-size: 2.5em; margin-bottom: 10px; }
 
         .example-box {
             background: rgba(99, 102, 241, 0.1);
@@ -101,114 +102,60 @@
 
         .example-box h4 { color: var(--primary); margin-bottom: 10px; }
 
-        .practice-problem {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-        }
-
-        .difficulty {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: white;
-        }
-
-        .difficulty.easy { background: #059669; }
-        .difficulty.medium { background: #d97706; }
-        .difficulty.hard { background: #dc2626; }
-
-        .flowchart {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border: 2px solid var(--border);
-        }
-
-        .flow-step {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(168, 85, 247, 0.05));
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 5px solid var(--primary);
-        }
-
-        .flow-question { font-weight: 700; font-size: 1.1em; color: var(--primary); margin-bottom: 10px; }
-
-        .tips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .tip-box {
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 5px solid var(--warning);
-        }
-
-        .tip-box.mistakes { background: rgba(239, 68, 68, 0.1); border-left-color: var(--danger); }
-        .tip-box.tips { background: rgba(6, 182, 212, 0.1); border-left-color: var(--info); }
-
-        .tip-box h4 { margin-bottom: 15px; font-size: 1.1em; }
-        .tip-item { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
-        .tip-item:last-child { border-bottom: none; }
-
-        .reference-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .reference-table th {
-            background: var(--primary);
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        .reference-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid var(--border);
-            font-family: 'Courier New', monospace;
-        }
-
-        .reference-table tr:hover { background: rgba(99, 102, 241, 0.05); }
-
-        .formulas {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 20px;
-        }
-
-        .formula-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 15px;
-        }
-
         .formula-box {
             background: white;
+            border: 2px solid var(--primary);
             padding: 15px;
             border-radius: 8px;
-            font-family: 'Times New Roman', serif;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
             font-size: 1.1em;
-            line-height: 1.8;
         }
+
+        .steps {
+            background: rgba(10, 150, 100, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .step {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .step:last-child { border-bottom: none; }
+        .step-number {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .real-world { border-left: 5px solid var(--secondary); background: rgba(16, 185, 129, 0.05); }
+        .theory { border-left: 5px solid var(--primary); background: rgba(99, 102, 241, 0.05); }
+
+        .toggle-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .solution { margin-top: 1rem; padding: 1rem; background: var(--border); border-radius: 4px; display: none; }
+        .solution.show { display: block; }
 
         .navigation {
             display: grid;
@@ -232,46 +179,13 @@
         }
 
         .nav-button:hover { background: rgba(99, 102, 241, 0.1); border-color: var(--primary); }
-
         .nav-label { font-size: 0.85rem; color: var(--text-muted); }
         .nav-title { color: var(--primary); font-weight: 600; }
-
-        .toggle-button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .solution { margin-top: 1rem; padding: 1rem; background: var(--border); border-radius: 4px; display: none; }
-        .solution.show { display: block; }
-
-        .app-link {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .app-link a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1em;
-        }
-
-        .app-link a:hover { text-decoration: underline; }
 
         @media (max-width: 768px) {
             header h1 { font-size: 1.8em; }
             .navigation { grid-template-columns: 1fr; }
-            .methods-grid { grid-template-columns: 1fr; }
+            .app-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -279,347 +193,190 @@
     <div class="container">
         <div class="breadcrumb"><a href="index.html">Courses</a> / Unit 4.4</div>
         <header>
-            <h1>Unit 4.4: Solutions of Indicial Equations</h1>
-            <p class="subtitle">Comprehensive Guide - 3 Methods & Practice Problems</p>
+            <h1>Unit 4.4: Indicial Equations in Real-World Applications</h1>
+            <p class="subtitle">Explore how exponential equations solve practical problems in finance, science, and nature</p>
         </header>
 
         <div class="card">
-            <h2>📚 What is an Indicial Equation?</h2>
-            <p>An indicial equation (exponential equation) is one where the variable appears in an exponent.</p>
-            <p><strong>Examples:</strong> 2<sup>x</sup> = 8 | 3<sup>2x</sup> = 27 | 5<sup>x</sup> = 100</p>
+            <h2>🌍 What Are Indicial Equations & Why Do They Matter?</h2>
+            <p>An indicial equation (exponential equation) is one where the variable appears in an exponent. These equations are essential for modeling:</p>
+            <ul style="margin-left: 20px; margin-top: 15px;">
+                <li>📈 Financial growth (investments, loans)</li>
+                <li>☢️ Radioactive decay and half-lives</li>
+                <li>🦠 Bacterial and viral growth</li>
+                <li>🌍 Population dynamics</li>
+                <li>⚡ Electrical discharge and cooling</li>
+            </ul>
         </div>
 
         <div class="card">
-            <h2>🔢 3 Methods to Solve Indicial Equations</h2>
+            <h2>💰 Application 1: Finance & Compound Interest</h2>
 
-            <div class="methods-grid">
-                <div class="method-card">
-                    <h4>Method 1: Comparison of Base</h4>
-                    <p><strong>When to use:</strong> When both sides can be expressed with the SAME BASE</p>
-                    <p><strong>Strategy:</strong> If a<sup>x</sup> = a<sup>y</sup>, then x = y</p>
-                    <div class="example-box" style="margin-top: 15px;">
-                        <strong>Example:</strong><br>
-                        2<sup>x</sup> = 8 = 2³<br>
-                        ∴ x = 3
+            <div class="app-card real-world">
+                <div class="app-icon">💵</div>
+                <h3>Investment Growth Problem</h3>
+                <p><strong>Scenario:</strong> You invest RM1,000 at 5% annual interest. How many years until it doubles to RM2,000?</p>
+
+                <div class="formula-box">A = P(1 + r)<sup>t</sup></div>
+
+                <div class="example-box">
+                    <h4>Solution Steps:</h4>
+                    <div class="steps">
+                        <div class="step"><span class="step-number">1</span> Set up: 2000 = 1000(1.05)<sup>t</sup></div>
+                        <div class="step"><span class="step-number">2</span> Simplify: 2 = (1.05)<sup>t</sup></div>
+                        <div class="step"><span class="step-number">3</span> Use logarithms: t = log(2) / log(1.05)</div>
+                        <div class="step"><span class="step-number">4</span> Calculate: t ≈ <strong>14.2 years</strong></div>
                     </div>
                 </div>
 
-                <div class="method-card">
-                    <h4>Method 2: Using Laws of Indices</h4>
-                    <p><strong>When to use:</strong> When there are products/quotients needing SIMPLIFICATION</p>
-                    <p><strong>Strategy:</strong> Apply laws to get same base, then compare</p>
-                    <div class="example-box" style="margin-top: 15px;">
-                        <strong>Example:</strong><br>
-                        3<sup>x</sup> × 3² = 81 = 3⁴<br>
-                        3<sup>x+2</sup> = 3⁴<br>
-                        x + 2 = 4 ∴ x = 2
-                    </div>
-                </div>
-
-                <div class="method-card">
-                    <h4>Method 3: Logarithmic Form</h4>
-                    <p><strong>When to use:</strong> When you CAN'T express with same base</p>
-                    <p><strong>Strategy:</strong> a<sup>x</sup> = b ⟹ x = log<sub>a</sub>b</p>
-                    <div class="example-box" style="margin-top: 15px;">
-                        <strong>Example:</strong><br>
-                        5<sup>x</sup> = 100<br>
-                        x = log₅(100) = log(100)/log(5)<br>
-                        x ≈ 2.86
-                    </div>
+                <button class="toggle-button" onclick="toggleSolution(this)">Why This Matters</button>
+                <div class="solution">
+                    <strong>Real Impact:</strong> Understanding exponential growth helps you make better financial decisions. A small change in interest rate (4% vs 5%) significantly affects how long your money takes to grow. This is crucial for retirement planning, education funds, and long-term investments.
                 </div>
             </div>
         </div>
 
         <div class="card">
-            <h2>🤔 Decision Guide: Which Method to Use?</h2>
-            <div class="flowchart">
-                <div class="flow-step">
-                    <div class="flow-question">❓ Can you express both sides with the SAME BASE?</div>
-                    <p style="margin-top: 10px;"><strong style="color: var(--secondary);">✓ YES</strong> → Use <strong>Method 1: Comparison</strong></p>
-                    <p><strong style="color: var(--danger);">✗ NO</strong> → Continue below</p>
-                </div>
+            <h2>☢️ Application 2: Radioactive Decay & Half-Lives</h2>
 
-                <div style="text-align: center; font-size: 1.5em; color: var(--primary); margin: 15px 0;">↓</div>
+            <div class="app-card real-world">
+                <div class="app-icon">🔬</div>
+                <h3>Carbon Dating Problem</h3>
+                <p><strong>Scenario:</strong> An artifact has 25% of its original C-14. Carbon-14 has a half-life of 5,730 years. How old is the artifact?</p>
 
-                <div class="flow-step">
-                    <div class="flow-question">❓ Are there products/quotients of powers?</div>
-                    <p style="margin-top: 10px;"><strong style="color: var(--secondary);">✓ YES</strong> → Use <strong>Method 2: Laws of Indices</strong></p>
-                    <p><strong style="color: var(--danger);">✗ NO</strong> → Continue below</p>
-                </div>
+                <div class="formula-box">N = N₀(0.5)<sup>t/T</sup></div>
 
-                <div style="text-align: center; font-size: 1.5em; color: var(--primary); margin: 15px 0;">↓</div>
-
-                <div class="flow-step">
-                    <div class="flow-question">❓ Is it a quadratic form (e.g., a<sup>2x</sup>)?</div>
-                    <p style="margin-top: 10px;"><strong style="color: var(--secondary);">✓ YES</strong> → Use <strong>Substitution (let y = a<sup>x</sup>)</strong></p>
-                    <p><strong style="color: var(--danger);">✗ NO</strong> → Use <strong>Method 3: Logarithmic Form</strong></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>Method 1: Comparison - Detailed Examples</h2>
-
-            <div class="example-box">
-                <h4>Example 1A: Simple Comparison</h4>
-                <p><strong>Solve:</strong> 2<sup>x</sup> = 8</p>
-                <p><strong>Step 1:</strong> Express 8 as a power of 2</p>
-                <p>8 = 2 × 2 × 2 = 2³</p>
-                <p><strong>Step 2:</strong> Rewrite equation: 2<sup>x</sup> = 2³</p>
-                <p><strong>Step 3:</strong> Compare exponents: <strong>x = 3</strong></p>
-            </div>
-
-            <div class="example-box">
-                <h4>Example 1B: Different Bases</h4>
-                <p><strong>Solve:</strong> 9<sup>x</sup> = 27</p>
-                <p><strong>Step 1:</strong> Express both with base 3:</p>
-                <p>9 = 3², 27 = 3³</p>
-                <p><strong>Step 2:</strong> (3²)<sup>x</sup> = 3³</p>
-                <p><strong>Step 3:</strong> 3<sup>2x</sup> = 3³</p>
-                <p><strong>Step 4:</strong> 2x = 3, so <strong>x = 1.5</strong></p>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>Method 2: Laws of Indices - Detailed Examples</h2>
-
-            <div class="example-box">
-                <h4>Example 2A: Product Rule</h4>
-                <p><strong>Solve:</strong> 2<sup>x</sup> × 2³ = 32</p>
-                <p><strong>Step 1:</strong> Apply product rule: a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup></p>
-                <p>2<sup>x+3</sup> = 32</p>
-                <p><strong>Step 2:</strong> Express 32 as power of 2: 32 = 2⁵</p>
-                <p>2<sup>x+3</sup> = 2⁵</p>
-                <p><strong>Step 3:</strong> x + 3 = 5, so <strong>x = 2</strong></p>
-            </div>
-
-            <div class="example-box">
-                <h4>Example 2B: Complex Expression</h4>
-                <p><strong>Solve:</strong> 3<sup>x</sup> ÷ 3² = 27</p>
-                <p><strong>Step 1:</strong> Apply quotient rule: a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m-n</sup></p>
-                <p>3<sup>x-2</sup> = 27 = 3³</p>
-                <p><strong>Step 2:</strong> x - 2 = 3</p>
-                <p><strong>Step 3:</strong> <strong>x = 5</strong></p>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>Method 3: Logarithmic Form - Detailed Examples</h2>
-
-            <div class="example-box">
-                <h4>Example 3A: Basic Logarithmic</h4>
-                <p><strong>Solve:</strong> 5<sup>x</sup> = 100</p>
-                <p><strong>Step 1:</strong> Can we express 100 as power of 5? NO - cannot easily</p>
-                <p><strong>Step 2:</strong> Use logarithmic form: x = log₅(100)</p>
-                <p><strong>Step 3:</strong> Convert to common logarithm: x = log(100)/log(5)</p>
-                <p><strong>Step 4:</strong> Calculate: x = 2/0.699 ≈ <strong>2.86</strong></p>
-            </div>
-
-            <div class="example-box">
-                <h4>Example 3B: Linear Exponent</h4>
-                <p><strong>Solve:</strong> 2<sup>3x+1</sup> = 16</p>
-                <p><strong>Step 1:</strong> Express 16 as power of 2: 16 = 2⁴</p>
-                <p>2<sup>3x+1</sup> = 2⁴</p>
-                <p><strong>Step 2:</strong> Equate exponents: 3x + 1 = 4</p>
-                <p><strong>Step 3:</strong> 3x = 3, so <strong>x = 1</strong></p>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>Quadratic Indicial Equations (Form 5)</h2>
-
-            <div class="example-box">
-                <h4>Example 4: Substitution Method</h4>
-                <p><strong>Solve:</strong> 4<sup>x</sup> - 5(2<sup>x</sup>) + 4 = 0</p>
-                <p><strong>Step 1:</strong> Recognize: 4<sup>x</sup> = (2²)<sup>x</sup> = (2<sup>x</sup>)²</p>
-                <p>Let y = 2<sup>x</sup></p>
-                <p><strong>Step 2:</strong> Equation becomes: y² - 5y + 4 = 0</p>
-                <p><strong>Step 3:</strong> Factor: (y - 4)(y - 1) = 0</p>
-                <p>y = 4 or y = 1</p>
-                <p><strong>Step 4:</strong> Substitute back:</p>
-                <p>If 2<sup>x</sup> = 4 = 2²: x = 2</p>
-                <p>If 2<sup>x</sup> = 1 = 2⁰: x = 0</p>
-                <p><strong>Solutions: x = 0 or x = 2</strong></p>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>Real-World Applications</h2>
-
-            <div class="example-box">
-                <h4>Application 1: Compound Interest</h4>
-                <p><strong>Problem:</strong> An investment grows according to A = P(1.05)<sup>t</sup>. If you invest RM1000 and want it to grow to RM2000, how many years will it take?</p>
-                <p><strong>Solution:</strong> 2000 = 1000(1.05)<sup>t</sup></p>
-                <p>2 = (1.05)<sup>t</sup></p>
-                <p>t = log(2) / log(1.05) ≈ <strong>14.2 years</strong></p>
-            </div>
-
-            <div class="example-box">
-                <h4>Application 2: Radioactive Decay</h4>
-                <p><strong>Problem:</strong> N = N₀(0.5)<sup>t/T</sup> where T = 5730 years. After 11,460 years, what fraction remains?</p>
-                <p><strong>Solution:</strong> N = N₀(0.5)<sup>11460/5730</sup> = N₀(0.5)² = N₀ × 0.25 = <strong>1/4 of original</strong></p>
-            </div>
-
-            <div class="example-box">
-                <h4>Application 3: Bacterial Growth</h4>
-                <p><strong>Problem:</strong> Bacteria double every 3 hours. Starting with 100, when will we have 6400?</p>
-                <p><strong>Solution:</strong> 6400 = 100 × 2<sup>t/3</sup></p>
-                <p>64 = 2<sup>t/3</sup> = 2⁶</p>
-                <p>t/3 = 6, so <strong>t = 18 hours</strong></p>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>⚠️ Common Mistakes & 💡 Tips</h2>
-
-            <div class="tips-grid">
-                <div class="tip-box mistakes">
-                    <h4>⚠️ Common Mistakes</h4>
-                    <div class="tip-item">
-                        <strong>Forgetting to apply laws consistently:</strong> If you have a<sup>m</sup> × a<sup>n</sup>, you must add the exponents, not multiply them.
-                    </div>
-                    <div class="tip-item">
-                        <strong>Mixing up bases:</strong> 2<sup>x</sup> = 8 is NOT the same as 2<sup>x</sup> = 9. Make sure you express both sides with truly the same base.
-                    </div>
-                    <div class="tip-item">
-                        <strong>Ignoring quadratic solutions:</strong> When using substitution, remember you might get TWO values for x, not just one.
-                    </div>
-                    <div class="tip-item">
-                        <strong>Calculator errors:</strong> When using logarithms, use log(a)/log(b), NOT log(a/b).
-                    </div>
-                    <div class="tip-item">
-                        <strong>Not checking negative results:</strong> Some methods might give negative exponents - these are valid!
+                <div class="example-box">
+                    <h4>Solution Steps:</h4>
+                    <div class="steps">
+                        <div class="step"><span class="step-number">1</span> Set up: 0.25 = (0.5)<sup>t/5730</sup></div>
+                        <div class="step"><span class="step-number">2</span> Note: 0.25 = (0.5)²</div>
+                        <div class="step"><span class="step-number">3</span> So: (0.5)² = (0.5)<sup>t/5730</sup></div>
+                        <div class="step"><span class="step-number">4</span> Therefore: t/5730 = 2</div>
+                        <div class="step"><span class="step-number">5</span> Calculate: t = <strong>11,460 years</strong></div>
                     </div>
                 </div>
 
-                <div class="tip-box tips">
-                    <h4>💡 Quick Tips</h4>
-                    <div class="tip-item">
-                        <strong>Try comparison first:</strong> It's the simplest if it works!
-                    </div>
-                    <div class="tip-item">
-                        <strong>Memorize key powers:</strong> Know 2⁰, 2¹, 2², 2³, 2⁴, 2⁵, 2⁶, 2⁷, 2⁸, 2¹⁰ and 3⁰, 3¹, 3², 3³, 3⁴, 3⁵
-                    </div>
-                    <div class="tip-item">
-                        <strong>Look for patterns:</strong> If you see a<sup>2x</sup> or a<sup>3x</sup> with a corresponding a<sup>x</sup> term, think SUBSTITUTION.
-                    </div>
-                    <div class="tip-item">
-                        <strong>Verify your answer:</strong> Substitute back into the original equation to check!
-                    </div>
-                    <div class="tip-item">
-                        <strong>Use logarithm as last resort:</strong> It's powerful but might give non-integer answers.
-                    </div>
+                <button class="toggle-button" onclick="toggleSolution(this)">Real-World Connection</button>
+                <div class="solution">
+                    <strong>Archaeology & Geology:</strong> Carbon dating allows scientists to determine the age of ancient artifacts, fossils, and geological samples. This exponential decay model is fundamental to understanding Earth's history, dating archaeological discoveries, and validating historical timelines.
                 </div>
             </div>
         </div>
 
         <div class="card">
-            <h2>📋 Reference: Laws of Indices</h2>
-            <div class="formulas">
-                <h3>Essential Laws</h3>
-                <table class="reference-table">
-                    <thead>
-                        <tr>
-                            <th>Law</th>
-                            <th>Formula</th>
-                            <th>Example</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Product</td>
-                            <td>a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup></td>
-                            <td>2³ × 2² = 2⁵ = 32</td>
-                        </tr>
-                        <tr>
-                            <td>Quotient</td>
-                            <td>a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m-n</sup></td>
-                            <td>3⁵ ÷ 3² = 3³ = 27</td>
-                        </tr>
-                        <tr>
-                            <td>Power of Power</td>
-                            <td>(a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup></td>
-                            <td>(2³)² = 2⁶ = 64</td>
-                        </tr>
-                        <tr>
-                            <td>Zero Power</td>
-                            <td>a⁰ = 1</td>
-                            <td>5⁰ = 1</td>
-                        </tr>
-                        <tr>
-                            <td>Negative Power</td>
-                            <td>a<sup>-n</sup> = 1/a<sup>n</sup></td>
-                            <td>2⁻³ = 1/8</td>
-                        </tr>
-                        <tr>
-                            <td>Fractional Power</td>
-                            <td>a<sup>m/n</sup> = ⁿ√(a<sup>m</sup>)</td>
-                            <td>8<sup>2/3</sup> = ³√(8²) = 4</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <h2>🦠 Application 3: Microbial & Population Growth</h2>
+
+            <div class="app-card real-world">
+                <div class="app-icon">🧬</div>
+                <h3>Bacterial Culture Problem</h3>
+                <p><strong>Scenario:</strong> Bacteria double every 3 hours. Starting with 100 cells, when will you have 6,400 cells?</p>
+
+                <div class="formula-box">N = N₀ × 2<sup>t/d</sup></div>
+
+                <div class="example-box">
+                    <h4>Solution Steps:</h4>
+                    <div class="steps">
+                        <div class="step"><span class="step-number">1</span> Set up: 6400 = 100 × 2<sup>t/3</sup></div>
+                        <div class="step"><span class="step-number">2</span> Divide: 64 = 2<sup>t/3</sup></div>
+                        <div class="step"><span class="step-number">3</span> Note: 64 = 2⁶</div>
+                        <div class="step"><span class="step-number">4</span> So: 2⁶ = 2<sup>t/3</sup></div>
+                        <div class="step"><span class="step-number">5</span> Therefore: t/3 = 6, so t = <strong>18 hours</strong></div>
+                    </div>
+                </div>
+
+                <button class="toggle-button" onclick="toggleSolution(this)">Medical & Food Safety</button>
+                <div class="solution">
+                    <strong>Critical Applications:</strong> Understanding exponential growth is vital for food safety, infection control, and antibiotics research. If bacteria double every 20 minutes at room temperature, food can become unsafe in just a few hours. This exponential model helps determine safe storage times and explains why hospitals maintain strict hygiene protocols.
+                </div>
             </div>
         </div>
 
         <div class="card">
-            <h2>📝 Practice Problems</h2>
+            <h2>⚡ Application 4: Electronics & Cooling</h2>
 
-            <div class="practice-problem">
-                <h4>Problem 1: Comparison Method</h4>
-                <span class="difficulty easy">Easy</span>
-                <p><strong>Solve:</strong> 3<sup>x</sup> = 81</p>
+            <div class="app-card real-world">
+                <div class="app-icon">🔌</div>
+                <h3>Capacitor Discharge Problem</h3>
+                <p><strong>Scenario:</strong> A capacitor discharges according to V = V₀e<sup>-t/RC</sup>. When does voltage drop to 37% of original? (Time constant τ = RC)</p>
+
+                <div class="formula-box">V = V₀ × e<sup>-t/τ</sup></div>
+
+                <div class="example-box">
+                    <h4>Solution Steps:</h4>
+                    <div class="steps">
+                        <div class="step"><span class="step-number">1</span> Set up: 0.37 = e<sup>-t/τ</sup></div>
+                        <div class="step"><span class="step-number">2</span> Take natural log: ln(0.37) = -t/τ</div>
+                        <div class="step"><span class="step-number">3</span> Note: e⁻¹ ≈ 0.368 ≈ 0.37</div>
+                        <div class="step"><span class="step-number">4</span> Therefore: t ≈ <strong>1 time constant (τ)</strong></div>
+                    </div>
+                </div>
+
+                <button class="toggle-button" onclick="toggleSolution(this)">Engineering Impact</button>
+                <div class="solution">
+                    <strong>Electrical Design:</strong> Engineers use this exponential decay model to design circuits with specific response times. In flash photography, the capacitor must discharge quickly enough to produce a bright flash but safely. In power supplies, the decay rate determines how quickly a device powers down. Understanding this equation is essential for designing reliable electronics.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📊 Solving Indicial Equations: Core Methods</h2>
+
+            <div class="app-grid">
+                <div class="app-card theory">
+                    <h3>Method 1: Same Base</h3>
+                    <p>If 2<sup>x</sup> = 2⁵, then x = 5</p>
+                    <p><small>Use when both sides can have the same base</small></p>
+                </div>
+
+                <div class="app-card theory">
+                    <h3>Method 2: Laws of Indices</h3>
+                    <p>Combine using: a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup></p>
+                    <p><small>Use for products/quotients of powers</small></p>
+                </div>
+
+                <div class="app-card theory">
+                    <h3>Method 3: Logarithms</h3>
+                    <p>If 5<sup>x</sup> = 100, then x = log₅(100)</p>
+                    <p><small>Use when bases don't match</small></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>💡 Key Insight: When to Use Which Method</h2>
+            <p><strong>Start with the SIMPLEST method:</strong></p>
+            <ul style="margin-left: 20px; margin-top: 15px;">
+                <li>✓ Can you rewrite both sides with the same base? → Use Method 1</li>
+                <li>✓ Do you see products/quotients? → Use Method 2</li>
+                <li>✓ Neither works? → Use logarithms (Method 3)</li>
+            </ul>
+            <p style="margin-top: 15px;"><em>Real applications often have messy numbers that require logarithms, just like the finance example (1.05<sup>t</sup> = 2) above.</em></p>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Practice: Apply Your Knowledge</h2>
+
+            <div class="example-box">
+                <h4>Challenge 1: Medication Metabolism</h4>
+                <p><strong>Problem:</strong> A medication half-life is 6 hours. After 18 hours, what fraction remains?</p>
                 <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
                 <div class="solution">
-                    3<sup>x</sup> = 81 = 3⁴<br>
-                    Therefore x = 4
+                    Remaining = (0.5)^(18/6) = (0.5)³ = 1/8<br>
+                    <strong>Answer: 12.5% remains (or 1/8 of original)</strong>
                 </div>
             </div>
 
-            <div class="practice-problem">
-                <h4>Problem 2: Logarithm Method</h4>
-                <span class="difficulty easy">Easy</span>
-                <p><strong>Solve:</strong> 2<sup>x</sup> = 50</p>
-                <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+            <div class="example-box">
+                <h4>Challenge 2: Cooling Coffee</h4>
+                <p><strong>Problem:</strong> Hot coffee at 80°C cools to 40°C in 30 minutes (room temperature 20°C). Using T = T_room + (T₀ - T_room)e^(-kt), what is the temperature after 1 hour?</p>
+                <button class="toggle-button" onclick="toggleSolution(this)">Hint</button>
                 <div class="solution">
-                    log(2<sup>x</sup>) = log(50)<br>
-                    x × log(2) = log(50)<br>
-                    x = log(50) / log(2) ≈ 5.64
+                    After 30 min: 40 = 20 + 60e^(-30k)<br>
+                    This gives e^(-30k) = 1/3<br>
+                    After 60 min: T = 20 + 60(1/3)² = 20 + 60/9 ≈ 26.7°C
                 </div>
             </div>
-
-            <div class="practice-problem">
-                <h4>Problem 3: Laws of Indices</h4>
-                <span class="difficulty medium">Medium</span>
-                <p><strong>Solve:</strong> 2<sup>2x+1</sup> = 32</p>
-                <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-                <div class="solution">
-                    2<sup>2x+1</sup> = 32 = 2⁵<br>
-                    2x + 1 = 5<br>
-                    2x = 4<br>
-                    x = 2
-                </div>
-            </div>
-
-            <div class="practice-problem">
-                <h4>Problem 4: Quadratic Form (Form 5)</h4>
-                <span class="difficulty hard">Hard</span>
-                <p><strong>Solve:</strong> 9<sup>x</sup> - 10(3<sup>x</sup>) + 9 = 0</p>
-                <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-                <div class="solution">
-                    Let y = 3<sup>x</sup>, so 9<sup>x</sup> = y²<br>
-                    y² - 10y + 9 = 0<br>
-                    (y - 1)(y - 9) = 0<br>
-                    y = 1 or y = 9<br>
-                    3<sup>x</sup> = 1 ⟹ x = 0<br>
-                    3<sup>x</sup> = 9 = 3² ⟹ x = 2<br>
-                    Solutions: x = 0, 2
-                </div>
-            </div>
-        </div>
-
-        <div class="app-link">
-            <p>🎯 Want interactive practice with step-by-step guidance?</p>
-            <p style="margin-top: 10px;">Open the full <a href="SOLUTION OF INDICES AND LOGARITHMS.html" target="_blank">Interactive Learning App →</a></p>
         </div>
 
         <div class="navigation">
@@ -632,7 +389,7 @@
         function toggleSolution(button) {
             const solution = button.nextElementSibling;
             solution.classList.toggle('show');
-            button.textContent = solution.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+            button.textContent = solution.classList.contains('show') ? 'Hide Details' : 'Show Details';
         }
     </script>
 </body>
