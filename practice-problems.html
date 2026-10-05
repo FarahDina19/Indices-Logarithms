@@ -1,0 +1,542 @@
+<title>Practice Problems & Solutions</title>
+
+<style>
+:root {
+  --bg: #fafbfc;
+  --fg: #1a2332;
+  --accent: #4f46e5;
+  --accent-light: #eef2ff;
+  --border: #e0e6ed;
+  --text-muted: #667085;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1419;
+    --fg: #e8eaed;
+    --accent: #a78bfa;
+    --accent-light: #3730a3;
+    --border: #2d3748;
+    --text-muted: #a0aec0;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0f1419;
+  --fg: #e8eaed;
+  --accent: #a78bfa;
+  --accent-light: #3730a3;
+  --border: #2d3748;
+  --text-muted: #a0aec0;
+  color-scheme: dark;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+header {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+  color: white;
+  padding: 40px 20px;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+header h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+.subtitle { font-size: 1.1em; opacity: 0.9; }
+
+.breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+.breadcrumb a { color: var(--accent); text-decoration: none; }
+
+.card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+h2 {
+  font-size: 1.8em;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  color: var(--accent);
+  border-bottom: 3px solid var(--accent-light);
+  padding-bottom: 0.5rem;
+}
+
+.practice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.practice-unit-card {
+  background: var(--accent-light);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-decoration: none;
+  color: var(--fg);
+  transition: all 0.3s;
+}
+
+.practice-unit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(79, 70, 229, 0.2);
+  border-color: var(--accent);
+}
+
+.practice-unit-card h3 {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  font-size: 1.3em;
+}
+
+.practice-unit-card .count {
+  background: var(--accent);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.difficulty-filter {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.difficulty-btn {
+  padding: 0.6rem 1.2rem;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.difficulty-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.difficulty-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.difficulty {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.difficulty.easy { background: #059669; }
+.difficulty.medium { background: #d97706; }
+.difficulty.hard { background: #dc2626; }
+
+.practice-problem {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.practice-problem h4 {
+  color: var(--fg);
+  margin-bottom: 0.5rem;
+}
+
+.toggle-button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.solution {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--accent-light);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  display: none;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+}
+
+.solution.show { display: block; }
+
+.quick-ref {
+  background: var(--accent-light);
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.quick-ref h3 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.quick-ref table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.quick-ref td, .quick-ref th {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.quick-ref th {
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+}
+
+.navigation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.nav-button {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--fg);
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-button:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+.nav-label { font-size: 0.85rem; color: var(--text-muted); }
+.nav-title { color: var(--accent); font-weight: 600; }
+
+@media (max-width: 768px) {
+  header h1 { font-size: 1.8em; }
+  .practice-grid { grid-template-columns: 1fr; }
+  .navigation { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> / Practice Problems
+  </div>
+
+  <header>
+    <h1>Practice Problems & Solutions</h1>
+    <p class="subtitle">Master Indices & Logarithms through comprehensive practice problems and detailed solutions</p>
+  </header>
+
+  <div class="card">
+    <h2>Practice by Unit</h2>
+    <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Select a unit to practice problems related to that topic. Each unit includes problems of varying difficulty levels with complete solutions.</p>
+
+    <div class="practice-grid">
+      <a href="course-unit-4-1.html#practice" class="practice-unit-card">
+        <h3>Unit 4.1</h3>
+        <p>Indices & Laws of Indices</p>
+        <span class="count">5 Problems</span>
+      </a>
+
+      <a href="course-unit-4-2.html#practice" class="practice-unit-card">
+        <h3>Unit 4.2</h3>
+        <p>Logarithms & Laws</p>
+        <span class="count">3 Problems</span>
+      </a>
+
+      <a href="course-unit-4-3.html#practice" class="practice-unit-card">
+        <h3>Unit 4.3</h3>
+        <p>Conversion Forms</p>
+        <span class="count">4 Problems</span>
+      </a>
+
+      <a href="course-unit-4-4.html#practice" class="practice-unit-card">
+        <h3>Unit 4.4</h3>
+        <p>Indicial Equations</p>
+        <span class="count">4 Problems</span>
+      </a>
+
+      <a href="course-unit-4-5.html#practice" class="practice-unit-card">
+        <h3>Unit 4.5</h3>
+        <p>Logarithmic Equations</p>
+        <span class="count">5 Problems</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Comprehensive Problem Set</h2>
+    <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Select difficulty level to filter problems across all units.</p>
+
+    <div class="difficulty-filter">
+      <button class="difficulty-btn active" onclick="filterByDifficulty('all')">All Levels</button>
+      <button class="difficulty-btn" onclick="filterByDifficulty('easy')">🟢 Easy</button>
+      <button class="difficulty-btn" onclick="filterByDifficulty('medium')">🟡 Medium</button>
+      <button class="difficulty-btn" onclick="filterByDifficulty('hard')">🔴 Hard</button>
+    </div>
+
+    <div id="problemsContainer">
+      <!-- Unit 4.1 Problems -->
+      <div class="practice-problem" data-difficulty="easy">
+        <span class="difficulty easy">Easy</span>
+        <h4>Problem 1: Basic Index Law</h4>
+        <p>Simplify: <code>a³ × a² ÷ a⁴</code></p>
+        <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+        <div class="solution">
+          Using the law: aᵐ × aⁿ = aᵐ⁺ⁿ and aᵐ ÷ aⁿ = aᵐ⁻ⁿ
+
+          a³ × a² ÷ a⁴ = a³⁺²⁻⁴ = a¹ = a
+        </div>
+      </div>
+
+      <div class="practice-problem" data-difficulty="medium">
+        <span class="difficulty medium">Medium</span>
+        <h4>Problem 2: Power Rule</h4>
+        <p>Simplify: <code>(x²)³ × (x⁻¹)²</code></p>
+        <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+        <div class="solution">
+          Using (aᵐ)ⁿ = aᵐⁿ
+
+          (x²)³ = x⁶
+          (x⁻¹)² = x⁻²
+          x⁶ × x⁻² = x⁶⁻² = x⁴
+        </div>
+      </div>
+
+      <div class="practice-problem" data-difficulty="hard">
+        <span class="difficulty hard">Hard</span>
+        <h4>Problem 3: Complex Indices</h4>
+        <p>Simplify: <code>(2a²b³)³ ÷ (4a³b)²</code></p>
+        <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+        <div class="solution">
+          (2a²b³)³ = 2³ × a⁶ × b⁹ = 8a⁶b⁹
+          (4a³b)² = 16a⁶b²
+
+          8a⁶b⁹ ÷ 16a⁶b² = (8/16) × a⁶⁻⁶ × b⁹⁻² = (1/2)b⁷
+        </div>
+      </div>
+
+      <!-- Unit 4.2 Problems -->
+      <div class="practice-problem" data-difficulty="easy">
+        <span class="difficulty easy">Easy</span>
+        <h4>Problem 4: Logarithm Basics</h4>
+        <p>Evaluate: <code>log₂(8)</code></p>
+        <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+        <div class="solution">
+          We need to find x where 2ˣ = 8
+          Since 8 = 2³, x = 3
+          Therefore log₂(8) = 3
+        </div>
+      </div>
+
+      <div class="practice-problem" data-difficulty="medium">
+        <span class="difficulty medium">Medium</span>
+        <h4>Problem 5: Log Laws</h4>
+        <p>Expand: <code>log(x²y/z)</code></p>
+        <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+        <div class="solution">
+          log(x²y/z) = log(x²y) - log(z)
+          = log(x²) + log(y) - log(z)
+          = 2log(x) + log(y) - log(z)
+        </div>
+      </div>
+
+      <!-- Unit 4.3 Problems -->
+      <div class="practice-problem" data-difficulty="easy">
+        <span class="difficulty easy">Easy</span>
+        <h4>Problem 6: Conversion Basics</h4>
+        <p>Convert to logarithmic form: <code>3⁴ = 81</code></p>
+        <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+        <div class="solution">
+          Using a ˣ = b ⟺ log_a(b) = x
+
+          3⁴ = 81
+          log₃(81) = 4
+        </div>
+      </div>
+
+      <!-- Unit 4.4 Problems -->
+      <div class="practice-problem" data-difficulty="medium">
+        <span class="difficulty medium">Medium</span>
+        <h4>Problem 7: Indicial Equation</h4>
+        <p>Solve: <code>2^x = 32</code></p>
+        <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+        <div class="solution">
+          Express 32 as a power of 2: 32 = 2⁵
+
+          2^x = 2⁵
+          x = 5
+        </div>
+      </div>
+
+      <!-- Unit 4.5 Problems -->
+      <div class="practice-problem" data-difficulty="medium">
+        <span class="difficulty medium">Medium</span>
+        <h4>Problem 8: Logarithmic Equation</h4>
+        <p>Solve: <code>log₃(x) = 2</code></p>
+        <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+        <div class="solution">
+          Convert to exponential form:
+          log₃(x) = 2
+          3² = x
+          x = 9
+        </div>
+      </div>
+
+      <div class="practice-problem" data-difficulty="hard">
+        <span class="difficulty hard">Hard</span>
+        <h4>Problem 9: Complex Logarithmic Equation</h4>
+        <p>Solve: <code>log₂(x) + log₂(x-2) = 3</code></p>
+        <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+        <div class="solution">
+          Using product rule: log₂[x(x-2)] = 3
+
+          x(x-2) = 2³ = 8
+          x² - 2x - 8 = 0
+          (x-4)(x+2) = 0
+          x = 4 or x = -2
+
+          Since x must be positive: x = 4
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Quick Reference Guide</h2>
+
+    <div class="quick-ref">
+      <h3>Laws of Indices</h3>
+      <table>
+        <tr>
+          <th>Law</th>
+          <th>Form</th>
+        </tr>
+        <tr>
+          <td>Product</td>
+          <td>aᵐ × aⁿ = aᵐ⁺ⁿ</td>
+        </tr>
+        <tr>
+          <td>Quotient</td>
+          <td>aᵐ ÷ aⁿ = aᵐ⁻ⁿ</td>
+        </tr>
+        <tr>
+          <td>Power</td>
+          <td>(aᵐ)ⁿ = aᵐⁿ</td>
+        </tr>
+        <tr>
+          <td>Product Power</td>
+          <td>(ab)ⁿ = aⁿbⁿ</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="quick-ref">
+      <h3>Laws of Logarithms</h3>
+      <table>
+        <tr>
+          <th>Law</th>
+          <th>Form</th>
+        </tr>
+        <tr>
+          <td>Product</td>
+          <td>log_a(xy) = log_a(x) + log_a(y)</td>
+        </tr>
+        <tr>
+          <td>Quotient</td>
+          <td>log_a(x/y) = log_a(x) - log_a(y)</td>
+        </tr>
+        <tr>
+          <td>Power</td>
+          <td>log_a(x^n) = n × log_a(x)</td>
+        </tr>
+        <tr>
+          <td>Change of Base</td>
+          <td>log_a(x) = log_b(x) / log_b(a)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="navigation">
+    <a href="index.html" class="nav-button">
+      <span class="nav-label">← Back to</span>
+      <span class="nav-title">Home</span>
+    </a>
+    <a href="course-unit-4-1.html" class="nav-button">
+      <span class="nav-label">Start with</span>
+      <span class="nav-title">Unit 4.1</span>
+    </a>
+  </div>
+</div>
+
+<script>
+function toggleSolution(button) {
+  const solution = button.nextElementSibling;
+  solution.classList.toggle('show');
+  button.textContent = solution.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+}
+
+function filterByDifficulty(level) {
+  const problems = document.querySelectorAll('.practice-problem');
+  const buttons = document.querySelectorAll('.difficulty-btn');
+
+  buttons.forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+
+  problems.forEach(problem => {
+    if (level === 'all') {
+      problem.style.display = 'block';
+    } else {
+      const hasDifficulty = problem.querySelector(`.difficulty.${level}`);
+      problem.style.display = hasDifficulty ? 'block' : 'none';
+    }
+  });
+}
+</script>
