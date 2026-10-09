@@ -1,121 +1,212 @@
-<title>Unit 4.1: Indices and Law of Indices</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4.1: Indices and Law of Indices - Comprehensive Learning</title>
 
 <style>
 :root {
-  --bg: #fafbfc;
-  --fg: #1a2332;
-  --accent: #4f46e5;
-  --accent-light: #eef2ff;
-  --border: #e0e6ed;
-  --text-muted: #667085;
-  --success: #059669;
-  --warning: #d97706;
+  --primary-color: #6366f1;
+  --secondary-color: #10b981;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #06b6d4;
+  --purple-color: #a855f7;
+
+  --background-light: #f9fafb;
+  --background-card: #ffffff;
+  --text-dark: #1f2937;
+  --text-medium: #4b5563;
+  --text-light: #6b7280;
+
+  --method1-color: #3b82f6;
+  --method2-color: #8b5cf6;
+  --method3-color: #ec4899;
+  --highlight-color: #fef3c7;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0f1419;
-    --fg: #e8eaed;
-    --accent: #a78bfa;
-    --accent-light: #3730a3;
-    --border: #2d3748;
-    --text-muted: #a0aec0;
-    --success: #10b981;
-    --warning: #f59e0b;
+    --background-light: #0f1419;
+    --background-card: #1a1f2e;
+    --text-dark: #e8eaed;
+    --text-medium: #a0aec0;
+    --text-light: #6b7280;
     color-scheme: dark;
   }
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--text-dark);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   font-size: 16px;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: var(--background-light);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
 
 header {
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 40px 20px;
-  margin-bottom: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 40px 30px;
+  text-align: center;
 }
 
 header h1 {
-  font-size: 2.4em;
-  font-weight: 800;
-  margin-bottom: 8px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
-.subtitle { font-size: 1.1em; opacity: 0.9; }
-
-.breadcrumb {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.95;
+  margin-bottom: 20px;
 }
 
-.breadcrumb a {
-  color: var(--accent);
-  text-decoration: none;
+.learning-objectives {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: left;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.learning-objectives h3 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.learning-objectives ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.learning-objectives li {
+  padding: 8px 0;
+  padding-left: 30px;
+  position: relative;
+  color: white;
+}
+
+.learning-objectives li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.tab-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background: white;
+  border-bottom: 2px solid #e5e7eb;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 12px 30px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  color: var(--text-dark);
+}
+
+.tab-btn:hover, .tab-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.content-section {
+  display: none;
+  padding: 30px;
+}
+
+.content-section.active {
+  display: block;
 }
 
 .card {
-  background: var(--bg);
-  border: 1px solid var(--border);
+  background: var(--background-card);
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
   padding: 28px;
   margin-bottom: 24px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-md);
 }
 
 h2 {
   font-size: 1.8em;
   font-weight: 700;
   margin: 0 0 1.5rem 0;
-  color: var(--accent);
-  border-bottom: 3px solid var(--accent-light);
+  color: var(--primary-color);
+  border-bottom: 3px solid #eef2ff;
   padding-bottom: 0.5rem;
 }
 
-h3 { font-size: 1.3em; font-weight: 700; margin: 1.5rem 0 1rem 0; color: var(--accent); }
-
-.law-buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.law-btn {
-  padding: 16px 14px;
-  border: 3px solid var(--border);
-  border-radius: 12px;
-  background: var(--bg);
-  cursor: pointer;
-  transition: all 0.3s;
-  text-align: center;
+h3 {
+  font-size: 1.3em;
   font-weight: 700;
+  margin: 1.5rem 0 1rem 0;
+  color: var(--primary-color);
 }
 
-.law-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-  border-color: var(--accent);
+.solution-method {
+  background: white;
+  border-left: 4px solid var(--primary-color);
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
 }
 
-.law-btn.active {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(79,70,229,0.4);
+.solution-method.method1 { border-left-color: var(--method1-color); }
+.solution-method.method2 { border-left-color: var(--method2-color); }
+.solution-method.method3 { border-left-color: var(--method3-color); }
+
+.method-title {
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-bottom: 12px;
+  color: var(--text-dark);
 }
+
+.method1 .method-title { color: var(--method1-color); }
+.method2 .method-title { color: var(--method2-color); }
+.method3 .method-title { color: var(--method3-color); }
 
 .law-formula { font-size: 0.9em; opacity: 0.8; margin-top: 4px; }
 
@@ -127,8 +218,8 @@ h3 { font-size: 1.3em; font-weight: 700; margin: 1.5rem 0 1rem 0; color: var(--a
 }
 
 .term-card {
-  background: var(--accent-light);
-  border: 2px solid var(--accent);
+  background: #eef2ff;
+  border: 2px solid var(--primary-color);
   border-radius: 12px;
   padding: 16px;
   text-align: center;
@@ -137,14 +228,35 @@ h3 { font-size: 1.3em; font-weight: 700; margin: 1.5rem 0 1rem 0; color: var(--a
 .term-word {
   font-size: 1.2em;
   font-weight: 800;
-  color: var(--accent);
+  color: var(--primary-color);
   margin-bottom: 4px;
 }
 
 .term-meaning {
   font-size: 0.9em;
-  color: var(--fg);
+  color: var(--text-dark);
   line-height: 1.5;
+}
+
+.step-box {
+  background: #f0f9ff;
+  border-left: 4px solid var(--info-color);
+  padding: 15px;
+  margin: 12px 0;
+  border-radius: 6px;
+}
+
+.step-number {
+  display: inline-block;
+  background: var(--info-color);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 700;
+  margin-right: 10px;
 }
 
 .notation-demo {
@@ -187,15 +299,15 @@ h3 { font-size: 1.3em; font-weight: 700; margin: 1.5rem 0 1rem 0; color: var(--a
 }
 
 .example-box {
-  background: var(--accent-light);
-  border-left: 4px solid var(--accent);
+  background: #eef2ff;
+  border-left: 4px solid var(--primary-color);
   padding: 1.5rem;
   border-radius: 8px;
   margin: 1.5rem 0;
 }
 
 .example-box h4 {
-  color: var(--accent);
+  color: var(--primary-color);
   margin: 0 0 0.5rem 0;
   font-size: 1.1em;
 }
@@ -203,19 +315,19 @@ h3 { font-size: 1.3em; font-weight: 700; margin: 1.5rem 0 1rem 0; color: var(--a
 .example-step {
   margin: 0.75rem 0;
   padding: 0.75rem 0 0.75rem 1rem;
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--primary-color);
 }
 
 .formula-card {
   padding: 1.5rem;
-  background: var(--accent-light);
+  background: #eef2ff;
   border-radius: 8px;
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--primary-color);
   margin: 1rem 0;
 }
 
 .formula-name {
-  color: var(--accent);
+  color: var(--primary-color);
   font-weight: 700;
   margin-bottom: 0.5rem;
   font-size: 1.1em;
@@ -223,74 +335,19 @@ h3 { font-size: 1.3em; font-weight: 700; margin: 1.5rem 0 1rem 0; color: var(--a
 
 code {
   display: block;
-  background: var(--bg);
+  background: #f3f4f6;
   padding: 0.75rem;
   border-radius: 4px;
   overflow-x: auto;
   margin: 0.5rem 0;
   font-family: 'Courier New', monospace;
   font-size: 0.95em;
-}
-
-.app-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
-  margin: 1.5rem 0;
-}
-
-.app-card {
-  background: var(--bg);
-  border: 2px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 12px;
-  text-align: center;
-  transition: transform 0.2s;
-}
-
-.app-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-
-.app-emoji { font-size: 2em; margin-bottom: 8px; }
-.app-title { font-weight: 800; font-size: 0.9em; color: var(--fg); margin-bottom: 4px; }
-.app-example { font-size: 0.8em; color: var(--text-muted); line-height: 1.4; }
-.app-value { font-size: 1.1em; font-weight: 900; color: var(--accent); margin-top: 4px; }
-
-.slider-group { margin-bottom: 22px; }
-.slider-label {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-weight: 700;
-}
-
-.slider-value {
-  font-size: 1.4em;
-  color: var(--accent);
-  font-weight: 900;
-}
-
-input[type="range"] {
-  width: 100%;
-  height: 8px;
-  border-radius: 5px;
-  background: var(--border);
-  outline: none;
-  -webkit-appearance: none;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--accent);
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  color: var(--text-dark);
 }
 
 .practice-problem {
-  background: var(--bg);
-  border: 1px solid var(--border);
+  background: var(--background-card);
+  border: 1px solid #e5e7eb;
   padding: 1.5rem;
   border-radius: 8px;
   margin: 1rem 0;
@@ -306,12 +363,12 @@ input[type="range"]::-webkit-slider-thumb {
   color: white;
 }
 
-.difficulty.easy { background: var(--success); }
-.difficulty.medium { background: var(--warning); }
-.difficulty.hard { background: #dc2626; }
+.difficulty.easy { background: var(--secondary-color); }
+.difficulty.medium { background: var(--warning-color); }
+.difficulty.hard { background: var(--danger-color); }
 
 .toggle-button {
-  background: var(--accent);
+  background: var(--primary-color);
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -324,369 +381,347 @@ input[type="range"]::-webkit-slider-thumb {
 
 .toggle-button:hover {
   opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .solution {
   margin-top: 1rem;
   padding: 1rem;
-  background: var(--border);
+  background: #f3f4f6;
   border-radius: 4px;
   display: none;
   font-family: 'Courier New', monospace;
+  border-left: 4px solid var(--secondary-color);
 }
 
 .solution.show { display: block; }
 
-.navigation {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
+.content {
+  padding: 30px;
 }
-
-.nav-button {
-  padding: 1rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  text-decoration: none;
-  color: var(--fg);
-  transition: all 0.2s;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.nav-button:hover {
-  background: var(--accent-light);
-  border-color: var(--accent);
-}
-
-.nav-label { font-size: 0.85rem; color: var(--text-muted); }
-.nav-title { color: var(--accent); font-weight: 600; }
 
 @media (max-width: 768px) {
   header h1 { font-size: 1.8em; }
   .notation-labels { gap: 30px; }
-  .navigation { grid-template-columns: 1fr; }
+  .tab-navigation { flex-direction: column; }
+  .tab-btn { width: 100%; }
 }
 </style>
 
-<div class="container">
-  <div class="breadcrumb">
-    <a href="index.html">Courses</a> / Unit 4.1
-  </div>
-
+<div class="main-container">
   <header>
     <h1>Unit 4.1: Indices and Law of Indices</h1>
     <p class="subtitle">Master exponential notation and the fundamental laws governing indices</p>
+    <div class="learning-objectives">
+      <h3>Learning Objectives</h3>
+      <ul>
+        <li>Understand exponential notation and terminology (base, exponent, power)</li>
+        <li>Apply the 8 laws of indices to simplify expressions</li>
+        <li>Work with integer, fractional, and negative indices</li>
+        <li>Solve simple indicial equations</li>
+        <li>Master step-by-step problem-solving techniques</li>
+      </ul>
+    </div>
   </header>
 
-  <!-- Learning Objectives -->
-  <div class="card">
-    <h2>Learning Objectives</h2>
-    <div style="display: grid; gap: 1rem;">
-      <div style="padding: 1rem; background: var(--accent-light); border-radius: 8px; border-left: 4px solid var(--accent);">
-        <strong>✓</strong> Understand exponential notation and terminology (base, exponent, power)
-      </div>
-      <div style="padding: 1rem; background: var(--accent-light); border-radius: 8px; border-left: 4px solid var(--accent);">
-        <strong>✓</strong> Apply the 8 laws of indices to simplify expressions
-      </div>
-      <div style="padding: 1rem; background: var(--accent-light); border-radius: 8px; border-left: 4px solid var(--accent);">
-        <strong>✓</strong> Work with integer, fractional, and negative indices
-      </div>
-      <div style="padding: 1rem; background: var(--accent-light); border-radius: 8px; border-left: 4px solid var(--accent);">
-        <strong>✓</strong> Solve simple indicial equations
-      </div>
-    </div>
+  <div class="tab-navigation">
+    <button class="tab-btn active" onclick="switchTab('fundamentals')">Fundamentals</button>
+    <button class="tab-btn" onclick="switchTab('laws')">Laws of Indices</button>
+    <button class="tab-btn" onclick="switchTab('solutions')">Step-by-Step Solutions</button>
+    <button class="tab-btn" onclick="switchTab('practice')">Practice Problems</button>
   </div>
 
-  <!-- Introduction -->
-  <div class="card">
-    <h2>What Are Indices?</h2>
-    <p>An index (or exponent) tells us how many times a number (the base) is multiplied by itself.</p>
-    <p><strong>General form:</strong> a<sup>n</sup> where <em>a</em> is the base and <em>n</em> is the index</p>
+  <div class="content">
+    <!-- FUNDAMENTALS TAB -->
+    <div id="fundamentals" class="content-section active">
 
-    <div class="notation-demo">
-      <div class="notation-big">3<sup>4</sup></div>
-      <div class="notation-labels">
-        <div class="notation-label">
-          <span>3</span>
-          Base
-        </div>
-        <div class="notation-label">
-          <span>4</span>
-          Index/Exponent
+      <div class="card">
+        <h2>What Are Indices?</h2>
+        <p>An index (or exponent) tells us how many times a number (the base) is multiplied by itself.</p>
+        <p><strong>General form:</strong> a<sup>n</sup> where <em>a</em> is the base and <em>n</em> is the index</p>
+
+        <div class="notation-demo">
+          <div class="notation-big">3<sup>4</sup></div>
+          <div class="notation-labels">
+            <div class="notation-label">
+              <span>3</span>
+              Base
+            </div>
+            <div class="notation-label">
+              <span>4</span>
+              Index/Exponent
+            </div>
+          </div>
+          <p style="margin-top: 14px; color: #78350f;"><strong>3 × 3 × 3 × 3 = 81</strong></p>
         </div>
       </div>
-      <p style="margin-top: 14px; color: #78350f;"><strong>3 × 3 × 3 × 3 = 81</strong></p>
-    </div>
-  </div>
 
-  <!-- Terminology -->
-  <div class="card">
-    <h2>Key Terminology</h2>
-    <div class="term-grid">
-      <div class="term-card">
-        <div class="term-word">Base</div>
-        <div class="term-meaning">The number being multiplied repeatedly</div>
-      </div>
-      <div class="term-card">
-        <div class="term-word">Index/Exponent</div>
-        <div class="term-meaning">The power showing how many times to multiply</div>
-      </div>
-      <div class="term-card">
-        <div class="term-word">Power</div>
-        <div class="term-meaning">The entire expression (e.g., 3⁴)</div>
-      </div>
-      <div class="term-card">
-        <div class="term-word">Square</div>
-        <div class="term-meaning">A number raised to the power 2</div>
-      </div>
-      <div class="term-card">
-        <div class="term-word">Cube</div>
-        <div class="term-meaning">A number raised to the power 3</div>
-      </div>
-      <div class="term-card">
-        <div class="term-word">Coefficient</div>
-        <div class="term-meaning">The number multiplied by the power</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- The 8 Laws -->
-  <div class="card">
-    <h2>The 8 Laws of Indices</h2>
-
-    <div class="formula-card">
-      <div class="formula-name">Law 1: Multiplication with Same Base</div>
-      <code>a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup></code>
-      <p><small>When multiplying powers with the same base, add the exponents</small></p>
-    </div>
-
-    <div class="formula-card">
-      <div class="formula-name">Law 2: Division with Same Base</div>
-      <code>a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m-n</sup></code>
-      <p><small>When dividing powers with the same base, subtract the exponents</small></p>
-    </div>
-
-    <div class="formula-card">
-      <div class="formula-name">Law 3: Power of a Power</div>
-      <code>(a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup></code>
-      <p><small>When raising a power to another power, multiply the exponents</small></p>
-    </div>
-
-    <div class="formula-card">
-      <div class="formula-name">Law 4: Power of a Product</div>
-      <code>(ab)<sup>n</sup> = a<sup>n</sup>b<sup>n</sup></code>
-      <p><small>Apply the power to each factor in the product</small></p>
-    </div>
-
-    <div class="formula-card">
-      <div class="formula-name">Law 5: Power of a Quotient</div>
-      <code>(a/b)<sup>n</sup> = a<sup>n</sup>/b<sup>n</sup></code>
-      <p><small>Apply the power to both numerator and denominator</small></p>
-    </div>
-
-    <div class="formula-card">
-      <div class="formula-name">Law 6: Zero Index</div>
-      <code>a<sup>0</sup> = 1</code> (where a ≠ 0)
-      <p><small>Any non-zero number to the power 0 equals 1</small></p>
-    </div>
-
-    <div class="formula-card">
-      <div class="formula-name">Law 7: Negative Index</div>
-      <code>a<sup>-n</sup> = 1/a<sup>n</sup></code>
-      <p><small>A negative exponent means "take the reciprocal"</small></p>
-    </div>
-
-    <div class="formula-card">
-      <div class="formula-name">Law 8: Fractional Index</div>
-      <code>a<sup>m/n</sup> = <sup>n</sup>√(a<sup>m</sup>)</code>
-      <p><small>Fractional exponents represent roots</small></p>
-    </div>
-  </div>
-
-  <!-- Interactive Slider -->
-  <div class="card">
-    <h2>Interactive: Explore Powers</h2>
-    <div class="slider-group">
-      <div class="slider-label">
-        <span>Base:</span>
-        <span class="slider-value" id="baseValue">2</span>
-      </div>
-      <input type="range" id="baseSlider" min="2" max="10" value="2" oninput="updatePower()">
-    </div>
-    <div class="slider-group">
-      <div class="slider-label">
-        <span>Exponent:</span>
-        <span class="slider-value" id="expValue">1</span>
-      </div>
-      <input type="range" id="expSlider" min="0" max="6" value="1" oninput="updatePower()">
-    </div>
-    <div style="background: var(--accent-light); padding: 1.5rem; border-radius: 8px; text-align: center; margin-top: 1rem;">
-      <p style="margin: 0; font-size: 0.9em; color: var(--text-muted);">Result:</p>
-      <p style="margin: 0.5rem 0 0 0; font-size: 2em; font-weight: 900; color: var(--accent);" id="result">2</p>
-    </div>
-  </div>
-
-  <!-- Real-World Applications -->
-  <div class="card">
-    <h2>Real-World Applications</h2>
-    <div class="app-grid">
-      <div class="app-card">
-        <div class="app-emoji">📱</div>
-        <div class="app-title">Viral Growth</div>
-        <div class="app-example">Video views grow exponentially</div>
-        <div class="app-value">3⁴ = 81 views</div>
-      </div>
-      <div class="app-card">
-        <div class="app-emoji">💰</div>
-        <div class="app-title">Compound Interest</div>
-        <div class="app-example">Money growing over time</div>
-        <div class="app-value">2¹⁰ = 1024x</div>
-      </div>
-      <div class="app-card">
-        <div class="app-emoji">🔬</div>
-        <div class="app-title">Cell Division</div>
-        <div class="app-example">Cells doubling each generation</div>
-        <div class="app-value">2⁶ = 64 cells</div>
-      </div>
-      <div class="app-card">
-        <div class="app-emoji">🌍</div>
-        <div class="app-title">Population</div>
-        <div class="app-example">World population growth</div>
-        <div class="app-value">1.01¹⁰⁰ ≈ 2.7x</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Worked Examples -->
-  <div class="card">
-    <h2>Worked Examples</h2>
-
-    <div class="example-box">
-      <h4>Example 1: Multiplication Rule (Law 1)</h4>
-      <p><strong>Simplify:</strong> x³ × x⁵</p>
-      <div class="example-step">
-        <strong>Solution:</strong><br>
-        Using Law 1: a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup><br>
-        x³ × x⁵ = x<sup>3+5</sup> = <strong>x⁸</strong>
+      <div class="card">
+        <h2>Key Terminology</h2>
+        <div class="term-grid">
+          <div class="term-card">
+            <div class="term-word">Base</div>
+            <div class="term-meaning">The number being multiplied repeatedly</div>
+          </div>
+          <div class="term-card">
+            <div class="term-word">Index/Exponent</div>
+            <div class="term-meaning">The power showing how many times to multiply</div>
+          </div>
+          <div class="term-card">
+            <div class="term-word">Power</div>
+            <div class="term-meaning">The entire expression (e.g., 3⁴)</div>
+          </div>
+          <div class="term-card">
+            <div class="term-word">Square</div>
+            <div class="term-meaning">A number raised to the power 2</div>
+          </div>
+          <div class="term-card">
+            <div class="term-word">Cube</div>
+            <div class="term-meaning">A number raised to the power 3</div>
+          </div>
+          <div class="term-card">
+            <div class="term-word">Coefficient</div>
+            <div class="term-meaning">The number multiplied by the power</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="example-box">
-      <h4>Example 2: Power of a Power (Law 3)</h4>
-      <p><strong>Simplify:</strong> (y²)⁴</p>
-      <div class="example-step">
-        <strong>Solution:</strong><br>
-        Using Law 3: (a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup><br>
-        (y²)⁴ = y<sup>2×4</sup> = <strong>y⁸</strong>
+    <!-- LAWS OF INDICES TAB -->
+    <div id="laws" class="content-section">
+
+      <div class="card">
+        <h2>The 8 Laws of Indices</h2>
+
+        <div class="formula-card">
+          <div class="formula-name">Law 1: Multiplication with Same Base</div>
+          <code>a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup></code>
+          <p><small>When multiplying powers with the same base, add the exponents</small></p>
+        </div>
+
+        <div class="formula-card">
+          <div class="formula-name">Law 2: Division with Same Base</div>
+          <code>a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m-n</sup></code>
+          <p><small>When dividing powers with the same base, subtract the exponents</small></p>
+        </div>
+
+        <div class="formula-card">
+          <div class="formula-name">Law 3: Power of a Power</div>
+          <code>(a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup></code>
+          <p><small>When raising a power to another power, multiply the exponents</small></p>
+        </div>
+
+        <div class="formula-card">
+          <div class="formula-name">Law 4: Power of a Product</div>
+          <code>(ab)<sup>n</sup> = a<sup>n</sup>b<sup>n</sup></code>
+          <p><small>Apply the power to each factor in the product</small></p>
+        </div>
+
+        <div class="formula-card">
+          <div class="formula-name">Law 5: Power of a Quotient</div>
+          <code>(a/b)<sup>n</sup> = a<sup>n</sup>/b<sup>n</sup></code>
+          <p><small>Apply the power to both numerator and denominator</small></p>
+        </div>
+
+        <div class="formula-card">
+          <div class="formula-name">Law 6: Zero Index</div>
+          <code>a<sup>0</sup> = 1</code> (where a ≠ 0)
+          <p><small>Any non-zero number to the power 0 equals 1</small></p>
+        </div>
+
+        <div class="formula-card">
+          <div class="formula-name">Law 7: Negative Index</div>
+          <code>a<sup>-n</sup> = 1/a<sup>n</sup></code>
+          <p><small>A negative exponent means "take the reciprocal"</small></p>
+        </div>
+
+        <div class="formula-card">
+          <div class="formula-name">Law 8: Fractional Index</div>
+          <code>a<sup>m/n</sup> = <sup>n</sup>√(a<sup>m</sup>)</code>
+          <p><small>Fractional exponents represent roots</small></p>
+        </div>
       </div>
     </div>
 
-    <div class="example-box">
-      <h4>Example 3: Negative Exponent (Law 7)</h4>
-      <p><strong>Simplify:</strong> 2⁻³</p>
-      <div class="example-step">
-        <strong>Solution:</strong><br>
-        Using Law 7: a<sup>-n</sup> = 1/a<sup>n</sup><br>
-        2⁻³ = 1/2³ = 1/8 = <strong>0.125</strong>
+    <!-- STEP-BY-STEP SOLUTIONS TAB -->
+    <div id="solutions" class="content-section">
+
+      <div class="card">
+        <h2>Method 1: Using Laws Directly</h2>
+
+        <div class="solution-method method1">
+          <div class="method-title">Example: Simplify x³ × x⁵</div>
+          <div class="step-box">
+            <span class="step-number">1</span>
+            <strong>Identify the Law:</strong> Both terms have the same base (x), and we're multiplying them, so we use Law 1: a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup>
+          </div>
+          <div class="step-box">
+            <span class="step-number">2</span>
+            <strong>Apply the Law:</strong> Add the exponents: x<sup>3+5</sup>
+          </div>
+          <div class="step-box">
+            <span class="step-number">3</span>
+            <strong>Simplify:</strong> x<sup>8</sup>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Method 2: Combined Operations</h2>
+
+        <div class="solution-method method2">
+          <div class="method-title">Example: Simplify (2a³b⁻²)² × (3a⁻¹b)²</div>
+          <div class="step-box">
+            <span class="step-number">1</span>
+            <strong>Apply Law 4:</strong> Distribute the outer exponent to each factor<br>
+            = 4a⁶b⁻⁴ × 9a⁻²b²
+          </div>
+          <div class="step-box">
+            <span class="step-number">2</span>
+            <strong>Multiply coefficients:</strong> 4 × 9 = 36
+          </div>
+          <div class="step-box">
+            <span class="step-number">3</span>
+            <strong>Apply Law 1 for each variable:</strong><br>
+            a⁶ × a⁻² = a⁶⁻² = a⁴<br>
+            b⁻⁴ × b² = b⁻⁴⁺² = b⁻²
+          </div>
+          <div class="step-box">
+            <span class="step-number">4</span>
+            <strong>Final Answer:</strong> 36a⁴b⁻² or 36a⁴/b²
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Method 3: Fractional and Negative Indices</h2>
+
+        <div class="solution-method method3">
+          <div class="method-title">Example: Simplify 27^(1/3)</div>
+          <div class="step-box">
+            <span class="step-number">1</span>
+            <strong>Recognize the Pattern:</strong> Fractional exponent a<sup>1/n</sup> means the nth root
+          </div>
+          <div class="step-box">
+            <span class="step-number">2</span>
+            <strong>Convert:</strong> 27^(1/3) = ³√27 (cube root of 27)
+          </div>
+          <div class="step-box">
+            <span class="step-number">3</span>
+            <strong>Calculate:</strong> ³√27 = 3 (since 3 × 3 × 3 = 27)
+          </div>
+          <div class="step-box">
+            <span class="step-number">4</span>
+            <strong>Answer:</strong> 3
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="example-box">
-      <h4>Example 4: Fractional Index (Law 8)</h4>
-      <p><strong>Simplify:</strong> 9<sup>½</sup></p>
-      <div class="example-step">
-        <strong>Solution:</strong><br>
-        Using Law 8: a<sup>m/n</sup> = <sup>n</sup>√(a<sup>m</sup>)<br>
-        9<sup>½</sup> = √9 = <strong>3</strong>
+    <!-- PRACTICE PROBLEMS TAB -->
+    <div id="practice" class="content-section">
+
+      <div class="card">
+        <h2>Practice Problems</h2>
+
+        <div class="practice-problem">
+          <h4>Problem 1: Simplify using laws of indices</h4>
+          <span class="difficulty easy">Easy</span>
+          <p><strong>Simplify:</strong> a² × a³ × a</p>
+          <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution">
+            <strong>Step 1:</strong> Apply Law 1 repeatedly (add exponents)<br>
+            a² × a³ × a¹<br>
+            <strong>Step 2:</strong> a^(2+3+1)<br>
+            <strong>Answer:</strong> a⁶
+          </div>
+        </div>
+
+        <div class="practice-problem">
+          <h4>Problem 2: Evaluate negative exponents</h4>
+          <span class="difficulty easy">Easy</span>
+          <p><strong>Evaluate:</strong> 5⁻²</p>
+          <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution">
+            <strong>Step 1:</strong> Apply Law 7: a⁻ⁿ = 1/aⁿ<br>
+            5⁻² = 1/5²<br>
+            <strong>Step 2:</strong> Calculate: 1/25 = 0.04<br>
+            <strong>Answer:</strong> 0.04 or 1/25
+          </div>
+        </div>
+
+        <div class="practice-problem">
+          <h4>Problem 3: Power of a power</h4>
+          <span class="difficulty medium">Medium</span>
+          <p><strong>Simplify:</strong> (x²)³ × (x²)²</p>
+          <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution">
+            <strong>Step 1:</strong> Apply Law 3 to each term (multiply exponents)<br>
+            (x²)³ = x⁶ and (x²)² = x⁴<br>
+            <strong>Step 2:</strong> Now we have x⁶ × x⁴<br>
+            <strong>Step 3:</strong> Apply Law 1 (add exponents)<br>
+            x^(6+4)<br>
+            <strong>Answer:</strong> x¹⁰
+          </div>
+        </div>
+
+        <div class="practice-problem">
+          <h4>Problem 4: Fractional exponents</h4>
+          <span class="difficulty medium">Medium</span>
+          <p><strong>Evaluate:</strong> 27^(1/3)</p>
+          <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution">
+            <strong>Step 1:</strong> Apply Law 8: a^(1/n) = ⁿ√a<br>
+            27^(1/3) = ³√27<br>
+            <strong>Step 2:</strong> Find the cube root (what number × itself 3 times = 27?)<br>
+            3 × 3 × 3 = 27<br>
+            <strong>Answer:</strong> 3
+          </div>
+        </div>
+
+        <div class="practice-problem">
+          <h4>Problem 5: Complex simplification</h4>
+          <span class="difficulty hard">Hard</span>
+          <p><strong>Simplify:</strong> (2a³b⁻²)² × (3a⁻¹b)²</p>
+          <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+          <div class="solution">
+            <strong>Step 1:</strong> Apply Law 4 (power of a product)<br>
+            (2a³b⁻²)² = 4a⁶b⁻⁴<br>
+            (3a⁻¹b)² = 9a⁻²b²<br>
+            <strong>Step 2:</strong> Multiply the results<br>
+            4a⁶b⁻⁴ × 9a⁻²b²<br>
+            <strong>Step 3:</strong> Multiply coefficients: 4 × 9 = 36<br>
+            <strong>Step 4:</strong> Apply Law 1 for each variable<br>
+            a⁶ × a⁻² = a⁴<br>
+            b⁻⁴ × b² = b⁻²<br>
+            <strong>Answer:</strong> 36a⁴b⁻² or 36a⁴/b²
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <!-- Practice Problems -->
-  <div class="card">
-    <h2>Practice Problems</h2>
-
-    <div class="practice-problem">
-      <h4>Problem 1: Simplify using laws of indices</h4>
-      <span class="difficulty easy">Easy</span>
-      <p><strong>Simplify:</strong> a² × a³ × a</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        a² × a³ × a = a^(2+3+1) = a⁶
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 2: Evaluate negative exponents</h4>
-      <span class="difficulty easy">Easy</span>
-      <p><strong>Evaluate:</strong> 5⁻²</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        5⁻² = 1/5² = 1/25 = 0.04
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 3: Power of a power</h4>
-      <span class="difficulty medium">Medium</span>
-      <p><strong>Simplify:</strong> (x²)³ × (x²)²</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        (x²)³ × (x²)² = x⁶ × x⁴ = x^(6+4) = x¹⁰
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 4: Fractional exponents</h4>
-      <span class="difficulty medium">Medium</span>
-      <p><strong>Evaluate:</strong> 27^(1/3)</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        27^(1/3) = ³√27 = 3
-      </div>
-    </div>
-
-    <div class="practice-problem">
-      <h4>Problem 5: Complex simplification</h4>
-      <span class="difficulty hard">Hard</span>
-      <p><strong>Simplify:</strong> (2a³b⁻²)² × (3a⁻¹b)²</p>
-      <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
-      <div class="solution">
-        (2a³b⁻²)² × (3a⁻¹b)² = 4a⁶b⁻⁴ × 9a⁻²b² = 36a⁴b⁻² = 36a⁴/b²
-      </div>
-    </div>
-  </div>
-
-  <!-- Navigation -->
-  <div class="navigation">
-    <a href="index.html" class="nav-button">
-      <span class="nav-label">← Back to</span>
-      <span class="nav-title">Course Overview</span>
-    </a>
-    <a href="course-unit-4-2.html" class="nav-button">
-      <span class="nav-label">Next Unit →</span>
-      <span class="nav-title">Unit 4.2: Logarithms</span>
-    </a>
   </div>
 </div>
 
 <script>
+function switchTab(tabName) {
+  // Hide all sections
+  const sections = document.querySelectorAll('.content-section');
+  sections.forEach(section => section.classList.remove('active'));
+
+  // Remove active class from all buttons
+  const buttons = document.querySelectorAll('.tab-btn');
+  buttons.forEach(btn => btn.classList.remove('active'));
+
+  // Show selected section
+  document.getElementById(tabName).classList.add('active');
+
+  // Add active class to clicked button
+  event.target.classList.add('active');
+}
+
 function toggleSolution(button) {
   const solution = button.nextElementSibling;
   solution.classList.toggle('show');
   button.textContent = solution.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
-}
-
-function updatePower() {
-  const base = document.getElementById('baseSlider').value;
-  const exp = document.getElementById('expSlider').value;
-  document.getElementById('baseValue').textContent = base;
-  document.getElementById('expValue').textContent = exp;
-  document.getElementById('result').textContent = Math.pow(base, exp);
 }
 </script>
