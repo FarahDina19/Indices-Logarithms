@@ -2420,10 +2420,11 @@
                 }
             });
 
-             // Ensure the first tab is shown correctly on load
-            showSection(null, 'introduction'); 
+             // Open a linked section when the page is loaded with a fragment.
+            const requestedSection = window.location.hash.slice(1);
+            const sectionIds = ['introduction', 'indicial-learn', 'indicial-try', 'logarithmic-learn', 'logarithmic-try', 'practice', 'reference'];
+            showSection(null, sectionIds.includes(requestedSection) ? requestedSection : 'introduction');
         });
     </script>
 </body>
 </html>
-
