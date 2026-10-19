@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4.5: Logarithmic Equations in Real-World Applications</title>
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #06b6d4;
+            --bg: #fafbfc;
+            --fg: #1a2332;
+            --border: #e0e6ed;
+            --text-muted: #667085;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f1419;
+                --fg: #e8eaed;
+                --border: #2d3748;
+                --text-muted: #a0aec0;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+            color: white;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        header h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+        .subtitle { font-size: 1.1em; opacity: 0.9; }
+
+        .breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 0 0 1.5rem 0;
+            color: var(--primary);
+            border-bottom: 3px solid rgba(99, 102, 241, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 { font-size: 1.3em; font-weight: 600; margin: 1.5rem 0 1rem 0; }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .app-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            border-left: 5px solid var(--primary);
+            padding: 25px;
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+
+        .app-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15); }
+        .app-card h3 { color: var(--primary); margin-top: 0; }
+        .app-icon { font-size: 2.5em; margin-bottom: 10px; }
+
+        .example-box {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 { color: var(--primary); margin-bottom: 10px; }
+
+        .formula-box {
+            background: white;
+            border: 2px solid var(--primary);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .steps {
+            background: rgba(10, 150, 100, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .step {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .step:last-child { border-bottom: none; }
+        .step-number {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .real-world { border-left: 5px solid var(--secondary); background: rgba(16, 185, 129, 0.05); }
+        .theory { border-left: 5px solid var(--primary); background: rgba(99, 102, 241, 0.05); }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--danger);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box h4 { color: var(--danger); margin-bottom: 10px; }
+
+        .navigation {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .nav-button {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--fg);
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-button:hover { background: rgba(99, 102, 241, 0.1); border-color: var(--primary); }
+
+        .nav-label { font-size: 0.85rem; color: var(--text-muted); }
+        .nav-title { color: var(--primary); font-weight: 600; }
+
+        .toggle-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .solution { margin-top: 1rem; padding: 1rem; background: var(--border); border-radius: 4px; display: none; }
+        .solution.show { display: block; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .navigation { grid-template-columns: 1fr; }
+            .methods-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb"><a href="index.html">Courses</a> / Unit 4.5</div>
+        <header>
+            <h1>Unit 4.5: Logarithmic Equations in Real-World Applications</h1>
+            <p class="subtitle">Discover how logarithms solve complex real-world problems in science, engineering, and nature</p>
+        </header>
+
+        <div class="card">
+            <h2>🔍 What Are Logarithmic Equations & Why Do They Matter?</h2>
+            <p>A logarithmic equation is one where the variable appears inside a logarithm. Logarithms help us solve for unknowns when dealing with:</p>
+            <ul style="margin-left: 20px; margin-top: 15px;">
+                <li>🔊 Sound intensity and decibel levels</li>
+                <li>🌍 Earthquake magnitude (Richter Scale)</li>
+                <li>🧪 pH levels in chemistry</li>
+                <li>⏰ Dating ancient objects (Carbon-14)</li>
+                <li>💻 Data compression and algorithms</li>
+            </ul>
+            <div class="warning-box">
+                <h4>⚠️ Critical Domain Restriction</h4>
+                <p>Logarithms ONLY exist for positive arguments. When solving log(x) = 3, you must verify that your solution x makes the original equation valid. A negative or zero value has NO logarithm!</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🔊 Application 1: Acoustics & Sound Intensity</h2>
+
+            <div class="app-card real-world">
+                <div class="app-icon">🎵</div>
+                <h3>Decibel Level Problem</h3>
+                <p><strong>Scenario:</strong> Sound intensity in Watts/m² follows: dB = 10 log₁₀(I/I₀), where I₀ = 10⁻¹² W/m². A conversation is 60 dB. What is the intensity?</p>
+
+                <div class="formula-box">dB = 10 log₁₀(I/I₀)</div>
+
+                <div class="example-box">
+                    <h4>Solution Steps:</h4>
+                    <div class="steps">
+                        <div class="step"><span class="step-number">1</span> Set up: 60 = 10 log₁₀(I/10⁻¹²)</div>
+                        <div class="step"><span class="step-number">2</span> Divide by 10: 6 = log₁₀(I/10⁻¹²)</div>
+                        <div class="step"><span class="step-number">3</span> Convert to exponential: I/10⁻¹² = 10⁶</div>
+                        <div class="step"><span class="step-number">4</span> Solve: I = 10⁶ × 10⁻¹² = <strong>10⁻⁶ W/m²</strong></div>
+                        <div class="step"><span class="step-number">5</span> Verify: I > 0 ✓ (Domain is satisfied)</div>
+                    </div>
+                </div>
+
+                <button class="toggle-button" onclick="toggleSolution(this)">Audio Engineering Connection</button>
+                <div class="solution">
+                    <strong>Applications:</strong> Audio engineers use decibel calculations to design concert systems, hearing aids, and noise-canceling headphones. A 10 dB increase represents a 10-fold increase in intensity, so understanding this logarithmic scale is crucial for managing sound levels safely and effectively.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🌍 Application 2: Seismology & Earthquake Magnitude</h2>
+
+            <div class="app-card real-world">
+                <div class="app-icon">📊</div>
+                <h3>Richter Scale Problem</h3>
+                <p><strong>Scenario:</strong> Richter magnitude: M = log₁₀(A/A₀) + 1.5, where A is amplitude, A₀ = 1 μm. Find amplitude for a 5.5 magnitude earthquake.</p>
+
+                <div class="formula-box">M = log₁₀(A/A₀) + 1.5</div>
+
+                <div class="example-box">
+                    <h4>Solution Steps:</h4>
+                    <div class="steps">
+                        <div class="step"><span class="step-number">1</span> Set up: 5.5 = log₁₀(A/1) + 1.5</div>
+                        <div class="step"><span class="step-number">2</span> Isolate log: 4 = log₁₀(A)</div>
+                        <div class="step"><span class="step-number">3</span> Convert to exponential: A = 10⁴</div>
+                        <div class="step"><span class="step-number">4</span> Calculate: A = <strong>10,000 μm = 1 cm</strong></div>
+                        <div class="step"><span class="step-number">5</span> Verify: A > 0 ✓ (Domain is satisfied)</div>
+                    </div>
+                </div>
+
+                <button class="toggle-button" onclick="toggleSolution(this)">Seismology Impact</button>
+                <div class="solution">
+                    <strong>Earthquake Science:</strong> The logarithmic scale allows us to express huge variations in earthquake energy (from imperceptible tremors to massive earthquakes) in a manageable scale. A magnitude 6.0 earthquake has 32 times MORE energy than a 5.0. This logarithmic relationship is essential for earthquake prediction, building code design, and risk assessment.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🧪 Application 3: Chemistry & pH Levels</h2>
+
+            <div class="app-card real-world">
+                <div class="app-icon">⚗️</div>
+                <h3>pH Calculation Problem</h3>
+                <p><strong>Scenario:</strong> pH = -log₁₀[H⁺], where [H⁺] is hydrogen ion concentration. If a solution has pH = 3.5, what is [H⁺]?</p>
+
+                <div class="formula-box">pH = -log₁₀[H⁺]</div>
+
+                <div class="example-box">
+                    <h4>Solution Steps:</h4>
+                    <div class="steps">
+                        <div class="step"><span class="step-number">1</span> Set up: 3.5 = -log₁₀[H⁺]</div>
+                        <div class="step"><span class="step-number">2</span> Multiply by -1: -3.5 = log₁₀[H⁺]</div>
+                        <div class="step"><span class="step-number">3</span> Convert to exponential: [H⁺] = 10⁻³·⁵</div>
+                        <div class="step"><span class="step-number">4</span> Calculate: [H⁺] ≈ <strong>3.16 × 10⁻⁴ mol/L</strong></div>
+                        <div class="step"><span class="step-number">5</span> Verify: [H⁺] > 0 ✓ (Domain is satisfied)</div>
+                    </div>
+                </div>
+
+                <button class="toggle-button" onclick="toggleSolution(this)">Chemistry & Health</button>
+                <div class="solution">
+                    <strong>Practical Uses:</strong> pH determination is critical in water treatment, food production, medicine, and environmental monitoring. Too acidic or too basic solutions can be dangerous. This logarithmic scale compresses a huge range of [H⁺] values (from 10⁻¹ to 10⁻¹⁴) into the simple 0-14 scale, making it practical to use and understand.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>⏰ Application 4: Carbon Dating & Radioactive Decay</h2>
+
+            <div class="app-card real-world">
+                <div class="app-icon">🦴</div>
+                <h3>Decay Rate Problem</h3>
+                <p><strong>Scenario:</strong> N(t) = N₀e^(-λt), where λ is decay constant. For C-14, λ = ln(2)/5730. Find age when 30% remains.</p>
+
+                <div class="formula-box">N(t) = N₀e<sup>-λt</sup> → 0.3 = e<sup>-λt</sup> → t = -ln(0.3)/λ</div>
+
+                <div class="example-box">
+                    <h4>Solution Steps:</h4>
+                    <div class="steps">
+                        <div class="step"><span class="step-number">1</span> Set up: 0.3 = e^(-λt), where λ = ln(2)/5730</div>
+                        <div class="step"><span class="step-number">2</span> Take natural log: ln(0.3) = -λt</div>
+                        <div class="step"><span class="step-number">3</span> Solve for t: t = -ln(0.3)/λ</div>
+                        <div class="step"><span class="step-number">4</span> Calculate: t = -ln(0.3) ÷ [ln(2)/5730]</div>
+                        <div class="step"><span class="step-number">5</span> Result: t ≈ <strong>9,953 years</strong> (Verify: 0.3 > 0 ✓)</div>
+                    </div>
+                </div>
+
+                <button class="toggle-button" onclick="toggleSolution(this)">Archaeology Application</button>
+                <div class="solution">
+                    <strong>Archaeological Dating:</strong> Natural logarithms in the decay equation allow archaeologists to determine the age of organic materials. By measuring the remaining C-14 (30%, 50%, etc.), scientists can calculate exact ages of fossils, ancient texts, and artifacts. This technique revolutionized archaeology and our understanding of human history.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📊 Solving Logarithmic Equations: Core Methods</h2>
+
+            <div class="app-grid">
+                <div class="app-card theory">
+                    <h3>Method 1: Comparison</h3>
+                    <p>If log₅(x) = log₅(10), then x = 10</p>
+                    <p><small>Use when both sides have same base</small></p>
+                </div>
+
+                <div class="app-card theory">
+                    <h3>Method 2: Laws of Logarithms</h3>
+                    <p>Combine: log(a) + log(b) = log(ab)</p>
+                    <p><small>Use for sums/differences of logs</small></p>
+                </div>
+
+                <div class="app-card theory">
+                    <h3>Method 3: Exponential Form</h3>
+                    <p>If log₃(x) = 2, then x = 3²= 9</p>
+                    <p><small>Use to convert to exponential form</small></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>💡 Key Insight: Solving Strategy</h2>
+            <p><strong>Always follow this sequence:</strong></p>
+            <ul style="margin-left: 20px; margin-top: 15px;">
+                <li>✓ Combine logs using laws: log(a) + log(b) = log(ab)</li>
+                <li>✓ Isolate the logarithm on one side</li>
+                <li>✓ Convert to exponential form: log_b(x) = y → x = b^y</li>
+                <li>✓ Solve for the variable</li>
+                <li>✓ <strong>Verify domain:</strong> All arguments must be > 0</li>
+            </ul>
+            <p style="margin-top: 15px;"><em>The domain check is NOT optional—solutions that produce log(0) or log(negative) are invalid!</em></p>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Practice: Apply Your Knowledge</h2>
+
+            <div class="example-box">
+                <h4>Challenge 1: Sound Level Comparison</h4>
+                <p><strong>Problem:</strong> A whisper is 20 dB, normal conversation is 60 dB. How many times more intense is the conversation?</p>
+                <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+                <div class="solution">
+                    dB₁ - dB₂ = 10 log₁₀(I₁/I₂)<br>
+                    60 - 20 = 10 log₁₀(I₁/I₂)<br>
+                    4 = log₁₀(I₁/I₂)<br>
+                    I₁/I₂ = 10⁴<br>
+                    <strong>Answer: Conversation is 10,000 times more intense</strong>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>Challenge 2: Domain Restriction</h4>
+                <p><strong>Problem:</strong> Solve: log₂(x - 3) = 4. Check domain!</p>
+                <button class="toggle-button" onclick="toggleSolution(this)">Show Solution</button>
+                <div class="solution">
+                    Convert: x - 3 = 2⁴ = 16<br>
+                    So: x = 19<br>
+                    Domain check: x - 3 = 16 > 0 ✓<br>
+                    <strong>Answer: x = 19 (valid)</strong><br>
+                    <em>Note: If we had gotten x = 2, we'd reject it because 2 - 3 = -1 < 0 (invalid logarithm)</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="course-unit-4-4.html" class="nav-button"><span class="nav-label">← Previous Unit</span><span class="nav-title">Unit 4.4: Indicial Eqns</span></a>
+            <a href="index.html" class="nav-button"><span class="nav-label">Back to Menu →</span><span class="nav-title">Course Overview</span></a>
+        </div>
+    </div>
+
+    <script>
+        function toggleSolution(button) {
+            const solution = button.nextElementSibling;
+            solution.classList.toggle('show');
+            button.textContent = solution.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+        }
+    </script>
+</body>
+</html>
